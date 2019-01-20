@@ -30,7 +30,7 @@
         app:menu="@menu/navigation"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp"/>
+        android:paddingBottom="2dp"
+        android:paddingTop="4dp"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -25,6 +25,14 @@
             android:textSize="@dimen/h5"
             android:text="팁아 길어져라 으아아아"
             android:textColor="@color/textWhite" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/setting"
+            android:paddingRight="29dp"
+            android:tint="@color/textWhite"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 
     <ScrollView
@@ -35,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <!--top space-->
             <android.support.v4.widget.Space
                 android:layout_width="match_parent"
                 android:layout_height="85dp" />
@@ -42,31 +51,103 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="409dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary">
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="asdfasdfasdf"
-                    android:textColor="@color/textWhite" />
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="11dp" />
+                    <!--each drink-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginBottom="17dp">
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="술 이름"
+                            android:textSize="@dimen/h3"
+                            android:textColor="@color/textWhite" />
+                        <RelativeLayout
+                            android:id="@+id/stepper_container"
+                            android:layout_width="144dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/stepper_background">
+
+                            <ImageView
+                                android:id="@+id/stepper_plus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginEnd="0dp"
+                                android:paddingTop="2dp"
+                                android:paddingRight="2dp"
+                                android:src="@drawable/plus" />
+                            <ImageView
+                                android:paddingTop="2dp"
+                                android:paddingLeft="2dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/minus"
+                                android:id="@+id/stepper_minus"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+                    <!--<ListView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:paddingLeft="15dp"-->
+                        <!--android:paddingRight="15dp">-->
+                    <!--</ListView>-->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/pill_more_sul"
+                        android:layout_gravity="center">
+                        <RelativeLayout
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/h6"
+                                android:textColor="@color/textWhite"
+                                android:text="@string/more_sul"
+                                android:id="@+id/pill_more_sul_text"/>
+                            <ImageView
+                                android:paddingLeft="16dp"
+                                android:paddingTop="1dp"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@id/pill_more_sul_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/more_arrow"/>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+                </LinearLayout>
             </android.support.v7.widget.CardView>
+
+            <!--per-card space-->
             <RelativeLayout
                 android:background="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <android.support.v7.widget.CardView
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="800dp"
-                android:backgroundTint="@color/colorPrimary">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="asdfasdfasdf"
-                    android:textColor="@color/textWhite" />
-            </android.support.v7.widget.CardView>
+            <!--end space-->
             <android.support.v4.widget.Space
                 android:background="@color/colorPrimaryDark"
                 android:layout_width="match_parent"

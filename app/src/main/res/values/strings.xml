@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Sulchedule</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-</resources>
+    <string name="past">과거</string>
+    <string name="today">오늘</string>
+    <string name="traffic">건강 신호등</string>
+
+    </resources>

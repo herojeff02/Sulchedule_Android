@@ -3,13 +3,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TodayFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context=".TodayFragment"
+    android:background="@color/colorPrimaryDark">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="today"
-        android:textColor="@color/textWhite"/>
+        android:layout_height="85dp"
+        android:paddingLeft="20dp">
+        <TextView
+            android:paddingTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1월 n일(월)"
+            android:textSize="@dimen/h3"
+            android:textStyle="bold"
+            android:textColor="@color/textWhite" />
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/h5"
+            android:text="팁아 길어져라 으아아아"
+            android:textColor="@color/textWhite" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="85dp" />
+            <android.support.v7.widget.CardView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="409dp"
+                android:backgroundTint="@color/colorPrimary">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="asdfasdfasdf"
+                    android:textColor="@color/textWhite" />
+            </android.support.v7.widget.CardView>
+            <RelativeLayout
+                android:background="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="800dp"
+                android:backgroundTint="@color/colorPrimary">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="asdfasdfasdf"
+                    android:textColor="@color/textWhite" />
+            </android.support.v7.widget.CardView>
+            <android.support.v4.widget.Space
+                android:background="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

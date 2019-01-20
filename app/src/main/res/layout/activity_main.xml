@@ -8,16 +8,12 @@
     tools:context=".MainActivity">
 
     <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintTop_toTopOf="@id/container"
         app:layout_constraintBottom_toTopOf="@id/navigation">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="asdfasdf"
-            android:textColor="@color/textWhite"/>
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView

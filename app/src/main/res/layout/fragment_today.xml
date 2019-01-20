@@ -28,7 +28,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/setting"
+            android:src="@drawable/ic_settings"
             android:paddingRight="29dp"
             android:tint="@color/textWhite"
             android:layout_alignParentRight="true"
@@ -79,7 +79,7 @@
                             android:layout_width="144dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:background="@drawable/stepper_background">
+                            android:background="@drawable/ic_stepper_background">
 
                             <ImageView
                                 android:id="@+id/stepper_plus"
@@ -90,13 +90,13 @@
                                 android:layout_marginEnd="0dp"
                                 android:paddingTop="2dp"
                                 android:paddingRight="2dp"
-                                android:src="@drawable/plus" />
+                                android:src="@drawable/ic_circle_plus" />
                             <ImageView
                                 android:paddingTop="2dp"
                                 android:paddingLeft="2dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/minus"
+                                android:src="@drawable/ic_circle_minus"
                                 android:id="@+id/stepper_minus"/>
                         </RelativeLayout>
                     </RelativeLayout>
@@ -107,9 +107,9 @@
                         <!--android:paddingRight="15dp">-->
                     <!--</ListView>-->
                     <RelativeLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/pill_more_sul"
+                        android:background="@drawable/ic_pill_more_sul"
                         android:layout_gravity="center">
                         <RelativeLayout
                             android:layout_centerInParent="true"
@@ -130,7 +130,7 @@
                                 android:layout_toRightOf="@id/pill_more_sul_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/more_arrow"/>
+                                android:src="@drawable/ic_more_arrow"/>
                         </RelativeLayout>
 
                     </RelativeLayout>
@@ -146,6 +146,109 @@
                 android:background="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+                    <!--each input-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="4dp">
+                        <RelativeLayout
+                            android:layout_width="82dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/ic_pill_selector"
+                            android:layout_gravity="center"
+                            android:id="@+id/pill_selector_container">
+                            <RelativeLayout
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/pill_selector"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="누구와"
+                                    android:textColor="@color/textWhite"
+                                    android:textSize="@dimen/h6" />
+                                <ImageView
+                                    android:paddingLeft="12dp"
+                                    android:paddingTop="1dp"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@id/pill_selector"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_selector_arrow"/>
+                            </RelativeLayout>
+                        </RelativeLayout>
+                        <EditText
+                            android:layout_toRightOf="@id/pill_selector_container"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="8dp"
+                            android:paddingLeft="4dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="@dimen/h5"
+                            android:textColorHint="@color/textGray"
+                            android:hint="입력하세요"/>
+                    </RelativeLayout>
+
+                    <!--<ListView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingLeft="15dp"-->
+                    <!--android:paddingRight="15dp">-->
+                    <!--</ListView>-->
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/ic_pill_more_blank"
+                        android:layout_gravity="center">
+                        <RelativeLayout
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/h6"
+                                android:textColor="@color/textWhite"
+                                android:text="@string/more_blank"
+                                android:id="@+id/pill_more_blank"/>
+                            <ImageView
+                                android:paddingLeft="16dp"
+                                android:paddingTop="1dp"
+                                android:layout_centerVertical="true"
+                                android:layout_toRightOf="@id/pill_more_blank"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_pill_more_blank_plus"/>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
 
             <!--end space-->
             <android.support.v4.widget.Space

@@ -1,5 +1,6 @@
 package com.herojeff.sulchedule;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -18,6 +20,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM2 = "param2";
 
     ImageButton setting_button;
+    RelativeLayout more_sul_pill;
 
 
     public TodayFragment() {
@@ -68,6 +71,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
 
         setting_button = view.findViewById(R.id.setting_button);
         setting_button.setOnClickListener(this);
+        more_sul_pill = view.findViewById(R.id.pill_more_sul);
+        more_sul_pill.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return view;
@@ -75,7 +80,16 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v){
-        System.out.print("what\n\n");
+        switch (v.getId()){
+            case R.id.setting_button:
+                System.out.print("setting_button\n\n");
+                break;
+            case R.id.pill_more_sul:
+                Intent intent = new Intent(getContext(), MoreSulActivity.class);
+                startActivity(intent);
+                break;
+        }
+
     }
 }
 

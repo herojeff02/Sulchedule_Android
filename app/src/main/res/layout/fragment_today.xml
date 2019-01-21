@@ -67,6 +67,7 @@
                     </ListView>
 
                     <RelativeLayout
+                        android:id="@+id/pill_more_sul"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

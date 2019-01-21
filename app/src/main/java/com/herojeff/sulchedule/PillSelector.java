@@ -1,17 +1,25 @@
 package com.herojeff.sulchedule;
 
 public class PillSelector {
-    int mode;
     public static final int whom = 1;
     public static final int where = 2;
     public static final int expense = 3;
+    int mode;
+
+    public PillSelector(int mode) {
+        this.mode = mode;
+    }
 
     public int getMode() {
         return mode;
     }
 
-    public String getModeString(){
-        switch (mode){
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
+
+    public String getModeString() {
+        switch (mode) {
             case 1:
                 return "누구와";
             case 2:
@@ -20,14 +28,6 @@ public class PillSelector {
                 return "얼마";
         }
         return "";
-    }
-
-    public void setMode(int mode) {
-        this.mode = mode;
-    }
-
-    public PillSelector(int mode){
-        this.mode = mode;
     }
 
 }

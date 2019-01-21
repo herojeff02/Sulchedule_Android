@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SulListViewAdapter extends BaseAdapter {
 
-//    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
-    String[] arr = {"뭔 술 몇 병","ㅁㄴㅇㄹㅁㄴㅇ","ㅁㅇㄹ42", "이이"};
+    //    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
+    String[] arr = {"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ42", "이이"};
 
-    public SulListViewAdapter(){
+    public SulListViewAdapter() {
 
     }
 

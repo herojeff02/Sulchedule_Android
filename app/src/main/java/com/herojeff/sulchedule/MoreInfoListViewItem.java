@@ -1,7 +1,15 @@
 package com.herojeff.sulchedule;
 
 public class MoreInfoListViewItem {
-        public String getContent() {
+    String content;
+    int mode;
+
+    public MoreInfoListViewItem(String content, int mode) {
+        this.content = content;
+        this.mode = mode;
+    }
+
+    public String getContent() {
         return content;
     }
 
@@ -16,12 +24,4 @@ public class MoreInfoListViewItem {
     public void setMode(int mode) {
         this.mode = mode;
     }
-
-    public MoreInfoListViewItem(String content, int mode) {
-        this.content = content;
-        this.mode = mode;
-    }
-
-    String content;
-    int mode;
 }

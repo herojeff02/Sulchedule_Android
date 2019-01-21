@@ -5,14 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.TextView;
 
-public class MoreInfoListViewAdapter extends BaseAdapter {
+public class MoreSulListViewAdapter extends BaseAdapter {
+
+    //    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
+    String[] arr = {"뭔 술 몇 병", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ42", "이이"};
+
+    public MoreSulListViewAdapter() {
+
+    }
 
     @Override
     public int getCount() {
-        return 3;
+        return arr.length;
     }
 
     @Override
@@ -32,16 +38,14 @@ public class MoreInfoListViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_more_info, parent, false);
+            convertView = inflater.inflate(R.layout.listview_more_sul, parent, false);
         }
 
-        EditText editText = convertView.findViewById(R.id.edittext_more_info);
-        editText.setText("");
+        TextView textView = convertView.findViewById(R.id.string_sul);
 
-        TextView pill_selector_string = convertView.findViewById(R.id.pill_selector_string);
-        PillSelector pill = new PillSelector(pos + 1);
-        pill_selector_string.setText(pill.getModeString());
+        textView.setText(String.valueOf(arr[pos]));
 
         return convertView;
     }
+
 }

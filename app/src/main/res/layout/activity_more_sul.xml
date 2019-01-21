@@ -1,9 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoreSulActivity">
+    android:background="@color/colorPrimaryDark"
+    tools:context=".TodayFragment">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--top area-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <LinearLayout
+                    android:id="@+id/back_text_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_back" />
+
+                    <Space
+                        android:layout_width="9dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="오늘"
+                        android:textColor="@color/textWhite"
+                        android:textSize="@dimen/h4"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true">
+
+                    <ImageButton
+                        android:id="@+id/add_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="#00000000"
+                        android:paddingLeft="29dp"
+                        android:paddingRight="15dp"
+                        android:src="@drawable/ic_plus"
+                        android:tint="@color/textWhite" />
+
+                    <ImageButton
+                        android:id="@+id/edit_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center_vertical"
+                        android:background="#00000000"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="29dp"
+                        android:src="@drawable/ic_edit"
+                        android:tint="@color/textWhite" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="@color/colorPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="11dp" />
+
+                    <ListView
+                        android:id="@+id/listview_more_sul"
+                        android:layout_width="match_parent"
+                        android:layout_height="61dp">
+                    </ListView>
+
+                    <LinearLayout
+                        android:id="@+id/pill_more_sul_add"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_pill_add_sul">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true">
+
+                                <TextView
+                                    android:id="@+id/pill_more_sul_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="@string/add_sul"
+                                    android:textColor="@color/textWhite"
+                                    android:textSize="@dimen/h6" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@id/pill_more_sul_text"
+                                    android:paddingLeft="16dp"
+                                    android:paddingTop="1dp"
+                                    android:src="@drawable/ic_pill_plus" />
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                        <Space
+                            android:id="@+id/pill_more_sul_helper"
+                            android:layout_width="100dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <!--end space-->
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@color/colorPrimaryDark" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

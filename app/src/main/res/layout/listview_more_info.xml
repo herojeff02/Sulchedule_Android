@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp">
+
         <RelativeLayout
+            android:id="@+id/pill_selector"
             android:layout_width="82dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_pill_selector"
             android:layout_gravity="center"
-            android:id="@+id/pill_selector">
+            android:background="@drawable/ic_pill_selector">
+
             <RelativeLayout
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
                 <TextView
                     android:id="@+id/pill_selector_string"
                     android:layout_width="wrap_content"
@@ -24,28 +29,30 @@
                     android:text="누구와"
                     android:textColor="@color/textWhite"
                     android:textSize="@dimen/h6" />
+
                 <ImageView
-                    android:paddingLeft="12dp"
-                    android:paddingTop="1dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/pill_selector_string"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_selector_arrow"/>
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/pill_selector_string"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="1dp"
+                    android:src="@drawable/ic_selector_arrow" />
             </RelativeLayout>
         </RelativeLayout>
+
         <EditText
             android:id="@+id/edittext_more_info"
-            android:layout_toRightOf="@id/pill_selector"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="8dp"
-            android:paddingLeft="4dp"
-            android:layout_marginBottom="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/h5"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="3dp"
+            android:layout_toRightOf="@id/pill_selector"
+            android:hint="입력하세요"
+            android:paddingLeft="4dp"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/textGray"
-            android:hint="입력하세요"/>
+            android:textSize="@dimen/h5" />
     </RelativeLayout>
 </RelativeLayout>

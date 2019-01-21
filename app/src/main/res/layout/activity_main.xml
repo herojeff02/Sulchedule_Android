@@ -15,9 +15,8 @@
         android:layout_height="0dp"
         android:background="@color/colorPrimaryDark"
         android:backgroundTint="@color/colorPrimaryDark"
-        app:layout_constraintTop_toTopOf="@id/container"
-        app:layout_constraintBottom_toTopOf="@id/navigation">
-    </FrameLayout>
+        app:layout_constraintBottom_toTopOf="@id/navigation"
+        app:layout_constraintTop_toTopOf="@id/container"></FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -25,16 +24,16 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         android:backgroundTint="@color/colorPrimary"
+        android:paddingLeft="40dp"
+        android:paddingTop="4dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="2dp"
+        android:textAlignment="center"
         app:itemIconTint="@color/navigation_item_color"
         app:itemTextColor="@color/navigation_item_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/navigation"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:paddingBottom="2dp"
-        android:textAlignment="center"
-        android:paddingTop="4dp"/>
+        app:menu="@menu/navigation" />
 
 </android.support.constraint.ConstraintLayout>

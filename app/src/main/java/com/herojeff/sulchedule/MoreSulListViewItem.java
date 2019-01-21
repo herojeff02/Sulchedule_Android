@@ -1,6 +1,16 @@
 package com.herojeff.sulchedule;
 
 public class MoreSulListViewItem {
+    String sul_name;
+    int sul_count;
+    boolean favourite;
+
+    public MoreSulListViewItem(String sul_name, int sul_count, boolean favourite) {
+        this.sul_name = sul_name;
+        this.sul_count = sul_count;
+        this.favourite = favourite;
+    }
+
     public String getSul_name() {
         return sul_name;
     }
@@ -24,14 +34,4 @@ public class MoreSulListViewItem {
     public void setFavourite(boolean favourite) {
         this.favourite = favourite;
     }
-
-    public MoreSulListViewItem(String sul_name, int sul_count, boolean favourite) {
-        this.sul_name = sul_name;
-        this.sul_count = sul_count;
-        this.favourite = favourite;
-    }
-
-    String sul_name;
-    int sul_count;
-    boolean favourite;
 }

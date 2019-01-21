@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 
 public class TodayFragment extends Fragment implements View.OnClickListener {
@@ -20,7 +18,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM2 = "param2";
 
     ImageButton setting_button;
-    RelativeLayout more_sul_pill;
+    LinearLayout more_sul_pill;
+    LinearLayout more_blank_pill;
 
 
     public TodayFragment() {
@@ -69,24 +68,30 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         //set listview height not to clip content
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
 
-        setting_button = view.findViewById(R.id.setting_button);
+        setting_button = view.findViewById(R.id.edit_button);
         setting_button.setOnClickListener(this);
         more_sul_pill = view.findViewById(R.id.pill_more_sul);
         more_sul_pill.setOnClickListener(this);
+        more_blank_pill = view.findViewById(R.id.pill_more_blank);
+        more_blank_pill.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return view;
     }
 
     @Override
-    public void onClick(View v){
-        switch (v.getId()){
-            case R.id.setting_button:
-                System.out.print("setting_button\n\n");
+    public void onClick(View v) {
+        Intent intent;
+        switch (v.getId()) {
+            case R.id.edit_button:
+                System.out.println("edit_button");
                 break;
             case R.id.pill_more_sul:
-                Intent intent = new Intent(getContext(), MoreSulActivity.class);
+                intent = new Intent(getContext(), MoreSulActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.pill_more_blank:
+                System.out.println("pill_more_blank");
                 break;
         }
 

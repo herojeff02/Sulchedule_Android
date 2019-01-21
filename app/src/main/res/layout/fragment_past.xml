@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="past"
-        android:textColor="@color/textWhite"/>
+        android:textColor="@color/textWhite" />
 
 </FrameLayout>

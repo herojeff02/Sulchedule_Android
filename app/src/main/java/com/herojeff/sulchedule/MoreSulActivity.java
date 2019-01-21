@@ -39,7 +39,7 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         Intent intent;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.back_text_button:
                 finish();
                 break;

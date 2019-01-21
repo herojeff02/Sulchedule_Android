@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class MoreSulListViewAdapter extends BaseAdapter {
 
     //    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
-    String[] arr = {"뭔 술 몇 병", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ42", "이이"};
+    String[] arr = {"뭔 술 몇 병", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이"};
 
     public MoreSulListViewAdapter() {
 

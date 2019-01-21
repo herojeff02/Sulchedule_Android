@@ -2,9 +2,9 @@ package com.herojeff.sulchedule;
 
 public class PillSelector {
     int mode;
-    public static int whom = 1;
-    public static int where = 2;
-    public static int expense = 3;
+    public static final int whom = 1;
+    public static final int where = 2;
+    public static final int expense = 3;
 
     public int getMode() {
         return mode;

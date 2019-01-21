@@ -3,55 +3,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TodayFragment"
-    android:background="@color/colorPrimaryDark">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
-        android:paddingLeft="20dp">
-        <TextView
-            android:paddingTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1월 n일(월)"
-            android:textSize="@dimen/h3"
-            android:textStyle="bold"
-            android:textColor="@color/textWhite" />
-        <TextView
-            android:layout_alignParentBottom="true"
-            android:paddingBottom="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/h5"
-            android:text="팁아 길어져라 으아아아"
-            android:textColor="@color/textWhite" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_settings"
-            android:paddingRight="29dp"
-            android:tint="@color/textWhite"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-
+    android:background="@color/colorPrimaryDark"
+    tools:context=".TodayFragment">
     <ScrollView
-        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <!--top space-->
-            <android.support.v4.widget.Space
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="85dp" />
+                android:layout_height="85dp"
+                android:paddingLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:text="1월 n일(월)"
+                    android:textColor="@color/textWhite"
+                    android:textSize="@dimen/h3"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:paddingBottom="15dp"
+                    android:text="팁아 길어져라 으아아아"
+                    android:textColor="@color/textWhite"
+                    android:textSize="@dimen/h5" />
+                <ImageButton
+                    android:id="@+id/setting_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:tint="@color/textWhite"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="29dp"
+                    android:src="@drawable/ic_settings"/>
+            </RelativeLayout>
             <android.support.v7.widget.CardView
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:backgroundTint="@color/colorPrimary">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,35 +61,35 @@
                         android:layout_height="11dp" />
 
                     <ListView
+                        android:id="@+id/listview_sul"
                         android:layout_width="match_parent"
-                        android:layout_height="61dp"
-                        android:id="@+id/listview_sul">
+                        android:layout_height="61dp">
                     </ListView>
 
                     <RelativeLayout
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/ic_pill_more_sul"
-                        android:layout_gravity="center">
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_pill_more_sul">
                         <RelativeLayout
-                            android:layout_centerInParent="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
                             <TextView
-                                android:layout_centerVertical="true"
+                                android:id="@+id/pill_more_sul_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/h6"
-                                android:textColor="@color/textWhite"
+                                android:layout_centerVertical="true"
                                 android:text="@string/more_sul"
-                                android:id="@+id/pill_more_sul_text"/>
+                                android:textColor="@color/textWhite"
+                                android:textSize="@dimen/h6"/>
                             <ImageView
-                                android:paddingLeft="16dp"
-                                android:paddingTop="1dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_toRightOf="@id/pill_more_sul_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="1dp"
                                 android:src="@drawable/ic_more_arrow"/>
                         </RelativeLayout>
 
@@ -106,15 +103,15 @@
 
             <!--per-card space-->
             <RelativeLayout
-                android:background="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_height="20dp"
+                android:background="@color/colorPrimaryDark" />
 
             <android.support.v7.widget.CardView
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:backgroundTint="@color/colorPrimary">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -133,28 +130,28 @@
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginTop="8dp"
-                        android:background="@drawable/ic_pill_more_blank"
-                        android:layout_gravity="center">
+                        android:background="@drawable/ic_pill_more_blank">
                         <RelativeLayout
-                            android:layout_centerInParent="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
                             <TextView
-                                android:layout_centerVertical="true"
+                                android:id="@+id/pill_more_blank"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/h6"
-                                android:textColor="@color/textWhite"
+                                android:layout_centerVertical="true"
                                 android:text="@string/more_blank"
-                                android:id="@+id/pill_more_blank"/>
+                                android:textColor="@color/textWhite"
+                                android:textSize="@dimen/h6"/>
                             <ImageView
-                                android:paddingLeft="16dp"
-                                android:paddingTop="1dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_toRightOf="@id/pill_more_blank"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="1dp"
                                 android:src="@drawable/ic_pill_more_blank_plus"/>
                         </RelativeLayout>
 
@@ -168,9 +165,9 @@
 
             <!--end space-->
             <android.support.v4.widget.Space
-                android:background="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_height="20dp"
+                android:background="@color/colorPrimaryDark" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

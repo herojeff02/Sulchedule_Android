@@ -5,14 +5,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
-public class TodayFragment extends Fragment {
+public class TodayFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    ImageButton setting_button;
 
 
     public TodayFragment() {
@@ -61,8 +66,16 @@ public class TodayFragment extends Fragment {
         //set listview height not to clip content
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
 
+        setting_button = view.findViewById(R.id.setting_button);
+        setting_button.setOnClickListener(this);
+
         // Inflate the layout for this fragment
         return view;
+    }
+
+    @Override
+    public void onClick(View v){
+        System.out.print("what\n\n");
     }
 }
 

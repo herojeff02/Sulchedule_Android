@@ -5,6 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:backgroundTint="@color/colorPrimaryDark"
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -12,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorPrimaryDark"
+        android:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintTop_toTopOf="@id/container"
         app:layout_constraintBottom_toTopOf="@id/navigation">
     </FrameLayout>
@@ -28,9 +31,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
         android:paddingBottom="2dp"
+        android:textAlignment="center"
         android:paddingTop="4dp"/>
 
 </android.support.constraint.ConstraintLayout>

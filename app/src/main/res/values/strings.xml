@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sulchedule</string>
+    <string name="app_name">술케줄</string>
     <string name="past">과거</string>
     <string name="today">오늘</string>
     <string name="traffic">건강 신호등</string>

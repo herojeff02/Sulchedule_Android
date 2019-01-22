@@ -34,6 +34,7 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
         add_button.setOnClickListener(this);
         pill_more_sul_add = findViewById(R.id.pill_more_sul_add);
         pill_more_sul_add.setOnClickListener(this);
+
     }
 
     @Override

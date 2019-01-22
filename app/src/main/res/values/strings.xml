@@ -8,6 +8,9 @@
     <string name="more_blank">입력란 추가</string>
     <string name="add_sul">새로운 주류 추가</string>
 
+    <string name="edit">편집</string>
+    <string name="delete">삭제</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -33,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="오늘"
+                android:paddingLeft="4dp"
                 android:textColor="@color/textWhite"
                 android:textSize="@dimen/h4"
                 android:textStyle="bold" />
@@ -87,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:paddingTop="6dp"
                 android:backgroundTint="@color/colorPrimary">
 
                 <LinearLayout
@@ -95,10 +97,6 @@
                     android:orientation="vertical"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp">
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="11dp" />
 
                     <ListView
                         android:id="@+id/listview_more_sul"
@@ -110,6 +108,7 @@
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginTop="11dp"
                         android:orientation="vertical">
 
                         <RelativeLayout

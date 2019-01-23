@@ -6,6 +6,40 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".TodayFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:text="1월 n일(월)"
+            android:textColor="@color/textWhite"
+            android:textSize="@dimen/h3"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="15dp"
+            android:text="팁아 길어져라 으아아아"
+            android:textColor="@color/textWhite"
+            android:textSize="@dimen/h5" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#00000000"
+            android:padding="29dp"
+            android:src="@drawable/ic_settings"
+            android:tint="@color/textWhite" />
+    </RelativeLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,24 +55,6 @@
                 android:layout_height="85dp"
                 android:paddingLeft="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="15dp"
-                    android:text="1월 n일(월)"
-                    android:textColor="@color/textWhite"
-                    android:textSize="@dimen/h3"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:paddingBottom="15dp"
-                    android:text="팁아 길어져라 으아아아"
-                    android:textColor="@color/textWhite"
-                    android:textSize="@dimen/h5" />
-
                 <ImageButton
                     android:id="@+id/edit_button"
                     android:layout_width="wrap_content"
@@ -48,6 +64,7 @@
                     android:background="#00000000"
                     android:padding="29dp"
                     android:src="@drawable/ic_settings"
+                    android:alpha="0"
                     android:tint="@color/textWhite" />
             </RelativeLayout>
 
@@ -72,7 +89,7 @@
                     <ListView
                         android:id="@+id/listview_sul"
                         android:layout_width="match_parent"
-                        android:layout_height="61dp"></ListView>
+                        android:layout_height="61dp"/>
 
                     <LinearLayout
                         android:id="@+id/pill_more_sul"

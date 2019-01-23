@@ -25,6 +25,7 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
         listview_more_sul.setAdapter(adapter_more_sul);
         listview_more_sul.setDividerHeight(0);
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_sul);
+        listview_more_sul.setFocusable(false);
 
         back_text_button = findViewById(R.id.back_text_button);
         back_text_button.setOnClickListener(this);
@@ -34,7 +35,6 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
         add_button.setOnClickListener(this);
         pill_more_sul_add = findViewById(R.id.pill_more_sul_add);
         pill_more_sul_add.setOnClickListener(this);
-
     }
 
     @Override

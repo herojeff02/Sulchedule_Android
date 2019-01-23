@@ -11,7 +11,6 @@
         android:layout_height="56dp">
 
         <LinearLayout
-            android:id="@+id/back_text_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -45,7 +44,6 @@
             android:layout_alignParentRight="true">
 
             <ImageButton
-                android:id="@+id/add_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -57,7 +55,6 @@
                 android:tint="@color/textWhite" />
 
             <ImageButton
-                android:id="@+id/edit_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -73,7 +70,6 @@
     </RelativeLayout>
 
     <ScrollView
-        android:layout_marginTop="56dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
@@ -82,6 +78,71 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <LinearLayout
+                    android:id="@+id/back_text_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_back"
+                        android:alpha="0"/>
+
+                    <Space
+                        android:layout_width="9dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="오늘"
+                        android:paddingLeft="4dp"
+                        android:textColor="#00000000"
+                        android:textSize="@dimen/h4"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true">
+
+                    <ImageButton
+                        android:id="@+id/add_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="#00000000"
+                        android:paddingLeft="29dp"
+                        android:paddingRight="15dp"
+                        android:alpha="0"/>
+
+                    <ImageButton
+                        android:id="@+id/edit_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="29dp"
+                        android:src="@drawable/ic_edit"
+                        android:alpha="0"/>
+                </LinearLayout>
+
+
+            </RelativeLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -101,7 +162,7 @@
                     <ListView
                         android:id="@+id/listview_more_sul"
                         android:layout_width="match_parent"
-                        android:layout_height="61dp"></ListView>
+                        android:layout_height="61dp"/>
 
                     <LinearLayout
                         android:id="@+id/pill_more_sul_add"

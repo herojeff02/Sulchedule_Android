@@ -5,12 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MoreSulListViewAdapter extends BaseAdapter {
 
     //    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
     String[] arr = {"뭔 술 몇 병", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이"};
+
+    TextView textView;
+    ImageView stepper_plus;
+    ImageView stepper_minus;
 
     public MoreSulListViewAdapter() {
 
@@ -41,9 +46,25 @@ public class MoreSulListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.listview_more_sul, parent, false);
         }
 
-        TextView textView = convertView.findViewById(R.id.string_sul);
+        textView = convertView.findViewById(R.id.string_sul);
+
+        textView = convertView.findViewById(R.id.string_sul);
+        stepper_minus = convertView.findViewById(R.id.stepper_minus);
+        stepper_plus = convertView.findViewById(R.id.stepper_plus);
 
         textView.setText(String.valueOf(arr[pos]));
+        stepper_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("minus at " + pos);
+            }
+        });
+        stepper_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("plus at " + pos);
+            }
+        });
 
         return convertView;
     }

@@ -29,7 +29,7 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
 
         back_text_button = findViewById(R.id.back_text_button);
         back_text_button.setOnClickListener(this);
-        edit_button = findViewById(R.id.edit_button);
+        edit_button = findViewById(R.id.setting_button);
         edit_button.setOnClickListener(this);
         add_button = findViewById(R.id.add_button);
         add_button.setOnClickListener(this);
@@ -44,7 +44,7 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.back_text_button:
                 finish();
                 break;
-            case R.id.edit_button:
+            case R.id.setting_button:
                 intent = new Intent(getApplicationContext(), MoreSulEditActivity.class);
                 startActivity(intent);
                 break;

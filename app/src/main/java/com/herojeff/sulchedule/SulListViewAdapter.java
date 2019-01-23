@@ -5,12 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class SulListViewAdapter extends BaseAdapter {
 
     //    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
     String[] arr = {"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ42", "이이"};
+
+    TextView textView;
+    ImageView stepper_minus;
+    ImageView stepper_plus;
 
     public SulListViewAdapter() {
 
@@ -41,9 +48,24 @@ public class SulListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.listview_sul, parent, false);
         }
 
-        TextView textView = convertView.findViewById(R.id.string_sul);
+        textView = convertView.findViewById(R.id.string_sul);
+        stepper_minus = convertView.findViewById(R.id.stepper_minus);
+        stepper_plus = convertView.findViewById(R.id.stepper_plus);
 
         textView.setText(String.valueOf(arr[pos]));
+        stepper_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("minus at " + pos);
+            }
+        });
+        stepper_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("plus at " + pos);
+            }
+        });
+
 
         return convertView;
     }

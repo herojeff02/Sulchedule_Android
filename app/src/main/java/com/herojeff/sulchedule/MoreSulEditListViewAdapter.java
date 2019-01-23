@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class MoreSulEditListViewAdapter extends BaseAdapter {
@@ -45,7 +44,7 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.listview_more_sul_edit, parent, false);
         }
 
-        edit_button = convertView.findViewById(R.id.edit_button);
+        edit_button = convertView.findViewById(R.id.setting_button);
         remove_button = convertView.findViewById(R.id.remove_button);
 
         edit_button.setOnClickListener(new View.OnClickListener() {

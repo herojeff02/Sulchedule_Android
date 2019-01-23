@@ -68,7 +68,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         //set listview height not to clip content
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
 
-        setting_button = view.findViewById(R.id.edit_button);
+        setting_button = view.findViewById(R.id.setting_button);
         setting_button.setOnClickListener(this);
         more_sul_pill = view.findViewById(R.id.pill_more_sul);
         more_sul_pill.setOnClickListener(this);
@@ -83,8 +83,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.edit_button:
-                System.out.println("edit_button");
+            case R.id.setting_button:
+                System.out.println("setting_button");
                 break;
             case R.id.pill_more_sul:
                 intent = new Intent(getContext(), MoreSulActivity.class);

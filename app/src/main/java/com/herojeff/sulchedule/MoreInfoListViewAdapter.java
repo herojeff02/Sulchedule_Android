@@ -32,7 +32,7 @@ public class MoreInfoListViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_more_info, parent, false);
+            convertView = inflater.inflate(R.layout.listview_more_info_item, parent, false);
         }
 
         EditText editText = convertView.findViewById(R.id.edittext_more_info);

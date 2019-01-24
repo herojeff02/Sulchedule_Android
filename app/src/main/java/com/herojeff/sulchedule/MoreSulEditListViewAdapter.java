@@ -41,7 +41,7 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_more_sul_edit, parent, false);
+            convertView = inflater.inflate(R.layout.listview_more_sul_edit_item, parent, false);
         }
 
         edit_button = convertView.findViewById(R.id.setting_button);

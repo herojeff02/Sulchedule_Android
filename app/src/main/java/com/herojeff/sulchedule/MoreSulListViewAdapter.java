@@ -43,7 +43,7 @@ public class MoreSulListViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_more_sul, parent, false);
+            convertView = inflater.inflate(R.layout.listview_more_sul_item, parent, false);
         }
 
         textView = convertView.findViewById(R.id.string_sul);

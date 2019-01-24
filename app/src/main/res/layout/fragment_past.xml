@@ -5,11 +5,45 @@
     android:layout_height="match_parent"
     tools:context=".PastFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="past"
-        android:textColor="@color/textWhite" />
-
+        android:layout_height="58dp">
+        <ImageView
+            android:id="@+id/separator"
+            android:layout_width="1dp"
+            android:layout_height="21dp"
+            android:layout_centerInParent="true"
+            android:tint="@color/textWhite"
+            android:src="@drawable/ic_past_separator"/>
+        <TextView
+            android:id="@+id/button_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="14dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/separator"
+            android:paddingBottom="14dp"
+            android:textSize="@dimen/h5"
+            android:paddingLeft="11dp"
+            android:paddingRight="11dp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/past_left"/>
+        <TextView
+            android:id="@+id/button_right"
+            android:layout_toRightOf="@id/separator"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textWhite"
+            android:textSize="@dimen/h5"
+            android:paddingLeft="11dp"
+            android:paddingRight="11dp"
+            android:paddingBottom="14dp"
+            android:paddingTop="14dp"
+            android:text="@string/past_right"/>
+    </RelativeLayout>
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+    <!--</android.support.v7.widget.RecyclerView>-->
 </FrameLayout>

@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class SulListViewAdapter extends BaseAdapter {
 
     //    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
@@ -45,7 +43,7 @@ public class SulListViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_sul, parent, false);
+            convertView = inflater.inflate(R.layout.listview_sul_item, parent, false);
         }
 
         textView = convertView.findViewById(R.id.string_sul);

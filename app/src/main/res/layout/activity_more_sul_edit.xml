@@ -86,7 +86,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_back"/>
+                        android:src="@drawable/ic_back" />
 
                     <Space
                         android:layout_width="9dp"
@@ -98,7 +98,7 @@
                         android:paddingLeft="4dp"
                         android:text="더 보기"
                         android:textSize="@dimen/h4"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -123,7 +123,7 @@
             <ListView
                 android:id="@+id/listview_more_sul_edit"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <!--end space-->
             <android.support.v4.widget.Space

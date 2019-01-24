@@ -1,6 +1,5 @@
 package com.herojeff.sulchedule;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;

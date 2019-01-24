@@ -31,8 +31,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="오늘"
                 android:paddingLeft="4dp"
+                android:text="오늘"
                 android:textColor="@color/textWhite"
                 android:textSize="@dimen/h4"
                 android:textStyle="bold" />
@@ -96,8 +96,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_back"
-                        android:alpha="0"/>
+                        android:alpha="0"
+                        android:src="@drawable/ic_back" />
 
                     <Space
                         android:layout_width="9dp"
@@ -106,8 +106,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="오늘"
                         android:paddingLeft="4dp"
+                        android:text="오늘"
                         android:textColor="#00000000"
                         android:textSize="@dimen/h4"
                         android:textStyle="bold" />
@@ -124,10 +124,10 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:alpha="0"
                         android:background="#00000000"
                         android:paddingLeft="29dp"
-                        android:paddingRight="15dp"
-                        android:alpha="0"/>
+                        android:paddingRight="15dp" />
 
                     <ImageButton
                         android:id="@+id/setting_button"
@@ -135,10 +135,10 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="center_vertical"
+                        android:alpha="0"
                         android:paddingLeft="15dp"
                         android:paddingRight="29dp"
-                        android:src="@drawable/ic_edit"
-                        android:alpha="0"/>
+                        android:src="@drawable/ic_edit" />
                 </LinearLayout>
 
 
@@ -149,8 +149,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:paddingTop="6dp"
-                android:backgroundTint="@color/colorPrimary">
+                android:backgroundTint="@color/colorPrimary"
+                android:paddingTop="6dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,7 +162,7 @@
                     <ListView
                         android:id="@+id/listview_more_sul"
                         android:layout_width="match_parent"
-                        android:layout_height="61dp"/>
+                        android:layout_height="61dp" />
 
                     <LinearLayout
                         android:id="@+id/pill_more_sul_add"

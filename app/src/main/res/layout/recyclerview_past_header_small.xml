@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="58dp"
     android:alpha="0">
+
     <ImageView
         android:id="@+id/separator"
         android:layout_width="1dp"
         android:layout_height="21dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_past_separator"/>
+        android:src="@drawable/ic_past_separator" />
+
     <TextView
         android:id="@+id/button_left_touch_interceptor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="14dp"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@id/separator"
-        android:paddingBottom="14dp"
-        android:textSize="@dimen/h5"
         android:paddingLeft="11dp"
+        android:paddingTop="14dp"
         android:paddingRight="11dp"
-        android:text="@string/past_left"/>
+        android:paddingBottom="14dp"
+        android:text="@string/past_left"
+        android:textSize="@dimen/h5" />
+
     <TextView
         android:id="@+id/button_right_touch_interceptor"
-        android:layout_toRightOf="@id/separator"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/h5"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/separator"
         android:paddingLeft="11dp"
+        android:paddingTop="14dp"
         android:paddingRight="11dp"
         android:paddingBottom="14dp"
-        android:paddingTop="14dp"
-        android:text="@string/past_right"/>
+        android:text="@string/past_right"
+        android:textSize="@dimen/h5" />
 </RelativeLayout>

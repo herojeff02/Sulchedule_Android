@@ -61,10 +61,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:alpha="0"
                     android:background="#00000000"
                     android:padding="29dp"
                     android:src="@drawable/ic_settings"
-                    android:alpha="0"
                     android:tint="@color/textWhite" />
             </RelativeLayout>
 
@@ -89,7 +89,7 @@
                     <ListView
                         android:id="@+id/listview_sul"
                         android:layout_width="match_parent"
-                        android:layout_height="61dp"/>
+                        android:layout_height="61dp" />
 
                     <LinearLayout
                         android:id="@+id/pill_more_sul"

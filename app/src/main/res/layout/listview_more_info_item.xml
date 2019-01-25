@@ -51,6 +51,9 @@
             android:layout_toRightOf="@id/pill_selector"
             android:hint="입력하세요"
             android:paddingLeft="4dp"
+            android:singleLine="true"
+            android:inputType="text"
+            android:imeOptions="actionNext"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/textGray"
             android:textSize="@dimen/h5" />

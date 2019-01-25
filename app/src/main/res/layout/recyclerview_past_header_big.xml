@@ -101,6 +101,7 @@
                         android:layout_marginBottom="25dp"/>
 
                     <TextView
+                        android:id="@+id/title_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="1dp"
@@ -110,6 +111,7 @@
                         android:textSize="@dimen/h5" />
 
                     <TextView
+                        android:id="@+id/desc_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="18dp"
@@ -119,6 +121,7 @@
                         android:textSize="@dimen/h6" />
 
                     <TextView
+                        android:id="@+id/title_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="1dp"
@@ -128,6 +131,7 @@
                         android:textSize="@dimen/h5" />
 
                     <TextView
+                        android:id="@+id/desc_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="18dp"
@@ -137,6 +141,7 @@
                         android:textSize="@dimen/h6" />
 
                     <TextView
+                        android:id="@+id/title_3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="1dp"
@@ -146,6 +151,7 @@
                         android:textSize="@dimen/h5" />
 
                     <TextView
+                        android:id="@+id/desc_3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="18dp"

@@ -6,17 +6,21 @@
     android:paddingBottom="13dp">
 
     <TextView
+        android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="1dp"
         android:text="20000원"
+        android:singleLine="true"
         android:textColor="@color/textWhite"
         android:textSize="@dimen/h4" />
 
     <TextView
+        android:id="@+id/text_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="총 지출액"
+        android:singleLine="true"
         android:textColor="@color/textTransparent"
         android:textSize="@dimen/h5" />
 </LinearLayout>

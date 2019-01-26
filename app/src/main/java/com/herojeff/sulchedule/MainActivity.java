@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         todayFragment = new TodayFragment();
         pastFragment = new PastFragment();
+        ((PastFragment) pastFragment).setPastFragment((PastFragment) pastFragment);
         trafficFragment = new TrafficFragment();
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

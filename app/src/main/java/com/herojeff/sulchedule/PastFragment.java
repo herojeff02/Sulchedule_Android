@@ -2,19 +2,45 @@ package com.herojeff.sulchedule;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
 
-public class PastFragment extends Fragment implements View.OnClickListener {
+
+public class PastFragment extends Fragment {
+
+    PastFragment pastFragment;
 
     TextView button_left;
     TextView button_right;
+    boolean big;
+
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    RecyclerView.Adapter adapter;
 
     public PastFragment() {
         // Required empty public constructor
+    }
+
+    public void setPastFragment(PastFragment pastFragment) {
+        this.pastFragment = pastFragment;
+    }
+
+    public void setBig(boolean big) {
+        this.big = big;
+
+        layoutManager = new LinearLayoutManager(getActivity());
+        adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right);
+        ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;
+        ((PastItemRecyclerViewAdapter) adapter).parentFragment = pastFragment;
+        recyclerView.setAdapter(adapter);
     }
 
     public static PastFragment newInstance(String param1, String param2) {
@@ -37,24 +63,18 @@ public class PastFragment extends Fragment implements View.OnClickListener {
         button_left = view.findViewById(R.id.button_left);
         button_right = view.findViewById(R.id.button_right);
 
-        button_left.setOnClickListener(this);
-        button_right.setOnClickListener(this);
-        // Inflate the layout for this fragment
+        recyclerView = view.findViewById(R.id.recyclerview_past);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setFocusable(false);
+
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right);
+        ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;
+        ((PastItemRecyclerViewAdapter) adapter).parentFragment = pastFragment;
+
+        recyclerView.setAdapter(adapter);
+
         return view;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_left:
-                button_right.setTextColor(SharedResources.color_white);
-                button_left.setTextColor(SharedResources.color_accent);
-                break;
-            case R.id.button_right:
-                button_right.setTextColor(SharedResources.color_accent);
-                button_left.setTextColor(SharedResources.color_white);
-                break;
-        }
-
     }
 }

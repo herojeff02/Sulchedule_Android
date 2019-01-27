@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="4dp"
-                android:text="더 보기"
+                android:text="@string/back_all_sul"
                 android:textColor="@color/textWhite"
                 android:textSize="@dimen/h4"
                 android:textStyle="bold" />
@@ -96,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="4dp"
-                        android:text="더 보기"
+                        android:text="@string/back_all_sul"
                         android:textSize="@dimen/h4"
                         android:textStyle="bold" />
                 </LinearLayout>

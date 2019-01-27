@@ -14,7 +14,7 @@
     <string name="past_left">최근 14일</string>
     <string name="past_right">이번 달</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back_home">모든 주류</string>
+    <string name="back_all_sul">추가한 주류 관리</string>
 
 </resources>

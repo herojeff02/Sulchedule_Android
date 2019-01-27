@@ -28,6 +28,20 @@ public class RecordDay {
     boolean first_launch_of_day = true;
 
     ////
+    public boolean isTodayEmpty(){
+        if(custom_expense_enabled || custom_calorie_enabled || location_list.size() > 0 || friend_list.size() > 0){
+            return false;
+        }
+        if(sul_list.size()==0){
+            return true;
+        }
+        for(int k:sul_list.keySet()){
+            if(sul_list.get(k) != 0 && SharedResources.getSul(k).isSul_enabled()){
+                return false;
+            }
+        }
+        return true;
+    }
 
     public ArrayList<String> getFriend_list() {
         return friend_list;
@@ -45,6 +59,16 @@ public class RecordDay {
         location_list.add(value);
     }
     public void setCertain_sul_count(int sul_index, int count){
+        if(sul_list.containsKey(sul_index)){
+            sul_list.remove(sul_index);
+            sul_list.put(sul_index, count);
+        }
+        else{
+            sul_list.put(sul_index, count);
+        }
+    }
+    public void setCertain_sul_count(String sul_name, int count){
+        int sul_index = SharedResources.getSulIndex(sul_name);
         if(sul_list.containsKey(sul_index)){
             sul_list.remove(sul_index);
             sul_list.put(sul_index, count);
@@ -107,8 +131,11 @@ public class RecordDay {
             return custom_calorie;
         }
         else{
-            /**add calorie calculation here;**/
-            return 1000;
+            int sum = 0;
+            for(Integer key:sul_list.keySet()){
+                sum += sul_list.get(key)*SharedResources.getSul(key).sul_calorie;
+            }
+            return sum;
         }
     }
     public int getExpense(){
@@ -116,8 +143,11 @@ public class RecordDay {
             return custom_expense;
         }
         else{
-            /**add expense calculation here;**/
-            return 1000;
+            int sum = 0;
+            for(Integer key:sul_list.keySet()){
+                sum += sul_list.get(key)*SharedResources.getSul(key).sul_price;
+            }
+            return sum;
         }
     }
 }

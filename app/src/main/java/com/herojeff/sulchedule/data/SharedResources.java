@@ -19,21 +19,14 @@ public final class SharedResources {
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
     public static ArrayList<Sul> suls = new ArrayList<>();
 
-    public SharedResources(){
-        //test sul
-        suls.add(new Sul("소주", 300, 4000, "병"));
-        suls.add(new Sul("소주", 50, 650, "잔"));
-        suls.add(new Sul("병맥주 330ml", 122, 2000, "병"));
-        suls.add(new Sul("병맥주 500ml", 185, 3000, "병"));
-        suls.add(new Sul("생맥주 500cc", 185, 4000, "잔"));
-        suls.add(new Sul("캔맥주 355ml", 152, 2000, "캔"));
-        suls.add(new Sul("레드와인", 84, 12000, "잔"));
-        suls.add(new Sul("화이트와인", 74, 12000, "잔"));
-        suls.add(new Sul("막걸리", 345, 2000, "병"));
-    }
-
-    public static void addSul(String sul_name, int sul_calorie, int sul_price, String sul_unit){
-        suls.add(new Sul(sul_name, sul_calorie, sul_price, sul_unit));
+    public static boolean addSul(String sul_name, int sul_calorie, int sul_price, String sul_unit){
+        if(!sulExists(sul_name)) {
+            suls.add(new Sul(sul_name, sul_calorie, sul_price, sul_unit));
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     public static void removeSul(String sul_name){
         for(Sul sul:suls){
@@ -70,6 +63,14 @@ public final class SharedResources {
         else{
             return null;
         }
+    }
+    public static boolean sulExists(String sul_name){
+        for(Sul sul:suls){
+            if (sul.sul_name.equals(sul_name) && sul.isSul_enabled()){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static ArrayList<RecordDay> getMonthlyRecordDayArray(int year, int month){

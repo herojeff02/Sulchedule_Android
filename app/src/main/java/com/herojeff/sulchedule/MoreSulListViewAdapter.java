@@ -8,22 +8,29 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.Sul;
+
+import java.util.ArrayList;
+
 public class MoreSulListViewAdapter extends BaseAdapter {
 
-    //    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
-    String[] arr = {"뭔 술 몇 병", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이", "ㅁㅇㄹ42", "이이"};
+    private ArrayList<Sul> array = new ArrayList<>();
 
     TextView textView;
     ImageView stepper_plus;
     ImageView stepper_minus;
+    ImageView heart;
 
     public MoreSulListViewAdapter() {
 
     }
+    public MoreSulListViewAdapter(ArrayList<Sul> array) {
+        this.array = array;
+    }
 
     @Override
     public int getCount() {
-        return arr.length;
+        return array.size();
     }
 
     @Override
@@ -47,12 +54,18 @@ public class MoreSulListViewAdapter extends BaseAdapter {
         }
 
         textView = convertView.findViewById(R.id.string_sul);
-
-        textView = convertView.findViewById(R.id.string_sul);
         stepper_minus = convertView.findViewById(R.id.stepper_minus);
         stepper_plus = convertView.findViewById(R.id.stepper_plus);
+        heart = convertView.findViewById(R.id.favourite);
 
-        textView.setText(String.valueOf(arr[pos]));
+        if(!array.get(pos).isFavourite()){
+            heart.setImageResource(R.drawable.ic_favourite_hollow);
+        }
+        else{
+            heart.setImageResource(R.drawable.ic_favourite_filled);
+        }
+        String text = String.valueOf(array.get(pos).getSul_name()) + " " + 2 + array.get(pos).getSul_unit();
+        textView.setText(text);
         stepper_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,8 +78,28 @@ public class MoreSulListViewAdapter extends BaseAdapter {
                 System.out.println("plus at " + pos);
             }
         });
+        heart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(array.get(pos).isFavourite()){
+                    array.get(pos).setFavourite(false);
+                    setHeartHollow((ImageView) v.findViewById(R.id.favourite));
+                }
+                else{
+                    array.get(pos).setFavourite(true);
+                    setHeartFilled((ImageView) v.findViewById(R.id.favourite));
+                }
+            }
+        });
 
         return convertView;
+    }
+
+    void setHeartHollow(ImageView heart){
+        heart.setImageResource(R.drawable.ic_favourite_hollow);
+    }
+    void setHeartFilled(ImageView heart){
+        heart.setImageResource(R.drawable.ic_favourite_filled);
     }
 
 }

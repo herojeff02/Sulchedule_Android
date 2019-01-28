@@ -9,6 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.herojeff.sulchedule.data.SharedResources;
+
+import static com.herojeff.sulchedule.data.SharedResources.suls;
+
 public class MainActivity extends AppCompatActivity {
 
     FrameLayout frameLayout;
@@ -33,6 +37,17 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragment_container, todayFragment);
         transaction.commit();
+
+        SharedResources.addSul("소주", 300, 4000, "병");
+        SharedResources.addSul("소주", 300, 4000, "병");
+        SharedResources.addSul("소주 잔", 50, 650, "잔");
+        SharedResources.addSul("병맥주 330ml", 122, 2000, "병");
+        SharedResources.addSul("병맥주 500ml", 185, 3000, "병");
+        SharedResources.addSul("생맥주 500cc", 185, 4000, "잔");
+        SharedResources.addSul("캔맥주 355ml", 152, 2000, "캔");
+        SharedResources.addSul("레드와인", 84, 12000, "잔");
+        SharedResources.addSul("화이트와인", 74, 12000, "잔");
+        SharedResources.addSul("막걸리", 345, 2000, "병");
 
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

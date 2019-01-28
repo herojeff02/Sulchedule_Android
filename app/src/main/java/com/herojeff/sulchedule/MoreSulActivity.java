@@ -8,6 +8,13 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.herojeff.sulchedule.data.SharedResources;
+import com.herojeff.sulchedule.data.Sul;
+
+import java.util.ArrayList;
+
+import static com.herojeff.sulchedule.data.SharedResources.suls;
+
 public class MoreSulActivity extends AppCompatActivity implements View.OnClickListener {
 
     LinearLayout back_text_button;
@@ -21,7 +28,7 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_more_sul);
 
         ListView listview_more_sul = findViewById(R.id.listview_more_sul);
-        MoreSulListViewAdapter adapter_more_sul = new MoreSulListViewAdapter();
+        MoreSulListViewAdapter adapter_more_sul = new MoreSulListViewAdapter(SharedResources.suls);
         listview_more_sul.setAdapter(adapter_more_sul);
         listview_more_sul.setDividerHeight(0);
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_sul);

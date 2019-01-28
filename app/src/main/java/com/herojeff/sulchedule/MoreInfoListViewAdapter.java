@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.SharedResources;
+
 public class MoreInfoListViewAdapter extends BaseAdapter {
 
     @Override

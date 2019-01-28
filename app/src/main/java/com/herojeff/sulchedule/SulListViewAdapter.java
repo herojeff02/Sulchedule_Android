@@ -10,15 +10,13 @@ import android.widget.TextView;
 
 public class SulListViewAdapter extends BaseAdapter {
 
-    //    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
-    String[] arr = {"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ42", "이이"};
+    String[] arr = {"1 2 3 4", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ42", "이이"};
 
     TextView textView;
     ImageView stepper_minus;
     ImageView stepper_plus;
 
     public SulListViewAdapter() {
-
     }
 
     @Override

@@ -8,9 +8,34 @@ public class Sul {
         this.sul_unit = sul_unit;
     }
 
-    String sul_name;
+    public String sul_name;
     public int sul_calorie;
     public int sul_price;
+    boolean sul_enabled = true;
+
+    public String getSul_name() {
+        return sul_name;
+    }
+
+    public int getSul_calorie() {
+        return sul_calorie;
+    }
+
+    public int getSul_price() {
+        return sul_price;
+    }
+
+    public String getSul_unit() {
+        return sul_unit;
+    }
+
+    boolean favourite = false;
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
+    }
+
+    public String sul_unit;
 
     public void setSul_name(String sul_name) {
         this.sul_name = sul_name;
@@ -28,8 +53,6 @@ public class Sul {
         this.sul_unit = sul_unit;
     }
 
-    public String sul_unit;
-
     public boolean isSul_enabled() {
         return sul_enabled;
     }
@@ -37,9 +60,6 @@ public class Sul {
     public void disableSul() {
         this.sul_enabled = false;
     }
-
-    boolean sul_enabled = true;
-    boolean favourite = false;
 
     public void toggleFavourite(){
         favourite = !favourite;

@@ -5,14 +5,10 @@ import java.util.HashMap;
 
 public class RecordDay {
 
-    public RecordDay(int year, int month, int day) {
-        this.year = year;
-        this.month = month;
+    public RecordDay(int day) {
         this.day = day;
     }
 
-    public int year;
-    public int month;
     public int day;
 
     ArrayList<String> location_list;
@@ -78,6 +74,22 @@ public class RecordDay {
         }
     }
 
+    public int getCertain_sul_count(int sul_index){
+        try {
+            return sul_list.get(sul_index);
+        } catch (Exception e){
+            return 0;
+        }
+    }
+    public int getCertain_sul_count(String sul_name){
+        int sul_index = SharedResources.getSulIndex(sul_name);
+        try {
+            return sul_list.get(sul_index);
+        } catch (Exception e){
+            return 0;
+        }
+    }
+
     public boolean isCustom_dexpense_enabled() {
         return custom_expense_enabled;
     }
@@ -116,12 +128,6 @@ public class RecordDay {
         this.first_launch_of_day = false;
     }
 
-    public int getYear(){
-        return year;
-    }
-    public int getMonth(){
-        return month;
-    }
     public int getDay(){
         return day;
     }

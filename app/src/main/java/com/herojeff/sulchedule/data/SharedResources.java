@@ -15,10 +15,11 @@ public final class SharedResources {
     public static boolean remove_ad_eligible = false;
     public static boolean first_launch_ever = true;
 
-    public static ArrayList<RecordDay> recordDays = new ArrayList<>();
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
     public static ArrayList<Sul> suls = new ArrayList<>();
 
+
+    //sul
     public static boolean addSul(String sul_name, int sul_calorie, int sul_price, String sul_unit){
         if(!sulExists(sul_name)) {
             suls.add(new Sul(sul_name, sul_calorie, sul_price, sul_unit));
@@ -72,54 +73,81 @@ public final class SharedResources {
         }
         return false;
     }
-
-    public static ArrayList<RecordDay> getMonthlyRecordDayArray(int year, int month){
-        ArrayList<RecordDay> arr = new ArrayList<>();
-        for(RecordDay recordDay:recordDays){
-            if (recordDay.getYear() == year && recordDay.getMonth() == month) {
-                arr.add(recordDay);
+    public static ArrayList<Sul> getFavouriteSuls(){
+        ArrayList<Sul> favourites = new ArrayList<>();
+        for(Sul sul:suls){
+            if(sul.isFavourite()){
+                favourites.add(sul);
             }
         }
-        return arr;
+        return favourites;
     }
 
-    //the below 4 methods have a very bad filter design. revise.
-    public static void appendRecordDay(RecordDay recordDay){
-        if(!recordDay_exists(recordDay.year, recordDay.month, recordDay.day)) {
-            recordDays.add(recordDay);
+    //records
+    public static ArrayList<RecordDay> getMonthlyRecordDayArray(int year, int month){
+        for(RecordMonth recordMonth:recordMonths){
+            if (recordMonth.year == year && recordMonth.month == month) {
+                return recordMonth.getRecordDays();
+            }
+        }
+        return appendRecordMonth(year, month).getRecordDays();
+    }
+
+    public static void appendRecordDay(int year, int month, @org.jetbrains.annotations.NotNull RecordDay recordDay){
+        if(!recordDay_exists(year, month, recordDay.day)) {
+            getRecordMonth(year, month).getRecordDays().add(recordDay);
         }
     }
-    public static void appendRecordDay(int year, int month, int day){
+    public static RecordDay appendRecordDay(int year, int month, int day){
         if(!recordDay_exists(year, month, day)) {
-            recordDays.add(new RecordDay(year, month, day));
+            RecordDay recordDay = new RecordDay(day);
+            getRecordMonth(year, month).getRecordDays().add(recordDay);
+            return recordDay;
+        }
+        else {
+            return getRecordDay(year, month, day);
         }
     }
-    public static void appendRecordMonth(RecordMonth recordMonth){
+    public static RecordMonth appendRecordMonth(RecordMonth recordMonth){
         if(!recordMonth_exists(recordMonth.year, recordMonth.month)) {
             recordMonths.add(recordMonth);
+            return recordMonth;
+        }
+        else{
+            return getRecordMonth(recordMonth.year, recordMonth.month);
         }
     }
-    public static void appendRecordMonth(int year, int month){
+    public static RecordMonth appendRecordMonth(int year, int month){
         if(!recordMonth_exists(year, month)) {
-            recordMonths.add(new RecordMonth(year, month));
+            RecordMonth recordMonth = new RecordMonth(year, month);
+            recordMonths.add(recordMonth);
+            return recordMonth;
+        }
+        else{
+            return getRecordMonth(year, month);
         }
     }
 
     public static RecordDay getRecordDay(int year, int month, int day){
-        for(RecordDay recordDay:recordDays){
-            if(recordDay.year == year && recordDay.month == month && recordDay.day == day){
-                return recordDay;
+        for(RecordMonth recordMonth:recordMonths){
+            if(recordMonth.year == year && recordMonth.month == month){
+                for(RecordDay recordDay:recordMonth.getRecordDays()){
+                    if(recordDay.day == day){
+                        return recordDay;
+                    }
+                }
             }
         }
-        return new RecordDay(year, month, day);
-    }
-    public static RecordDay getRecordDay(int index){
-        return recordDays.get(index);
+        return appendRecordDay(year, month, day);
     }
     public static boolean recordDay_exists(int year, int month, int day){
-        for(RecordDay recordDay:recordDays){
-            if(recordDay.year == year && recordDay.month == month && recordDay.day == day){
-                return true;
+        for(RecordMonth recordMonth:recordMonths){
+            if(recordMonth.year == year && recordMonth.month == month){
+                for(RecordDay recordDay:recordMonth.getRecordDays()){
+                    if(recordDay.day == day){
+                        return true;
+                    }
+                }
             }
         }
         return false;
@@ -130,7 +158,7 @@ public final class SharedResources {
                 return recordMonth;
             }
         }
-        return new RecordMonth(year, month);
+        return appendRecordMonth(year, month);
     }
     public static boolean recordMonth_exists(int year, int month){
         for(RecordMonth recordMonth:recordMonths){

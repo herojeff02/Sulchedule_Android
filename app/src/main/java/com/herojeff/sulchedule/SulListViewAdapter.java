@@ -8,9 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.SharedResources;
+import com.herojeff.sulchedule.data.Sul;
+
+import java.util.ArrayList;
+
 public class SulListViewAdapter extends BaseAdapter {
 
-    String[] arr = {"1 2 3 4", "ㅁㄴㅇㄹㅁㄴㅇ", "ㅁㅇㄹ42", "이이"};
+    ArrayList<Sul> favourites = SharedResources.getFavouriteSuls();
 
     TextView textView;
     ImageView stepper_minus;
@@ -21,7 +26,7 @@ public class SulListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return arr.length;
+        return favourites.size();
     }
 
     @Override
@@ -48,7 +53,7 @@ public class SulListViewAdapter extends BaseAdapter {
         stepper_minus = convertView.findViewById(R.id.stepper_minus);
         stepper_plus = convertView.findViewById(R.id.stepper_plus);
 
-        textView.setText(String.valueOf(arr[pos]));
+        textView.setText(String.valueOf(favourites.get(pos).getSul_name()) + " " + 2 + favourites.get(pos).getSul_unit());
         stepper_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

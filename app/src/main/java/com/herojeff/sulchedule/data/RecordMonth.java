@@ -3,6 +3,8 @@ package com.herojeff.sulchedule.data;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+
 
 public class RecordMonth {
     public RecordMonth(int year, int month) {
@@ -17,6 +19,112 @@ public class RecordMonth {
     boolean enable_streakOfMonth;
     boolean enable_caloriesOfMonth;
     boolean enable_totalExpense;
+
+    ArrayList<RecordDay> recordDays = new ArrayList<>();
+
+    class MonthlyBest{
+        int drink_index = -1;
+        int drink_count = 0;
+        int drink_expense = 0;
+        int drink_calorie = 0;
+        String whom;
+        int whom_count = 0;
+        int whom_expense = 0;
+        int whom_calorie = 0;
+        String loc;
+        int loc_count = 0;
+        int loc_expense = 0;
+        int loc_calorie = 0;
+    }
+
+    public MonthlyBest getMonthlyBest(){
+        MonthlyBest monthlyBest = new MonthlyBest();
+        //scanner
+        monthlyBest.drink_index = -1;
+        HashMap<Integer, Integer> monthlyBestDrink = new HashMap<>();
+        HashMap<String, Integer> monthlyBestWhom = new HashMap<>();
+        HashMap<String, Integer> monthlyBestLoc = new HashMap<>();
+        for(RecordDay recordDay:recordDays){
+            //consolidation
+            for(int i:recordDay.sul_list.keySet()){
+                int a;
+                try {
+                    a = monthlyBestDrink.get(i);
+                } catch (Exception e){
+                    monthlyBestDrink.put(i, 0);
+                    a = 0;
+                }
+                int b = recordDay.getCertain_sul_count(i);
+                monthlyBestDrink.remove(i);
+                monthlyBestDrink.put(i, a+b);
+            }
+            for(String i:recordDay.friend_list){
+                int a;
+                try {
+                    a = monthlyBestWhom.get(i);
+                } catch (Exception e){
+                    monthlyBestWhom.put(i, 0);
+                    a = 0;
+                }
+                monthlyBestWhom.remove(i);
+                monthlyBestWhom.put(i, a+1);
+            }
+            for(String i:recordDay.location_list){
+                int a;
+                try {
+                    a = monthlyBestLoc.get(i);
+                } catch (Exception e){
+                    monthlyBestWhom.put(i, 0);
+                    a = 0;
+                }
+                monthlyBestLoc.remove(i);
+                monthlyBestLoc.put(i, a+1);
+            }
+        }
+        //set value for monthlybest
+        for(int i:monthlyBestDrink.keySet()){
+            if(monthlyBest.drink_count < monthlyBestDrink.get(i)){
+                monthlyBest.drink_count = monthlyBestDrink.get(i);
+                monthlyBest.drink_index = i;
+                monthlyBest.drink_expense = SharedResources.getSul(i).sul_price * monthlyBest.drink_count;
+                monthlyBest.drink_calorie = SharedResources.getSul(i).sul_calorie * monthlyBest.drink_count;
+            }
+        }
+        for(String i:monthlyBestWhom.keySet()){
+            if(monthlyBest.whom_count < monthlyBestWhom.get(i)){
+                monthlyBest.whom_count = monthlyBestWhom.get(i);
+                for(RecordDay recordDay:recordDays) {
+                    if(recordDay.friend_list.contains(i)){
+                        monthlyBest.whom_calorie += recordDay.getCalorie();
+                        monthlyBest.whom_expense += recordDay.getExpense();
+                    }
+                }
+                monthlyBest.whom = i;
+            }
+        }
+        for(String i:monthlyBestLoc.keySet()){
+            if(monthlyBest.loc_count < monthlyBestLoc.get(i)){
+                monthlyBest.loc_count = monthlyBestLoc.get(i);
+                for(RecordDay recordDay:recordDays) {
+                    if(recordDay.location_list.contains(i)){
+                        monthlyBest.loc_calorie += recordDay.getCalorie();
+                        monthlyBest.loc_expense += recordDay.getExpense();
+                    }
+                }
+                monthlyBest.loc = i;
+            }
+        }
+
+        return monthlyBest;
+    }
+
+    public ArrayList<RecordDay> getRecordDays() {
+        return recordDays;
+    }
+
+    public void setRecordDays(ArrayList<RecordDay> recordDays) {
+        this.recordDays = recordDays;
+    }
 
     public boolean isEnable_daysOfMonth() {
         return enable_daysOfMonth;
@@ -179,21 +287,6 @@ public class RecordMonth {
 class DescendingRecordDay implements Comparator<RecordDay> {
     @Override
     public int compare(RecordDay o1, RecordDay o2) {
-        if(o1.getYear() == o2.getYear()){
-            if(o1.getMonth() == o2.getMonth()){
-                if(o1.getDay() == o2.getDay()){
-                    return 0;
-                }
-                else{
-                    return o1.getDay() - o2.getDay();
-                }
-            }
-            else{
-                return o1.getMonth() - o2.getMonth();
-            }
-        }
-        else{
-            return o1.getYear() - o2.getYear();
-        }
+        return o1.getDay() - o2.getDay();
     }
 }

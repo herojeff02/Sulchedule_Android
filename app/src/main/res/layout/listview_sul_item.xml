@@ -11,7 +11,7 @@
         android:layout_marginBottom="17dp">
 
         <TextView
-            android:id="@+id/string_sul"
+            android:id="@+id/textview_sul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

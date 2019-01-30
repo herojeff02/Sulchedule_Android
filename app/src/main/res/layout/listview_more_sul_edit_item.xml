@@ -18,7 +18,7 @@
             android:paddingTop="13dp">
 
             <TextView
-                android:id="@+id/title_text"
+                android:id="@+id/text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="19dp"
@@ -31,7 +31,7 @@
                 android:id="@+id/center_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/title_text"
+                android:layout_below="@id/text_title"
                 android:orientation="horizontal"
                 android:paddingRight="13dp">
 
@@ -42,6 +42,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/text_left_top"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="3dp"
@@ -58,6 +59,7 @@
                         android:textSize="@dimen/h6" />
 
                     <TextView
+                        android:id="@+id/text_left_bottom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="3dp"
@@ -80,6 +82,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/text_right_top"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="3dp"
@@ -91,24 +94,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="15dp"
-                        android:text="단위"
+                        android:text="열량"
                         android:textColor="@color/textTransparent"
                         android:textSize="@dimen/h6" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="3dp"
-                        android:text="8000원"
-                        android:textColor="@color/textWhite"
-                        android:textSize="@dimen/h5" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="가격"
-                        android:textColor="@color/textTransparent"
-                        android:textSize="@dimen/h6" />
                 </LinearLayout>
             </LinearLayout>
 

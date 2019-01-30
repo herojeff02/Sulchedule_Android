@@ -15,8 +15,12 @@ public final class SharedResources {
     public static boolean remove_ad_eligible = false;
     public static boolean first_launch_ever = true;
 
+    public static int year;
+    public static int month;
+    public static int day;
+
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
-    public static ArrayList<Sul> suls = new ArrayList<>();
+    private static ArrayList<Sul> suls = new ArrayList<>();
 
 
     //sul
@@ -76,11 +80,20 @@ public final class SharedResources {
     public static ArrayList<Sul> getFavouriteSuls(){
         ArrayList<Sul> favourites = new ArrayList<>();
         for(Sul sul:suls){
-            if(sul.isFavourite()){
+            if(sul.isFavourite() && sul.isSul_enabled()){
                 favourites.add(sul);
             }
         }
         return favourites;
+    }
+    public static ArrayList<Sul> getSuls(){
+        ArrayList<Sul> suls = new ArrayList<>();
+        for(Sul sul: SharedResources.suls){
+            if(sul.isSul_enabled()){
+                suls.add(sul);
+            }
+        }
+        return suls;
     }
 
     //records
@@ -160,6 +173,7 @@ public final class SharedResources {
         }
         return appendRecordMonth(year, month);
     }
+
     public static boolean recordMonth_exists(int year, int month){
         for(RecordMonth recordMonth:recordMonths){
             if(recordMonth.year == year && recordMonth.month == month){
@@ -175,5 +189,9 @@ public final class SharedResources {
     }
     public static void load(){
 
+    }
+
+    public static void setFavouriteSul(String sul_name, boolean set) {
+        getSul(sul_name).setFavourite(set);
     }
 }

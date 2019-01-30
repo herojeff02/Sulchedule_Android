@@ -11,7 +11,8 @@ import android.widget.FrameLayout;
 
 import com.herojeff.sulchedule.data.SharedResources;
 
-import static com.herojeff.sulchedule.data.SharedResources.suls;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment todayFragment;
     Fragment pastFragment;
     Fragment trafficFragment;
+
 
 
     @Override
@@ -38,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
         transaction.add(R.id.fragment_container, todayFragment);
         transaction.commit();
 
+        Date today = new Date();
+        SharedResources.year = today.getYear();
+        SharedResources.month = today.getMonth() + 1;
+        SharedResources.day = today.getDay();
+
         SharedResources.addSul("소주", 300, 4000, "병");
         SharedResources.addSul("소주", 300, 4000, "병");
         SharedResources.addSul("소주 잔", 50, 650, "잔");
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         SharedResources.addSul("레드와인", 84, 12000, "잔");
         SharedResources.addSul("화이트와인", 74, 12000, "잔");
         SharedResources.addSul("막걸리", 345, 2000, "병");
+        SharedResources.setFavouriteSul("소주", true);
 
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -28,7 +28,7 @@
                 android:src="@drawable/ic_favourite_filled" />
 
             <TextView
-                android:id="@+id/string_sul"
+                android:id="@+id/textview_sul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="술 이름 _ 병"

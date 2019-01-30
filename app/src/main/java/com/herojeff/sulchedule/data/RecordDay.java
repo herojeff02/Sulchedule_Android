@@ -11,9 +11,9 @@ public class RecordDay {
 
     public int day;
 
-    ArrayList<String> location_list;
-    ArrayList<String> friend_list;
-    HashMap<Integer, Integer> sul_list; /*<sul_index, sul_count>*/
+    ArrayList<String> location_list = new ArrayList<>();
+    ArrayList<String> friend_list = new ArrayList<>();
+    HashMap<Integer, Integer> sul_list = new HashMap<>(); /*<sul_index, sul_count>*/
 
     boolean custom_expense_enabled = false;
     int custom_expense = 0;
@@ -65,6 +65,9 @@ public class RecordDay {
     }
     public void setCertain_sul_count(String sul_name, int count){
         int sul_index = SharedResources.getSulIndex(sul_name);
+        if(count < 0){
+            count = 0;
+        }
         if(sul_list.containsKey(sul_index)){
             sul_list.remove(sul_index);
             sul_list.put(sul_index, count);

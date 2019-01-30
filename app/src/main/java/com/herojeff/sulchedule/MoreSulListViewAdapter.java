@@ -53,7 +53,7 @@ public class MoreSulListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.listview_more_sul_item, parent, false);
         }
 
-        textView = convertView.findViewById(R.id.string_sul);
+        textView = convertView.findViewById(R.id.textview_sul);
         stepper_minus = convertView.findViewById(R.id.stepper_minus);
         stepper_plus = convertView.findViewById(R.id.stepper_plus);
         heart = convertView.findViewById(R.id.favourite);
@@ -69,13 +69,13 @@ public class MoreSulListViewAdapter extends BaseAdapter {
         stepper_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("minus at " + pos);
+
             }
         });
         stepper_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("plus at " + pos);
+
             }
         });
         heart.setOnClickListener(new View.OnClickListener() {

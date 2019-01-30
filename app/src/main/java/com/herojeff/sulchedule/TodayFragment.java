@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.herojeff.sulchedule.data.SharedResources;
 
 
 public class TodayFragment extends Fragment implements View.OnClickListener {
@@ -21,6 +24,12 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     LinearLayout more_sul_pill;
     LinearLayout more_blank_pill;
 
+    ListView listview_sul;
+    ListView listview_more_info;
+    SulListViewAdapter adapter_sul;
+    MoreInfoListViewAdapter adapter_more_info;
+
+    boolean first = true;
 
     public TodayFragment() {
         // Required empty public constructor
@@ -51,8 +60,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_today, null);
 
         //sul adapter
-        ListView listview_sul = view.findViewById(R.id.listview_sul);
-        SulListViewAdapter adapter_sul = new SulListViewAdapter();
+        listview_sul = view.findViewById(R.id.listview_sul);
+        adapter_sul = new SulListViewAdapter(SharedResources.getFavouriteSuls());
         listview_sul.setAdapter(adapter_sul);
         listview_sul.setDividerHeight(0);
 
@@ -60,8 +69,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);
 
         //more_info adapter
-        ListView listview_more_info = view.findViewById(R.id.listview_more_info);
-        MoreInfoListViewAdapter adapter_more_info = new MoreInfoListViewAdapter();
+        listview_more_info = view.findViewById(R.id.listview_more_info);
+        adapter_more_info = new MoreInfoListViewAdapter();
         listview_more_info.setAdapter(adapter_more_info);
         listview_more_info.setDividerHeight(0);
 
@@ -77,6 +86,17 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!first) {
+            adapter_sul = new SulListViewAdapter(SharedResources.getFavouriteSuls());
+            listview_sul.setAdapter(adapter_sul);
+            ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);
+        }
+        first = false;
     }
 
     @Override

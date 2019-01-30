@@ -7,13 +7,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
-import com.herojeff.sulchedule.data.Sul;
-
-import java.util.ArrayList;
-
-import static com.herojeff.sulchedule.data.SharedResources.suls;
 
 public class MoreSulActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,14 +17,16 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
     ImageButton edit_button;
     ImageButton add_button;
     LinearLayout pill_more_sul_add;
+    ListView listview_more_sul;
+    MoreSulListViewAdapter adapter_more_sul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_sul);
 
-        ListView listview_more_sul = findViewById(R.id.listview_more_sul);
-        MoreSulListViewAdapter adapter_more_sul = new MoreSulListViewAdapter(SharedResources.suls);
+        listview_more_sul = findViewById(R.id.listview_more_sul);
+        adapter_more_sul = new MoreSulListViewAdapter(SharedResources.getSuls());
         listview_more_sul.setAdapter(adapter_more_sul);
         listview_more_sul.setDividerHeight(0);
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_sul);
@@ -42,6 +40,14 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
         add_button.setOnClickListener(this);
         pill_more_sul_add = findViewById(R.id.pill_more_sul_add);
         pill_more_sul_add.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        adapter_more_sul = new MoreSulListViewAdapter(SharedResources.getSuls());
+        listview_more_sul.setAdapter(adapter_more_sul);
+        ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_sul);
     }
 
     @Override

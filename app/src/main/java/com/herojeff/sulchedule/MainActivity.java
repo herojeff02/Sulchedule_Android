@@ -40,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.add(R.id.fragment_container, todayFragment);
         transaction.commit();
 
-        Date today = new Date();
-        SharedResources.year = today.getYear();
-        SharedResources.month = today.getMonth() + 1;
-        SharedResources.day = today.getDay();
-
         SharedResources.addSul("소주", 300, 4000, "병");
         SharedResources.addSul("소주", 300, 4000, "병");
         SharedResources.addSul("소주 잔", 50, 650, "잔");

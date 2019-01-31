@@ -93,6 +93,17 @@ public class RecordDay {
         }
     }
 
+    public ArrayList<Sul> getDrunk_sul_arraylist(){
+        ArrayList<Sul> return_sul = new ArrayList<>();
+        for(Sul sul: SharedResources.getSuls()){
+            if(sul.isSul_enabled()){
+
+                return_sul.add(sul);
+            }
+        }
+        return return_sul;
+    }
+
     public boolean isCustom_dexpense_enabled() {
         return custom_expense_enabled;
     }

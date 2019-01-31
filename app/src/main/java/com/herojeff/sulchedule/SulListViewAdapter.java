@@ -22,6 +22,7 @@ public class SulListViewAdapter extends BaseAdapter {
     TextView textView;
     ImageView stepper_minus;
     ImageView stepper_plus;
+    View favourite_bar;
 
     public SulListViewAdapter() {
     }
@@ -63,8 +64,8 @@ public class SulListViewAdapter extends BaseAdapter {
         textView = convertView.findViewById(R.id.textview_sul);
         stepper_minus = convertView.findViewById(R.id.stepper_minus);
         stepper_plus = convertView.findViewById(R.id.stepper_plus);
+        favourite_bar = convertView.findViewById(R.id.favourite_bar);
         RelativeLayout stepper_container = convertView.findViewById(R.id.stepper_container);
-
 
         if(favourites.size() == 0){
             textView.setText("즐겨찾기를 추가하세요.");
@@ -72,30 +73,41 @@ public class SulListViewAdapter extends BaseAdapter {
             stepper_plus.setVisibility(View.GONE);
             stepper_minus.setVisibility(View.GONE);
             stepper_container.setVisibility(View.GONE);
+            favourite_bar.setVisibility(View.INVISIBLE);
             return convertView;
         }
 
-        int count = SharedResources.getRecordDay(SharedResources.year, SharedResources.month, SharedResources.day).getCertain_sul_count(favourites.get(pos).getSul_name());
+        if(pos >= SharedResources.getFavouriteSuls().size()){
+            favourite_bar.setVisibility(View.INVISIBLE);
+        }
+
+
+        final int year = SharedResources.getYear();
+        final int month = SharedResources.getMonth();
+        final int day = SharedResources.getDay();
+        int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(favourites.get(pos).getSul_name());
         textView.setText(String.valueOf(favourites.get(pos).getSul_name()) + " " + count + favourites.get(pos).getSul_unit());
         stepper_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int count = SharedResources.getRecordDay(SharedResources.year, SharedResources.month, SharedResources.day).getCertain_sul_count(favourites.get(pos).getSul_name());
+                int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(favourites.get(pos).getSul_name());
                 --count;
                 if(count<0){
                     count = 0;
                 }
-                SharedResources.getRecordDay(SharedResources.year, SharedResources.month, SharedResources.day).setCertain_sul_count(favourites.get(pos).getSul_name(), count);
-                TextView tv = v.findViewById(R.id.textview_sul);
-                tv.setText(String.valueOf(favourites.get(pos).getSul_name()) + " " + count + favourites.get(pos).getSul_unit());
+                SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), count);
+                textView = ((View)((View)(v.getParent())).getParent()).findViewById(R.id.textview_sul);
+                setTextView(textView, pos, count);
             }
         });
         stepper_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int count = SharedResources.getRecordDay(SharedResources.year, SharedResources.month, SharedResources.day).getCertain_sul_count(favourites.get(pos).getSul_name());
-                SharedResources.getRecordDay(SharedResources.year, SharedResources.month, SharedResources.day).setCertain_sul_count(favourites.get(pos).getSul_name(), ++count);
-                setTextView((TextView)v.findViewById(R.id.textview_sul), pos, count);
+                int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(favourites.get(pos).getSul_name());
+                SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), ++count);
+                textView = ((View)((View)(v.getParent())).getParent()).findViewById(R.id.textview_sul);
+                setTextView(textView, pos, count);
+
             }
         });
 
@@ -108,4 +120,5 @@ public class SulListViewAdapter extends BaseAdapter {
         String k = String.valueOf(favourites.get(pos).getSul_name()) + " " + count + favourites.get(pos).getSul_unit();
         tv.setText(k);
     }
+
 }

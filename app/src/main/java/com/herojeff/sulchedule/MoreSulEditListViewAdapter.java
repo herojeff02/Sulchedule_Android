@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +26,15 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
     TextView text_left_bottom;
     TextView text_right_top;
 
+    MoreSulEditListViewAdapter adapter;
+    ListView listview;
+
     public MoreSulEditListViewAdapter() {
 
+    }
+    public void passParent(ListView listview_more_sul_edit, MoreSulEditListViewAdapter adapter){
+        this.adapter = adapter;
+        this.listview = listview_more_sul_edit;
     }
 
     @Override
@@ -78,7 +86,10 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 String k = suls.get(pos).sul_name;
                 SharedResources.removeSul(k);
+                suls = SharedResources.getSuls();
+                adapter.notifyDataSetChanged();
                 Toast.makeText(context, k, Toast.LENGTH_SHORT).show();
+                ListViewResizeUtility.setListViewHeightBasedOnItems(listview);
             }
         });
 

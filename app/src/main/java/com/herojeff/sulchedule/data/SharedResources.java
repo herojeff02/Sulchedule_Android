@@ -3,6 +3,7 @@ package com.herojeff.sulchedule.data;
 import android.graphics.Color;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public final class SharedResources {
@@ -15,12 +16,22 @@ public final class SharedResources {
     public static boolean remove_ad_eligible = false;
     public static boolean first_launch_ever = true;
 
-    public static int year;
-    public static int month;
-    public static int day;
-
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
     private static ArrayList<Sul> suls = new ArrayList<>();
+
+    public static int getYear(){
+        Date today = new Date();
+        return today.getYear();
+    }
+    public static int getMonth(){
+        Date today = new Date();
+        return today.getMonth() + 1;
+    }
+    public static int getDay(){
+        Date today = new Date();
+        return today.getDay();
+    }
+
 
 
     //sul
@@ -77,6 +88,8 @@ public final class SharedResources {
         }
         return false;
     }
+
+
     public static ArrayList<Sul> getFavouriteSuls(){
         ArrayList<Sul> favourites = new ArrayList<>();
         for(Sul sul:suls){
@@ -86,11 +99,24 @@ public final class SharedResources {
         }
         return favourites;
     }
+
     public static ArrayList<Sul> getSuls(){
         ArrayList<Sul> suls = new ArrayList<>();
         for(Sul sul: SharedResources.suls){
             if(sul.isSul_enabled()){
                 suls.add(sul);
+            }
+        }
+        return suls;
+    }
+
+    public static ArrayList<Sul> getMainSuls(int year, int month, int day){
+        ArrayList<Sul> suls = getFavouriteSuls();
+
+        RecordDay recordDay = getRecordDay(year, month, day);
+        for(int sul_index: recordDay.sul_list.keySet()){
+            if(recordDay.getCertain_sul_count(sul_index) != 0 && !getSul(sul_index).isFavourite()){
+                suls.add(getSul(sul_index));
             }
         }
         return suls;

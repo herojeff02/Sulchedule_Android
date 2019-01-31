@@ -12,6 +12,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
+import com.herojeff.sulchedule.data.Sul;
+
+import java.util.ArrayList;
 
 
 public class TodayFragment extends Fragment implements View.OnClickListener {
@@ -28,6 +31,9 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     ListView listview_more_info;
     SulListViewAdapter adapter_sul;
     MoreInfoListViewAdapter adapter_more_info;
+    View pervert_area;
+
+    ArrayList<Sul> showArray;
 
     boolean first = true;
 
@@ -58,6 +64,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_today, null);
+        pervert_area = view.findViewById(R.id.pervert_area);
+        showArray = SharedResources.getMainSuls(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay());
 
         //sul adapter
         listview_sul = view.findViewById(R.id.listview_sul);
@@ -67,6 +75,13 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
 
         //set listview height not to clip content
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);
+
+        if(SharedResources.getFavouriteSuls().size() == 0){
+            pervert_area.setVisibility(View.INVISIBLE);
+        }
+        else{
+            pervert_area.setVisibility(View.VISIBLE);
+        }
 
         //more_info adapter
         listview_more_info = view.findViewById(R.id.listview_more_info);
@@ -91,10 +106,17 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        showArray = SharedResources.getMainSuls(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay());
         if (!first) {
-            adapter_sul = new SulListViewAdapter(SharedResources.getFavouriteSuls());
+            adapter_sul = new SulListViewAdapter(showArray);
             listview_sul.setAdapter(adapter_sul);
             ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);
+        }
+        if(SharedResources.getFavouriteSuls().size() == 0){
+            pervert_area.setVisibility(View.INVISIBLE);
+        }
+        else{
+            pervert_area.setVisibility(View.VISIBLE);
         }
         first = false;
     }

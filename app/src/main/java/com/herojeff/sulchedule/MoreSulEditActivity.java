@@ -19,6 +19,7 @@ public class MoreSulEditActivity extends AppCompatActivity {
 
         ListView listview_more_sul_edit = findViewById(R.id.listview_more_sul_edit);
         MoreSulEditListViewAdapter adapter_more_sul_edit = new MoreSulEditListViewAdapter();
+        adapter_more_sul_edit.passParent(listview_more_sul_edit, adapter_more_sul_edit);
         listview_more_sul_edit.setAdapter(adapter_more_sul_edit);
         listview_more_sul_edit.setDividerHeight(0);
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_sul_edit);

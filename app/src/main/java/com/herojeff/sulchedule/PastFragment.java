@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.SharedResources;
+
 import org.w3c.dom.Text;
 
 
@@ -76,5 +78,14 @@ public class PastFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        button_left.setTextColor(SharedResources.color_accent);
+        button_right.setTextColor(SharedResources.color_white);
+
+        setBig(false);
     }
 }

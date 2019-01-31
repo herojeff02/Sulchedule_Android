@@ -59,7 +59,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
                 //set listview content
                 ListView adapter_past_inner_listview_for_header = view.findViewById(R.id.recyclerview_past_inner_item_container_header);
-                PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(true);
+                PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(null,true);
                 adapter_past_inner_listview_for_header.setAdapter(adapter_past_inner_listview_adapter);
                 adapter_past_inner_listview_for_header.setDividerHeight(0);
                 //set listview height not to clip content
@@ -88,11 +88,13 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
             //set listview content
             ListView adapter_past_inner_listview = view.findViewById(R.id.recyclerview_past_inner_item_container);
-            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(false);
+            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()).get(i-1), false);
             adapter_past_inner_listview.setAdapter(adapter_past_inner_listview_adapter);
             adapter_past_inner_listview.setDividerHeight(0);
             //set listview height not to clip content
             ListViewResizeUtility.setListViewHeightBasedOnItems(adapter_past_inner_listview);
+
+
         }
 
 
@@ -108,10 +110,6 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
         else {
             bodyBindInit(pastItemRecyclerViewHolder, i);
         }
-//        Movie movie = moviesList.get(position);
-//        holder.title.setText(movie.getTitle());
-//        holder.genre.setText(movie.getGenre());
-//        holder.year.setText(movie.getYear());
     }
 
     //헤더 바인드
@@ -129,7 +127,9 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
     @Override
     public int getItemCount() {
-        return 3;
+        System.out.println(SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).getRecordDays().size());
+        return SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).getRecordDays().size() + 1;
+//        return 1;
 //        return 데이터의 갯수+1;
     }
 

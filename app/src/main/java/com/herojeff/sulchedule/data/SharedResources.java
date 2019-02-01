@@ -3,6 +3,7 @@ package com.herojeff.sulchedule.data;
 import android.graphics.Color;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -29,7 +30,12 @@ public final class SharedResources {
     }
     public static int getDay(){
         Date today = new Date();
-        return today.getDay();
+        return today.getDate();
+    }
+    public static String getWeekDayKorean(){
+        Date today = new Date();
+        String[] weekDayKorean = {"일", "월", "화", "수", "목", "금", "토", "일"};
+        return weekDayKorean[today.getDay()];
     }
 
 
@@ -73,6 +79,9 @@ public final class SharedResources {
         return -1;
     }
     public static Sul getSul(int index){
+        if(index == -1){
+            return null;
+        }
         if(suls.get(index).isSul_enabled()) {
             return suls.get(index);
         }

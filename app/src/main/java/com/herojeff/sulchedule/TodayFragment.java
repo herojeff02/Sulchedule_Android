@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
@@ -18,14 +18,13 @@ import java.util.ArrayList;
 
 
 public class TodayFragment extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     ImageButton setting_button;
     LinearLayout more_sul_pill;
     LinearLayout more_blank_pill;
+
+    TextView text_today;
+    TextView text_tip;
 
     ListView listview_sul;
     ListView listview_more_info;
@@ -45,8 +44,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     public static TodayFragment newInstance(String param1, String param2) {
         TodayFragment fragment = new TodayFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -72,6 +69,12 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         adapter_sul = new SulListViewAdapter(SharedResources.getFavouriteSuls());
         listview_sul.setAdapter(adapter_sul);
         listview_sul.setDividerHeight(0);
+
+        text_today = view.findViewById(R.id.text_today);
+        text_tip = view.findViewById(R.id.text_tip);
+        String temp = SharedResources.getMonth() + "월 " + SharedResources.getDay() + "일 (" + SharedResources.getWeekDayKorean() + ")";
+        text_today.setText(temp);
+        text_tip.setText("곧 Play Store에서 만나요!");
 
         //set listview height not to clip content
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);

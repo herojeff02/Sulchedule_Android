@@ -12,6 +12,7 @@
         android:paddingLeft="20dp">
 
         <TextView
+            android:id="@+id/text_today"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="15dp"
@@ -21,6 +22,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/text_tip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
 
 public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRecyclerViewAdapter.PastItemRecyclerViewHolder> {
@@ -22,12 +23,20 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
     TextView left;
     TextView right;
 
+    TextView title_1;
+    TextView title_2;
+    TextView title_3;
+    TextView desc_1;
+    TextView desc_2;
+    TextView desc_3;
+
     View view;
 
     public PastItemRecyclerViewAdapter(boolean big, TextView left, TextView right){
         this.headerFlag_Big = big;
         this.left = left;
         this.right = right;
+
     }
 
     public void clickHeader(boolean isLeft){
@@ -48,6 +57,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
     @NonNull
     @Override
     public PastItemRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
         //determines which item to load
         if(i==0){
             headerFlag = true;
@@ -59,11 +69,46 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
                 //set listview content
                 ListView adapter_past_inner_listview_for_header = view.findViewById(R.id.recyclerview_past_inner_item_container_header);
-                PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(null,true);
+                PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(null, SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()), true);
                 adapter_past_inner_listview_for_header.setAdapter(adapter_past_inner_listview_adapter);
                 adapter_past_inner_listview_for_header.setDividerHeight(0);
                 //set listview height not to clip content
                 ListViewResizeUtility.setListViewHeightBasedOnItems(adapter_past_inner_listview_for_header);
+
+                if(view.findViewById(R.id.title_1) != null) {
+                    title_1 = view.findViewById(R.id.title_1);
+                    title_2 = view.findViewById(R.id.title_2);
+                    title_3 = view.findViewById(R.id.title_3);
+                    desc_1 = view.findViewById(R.id.desc_1);
+                    desc_2 = view.findViewById(R.id.desc_2);
+                    desc_3 = view.findViewById(R.id.desc_3);
+
+                    RecordMonth.MonthlyBest monthlyBest = SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).getMonthlyBest();
+
+                    if(monthlyBest.drink_count != 0) {
+                        title_1.setText(SharedResources.getSul(monthlyBest.drink_index).sul_name);
+                        desc_1.setText(monthlyBest.drink_count + "병, " + monthlyBest.drink_expense + "원, " + monthlyBest.drink_calorie + "kcal");
+                    }
+                    else{
+                        title_1.setText("정보 부족");
+                        desc_1.setText("가장 좋아하는 술");
+                    }
+                    if (monthlyBest.whom != null) {
+                        title_2.setText(monthlyBest.whom);
+                        desc_2.setText(monthlyBest.whom_count + "회, " + monthlyBest.whom_expense + "원, " + monthlyBest.whom_calorie + "kcal");
+                    } else {
+                        title_2.setText("정보 부족");
+                        desc_2.setText("함께한 사람");
+                    }
+                    if (monthlyBest.loc != null) {
+                        title_3.setText(monthlyBest.loc);
+                        desc_3.setText(monthlyBest.loc_count + "회, " + monthlyBest.loc_expense + "원, " + monthlyBest.loc_calorie + "kcal");
+                    }
+                    else{
+                        title_3.setText("정보 부족");
+                        desc_3.setText("장소");
+                    }
+                }
             }
 
             //onclicklistener for header
@@ -88,13 +133,13 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
             //set listview content
             ListView adapter_past_inner_listview = view.findViewById(R.id.recyclerview_past_inner_item_container);
-            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()).get(i-1), false);
+            TextView tv = view.findViewById(R.id.text_date);
+            tv.setText(SharedResources.getMonth() + "월 " + SharedResources.getDay() + "일 (" + SharedResources.getWeekDayKorean() + ")");
+            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()).get(i-1), null, false);
             adapter_past_inner_listview.setAdapter(adapter_past_inner_listview_adapter);
             adapter_past_inner_listview.setDividerHeight(0);
             //set listview height not to clip content
             ListViewResizeUtility.setListViewHeightBasedOnItems(adapter_past_inner_listview);
-
-
         }
 
 
@@ -127,10 +172,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
     @Override
     public int getItemCount() {
-        System.out.println(SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).getRecordDays().size());
         return SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).getRecordDays().size() + 1;
-//        return 1;
-//        return 데이터의 갯수+1;
     }
 
     public class PastItemRecyclerViewHolder extends RecyclerView.ViewHolder{

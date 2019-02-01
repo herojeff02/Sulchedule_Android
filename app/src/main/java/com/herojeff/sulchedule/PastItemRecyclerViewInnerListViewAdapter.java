@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.RecordDay;
+import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
 
 import org.jetbrains.annotations.Nullable;
@@ -35,16 +36,21 @@ public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
     TextView title;
     TextView description;
 
-    public PastItemRecyclerViewInnerListViewAdapter(@Nullable RecordDay recordDay, boolean shouldLoadAsHeader) {
+    public PastItemRecyclerViewInnerListViewAdapter(@Nullable RecordDay recordDay, @Nullable RecordMonth recordMonth, boolean shouldLoadAsHeader) {
         if(shouldLoadAsHeader){
+            arr.add(new StringPair(String.valueOf(recordMonth.getTotalExpense()) + "원", "총 지출액"));
+            arr.add(new StringPair(String.valueOf(recordMonth.getTotalCalorie()) + "kcal", "총 지출액"));
+
 
         }
         else{
             arr.add(new StringPair(String.valueOf(recordDay.getExpense()) + "원", "총 지출액"));
             arr.add(new StringPair(String.valueOf(recordDay.getCalorie()) + "kcal", "총 열량"));
             HashMap<Integer, Integer> sul_list = recordDay.getSul_list();
-            for(int i:sul_list.keySet()){
-                arr.add(new StringPair(String.valueOf(sul_list.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
+            for(int i:sul_list.keySet()) {
+                if (sul_list.get(i) != 0) {
+                    arr.add(new StringPair(String.valueOf(sul_list.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
+                }
             }
             ArrayList<String> friend_list = recordDay.getFriend_list();
             String temp = "";

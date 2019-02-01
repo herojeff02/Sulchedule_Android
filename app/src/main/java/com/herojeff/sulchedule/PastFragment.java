@@ -45,13 +45,6 @@ public class PastFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    public static PastFragment newInstance(String param1, String param2) {
-        PastFragment fragment = new PastFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +54,8 @@ public class PastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_past, null);
+
+        SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).cleanup();
 
         button_left = view.findViewById(R.id.button_left);
         button_right = view.findViewById(R.id.button_right);
@@ -85,6 +80,8 @@ public class PastFragment extends Fragment {
         super.onResume();
         button_left.setTextColor(SharedResources.color_accent);
         button_right.setTextColor(SharedResources.color_white);
+
+        SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).cleanup();
 
         setBig(false);
     }

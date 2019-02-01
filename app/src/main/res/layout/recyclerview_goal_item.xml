@@ -53,6 +53,7 @@
         android:layout_marginBottom="30dp">
         <!--bottom layer-->
         <ImageView
+            android:id="@+id/graph_full_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:tint="@color/textTransparent"

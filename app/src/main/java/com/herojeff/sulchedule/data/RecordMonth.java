@@ -219,6 +219,71 @@ public class RecordMonth {
         this.first_launch_of_month = false;
     }
 
+    public int stat_daysOfMonth(){
+        if(!enable_daysOfMonth){
+            double result = 0.0;
+            ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
+            return arr.size();
+
+        }
+        else{
+            return 0;
+        }
+    }
+    public int stat_streakOfMonth(){
+        if(!enable_streakOfMonth){
+            double result = 0.0;
+            ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
+
+
+            //is arr.size dynamically refreshed?
+
+
+            for(int i=0;i<arr.size();i++){
+                if(arr.get(i).isTodayEmpty()){
+                    arr.remove(i);
+                    i--;
+                }
+            }
+            Collections.sort(arr, new DescendingRecordDay());
+
+            int max = 0, new_max = 1;
+            ArrayList<Integer> temp_array = new ArrayList<>();
+            for(int i=0;i<arr.size();i++){
+                temp_array.add(arr.get(i).day);
+                max=1;
+            }
+            int i=0;
+            while (i+1<temp_array.size()){
+                if(temp_array.get(i) + 1 == temp_array.get(i+1)){
+                    new_max++;
+                    if(new_max>max){
+                        max = new_max;
+                    }
+                }
+                else{
+                    new_max=1;
+                }
+                i++;
+            }
+
+            return max;
+        }
+        else{
+            return 0;
+        }
+    }
+    public int stat_caloriesOfMonth(){
+        return getTotalCalorie();
+    }
+    public int stat_totalExpense(){
+        return getTotalExpense();
+    }
+
+
+
+
+
     public double goalStat_daysOfMonth(){
         if(enable_daysOfMonth){
             double result = 0.0;

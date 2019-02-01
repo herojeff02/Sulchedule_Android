@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment;
+                SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).cleanup();
                 switch (menuItem.getItemId()) {
                     case R.id.navigation_today:
                         fragment = todayFragment;

@@ -55,7 +55,6 @@ public class PastFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_past, null);
 
-        SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).cleanup();
 
         button_left = view.findViewById(R.id.button_left);
         button_right = view.findViewById(R.id.button_right);
@@ -80,8 +79,6 @@ public class PastFragment extends Fragment {
         super.onResume();
         button_left.setTextColor(SharedResources.color_accent);
         button_right.setTextColor(SharedResources.color_white);
-
-        SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).cleanup();
 
         setBig(false);
     }

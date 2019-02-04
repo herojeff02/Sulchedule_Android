@@ -64,7 +64,7 @@
         <!--top layer-->
         <ImageView
             android:id="@+id/graph_overlay"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:tint="@color/trafficRed"
             android:src="@drawable/recyclerview_goal_item_graph">

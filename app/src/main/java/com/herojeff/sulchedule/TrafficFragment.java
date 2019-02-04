@@ -8,9 +8,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.herojeff.sulchedule.data.SharedResources;
 
 
 public class TrafficFragment extends Fragment {
+
+    ImageView traffic_red;
+    ImageView traffic_yellow;
+    ImageView traffic_green;
+    TextView text_encouragement;
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -37,8 +47,13 @@ public class TrafficFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_traffic, null);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_goal);
+        recyclerView = view.findViewById(R.id.recyclerview_goal);
         recyclerView.setHasFixedSize(true);
+
+        traffic_red = view.findViewById(R.id.traffic_red);
+        traffic_yellow = view.findViewById(R.id.traffic_yellow);
+        traffic_green = view.findViewById(R.id.traffic_green);
+        text_encouragement = view.findViewById(R.id.text_encouragement);
 
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -48,4 +63,35 @@ public class TrafficFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        final float alpha = 0.25f;
+
+        double k = SharedResources.getRecordMonth().getTrafficSignal();
+        if(k<0){
+            text_encouragement.setText("less than 0");
+            traffic_red.setAlpha(alpha);
+            traffic_yellow.setAlpha(alpha);
+            traffic_green.setAlpha(alpha);
+        }
+        else if(k<0.7){
+            text_encouragement.setText("a");
+            traffic_red.setAlpha(alpha);
+            traffic_yellow.setAlpha(alpha);
+            traffic_green.setAlpha(1f);
+        }
+        else if(k<1){
+            text_encouragement.setText("b");
+            traffic_red.setAlpha(alpha);
+            traffic_yellow.setAlpha(1f);
+            traffic_green.setAlpha(alpha);
+        }
+        else{
+            text_encouragement.setText("c");
+            traffic_red.setAlpha(1f);
+            traffic_yellow.setAlpha(alpha);
+            traffic_green.setAlpha(alpha);
+        }
+    }
 }

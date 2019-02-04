@@ -1,5 +1,7 @@
 package com.herojeff.sulchedule.data;
 
+import android.content.res.ColorStateList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,6 +21,13 @@ public class RecordMonth {
     boolean enable_streakOfMonth;
     boolean enable_caloriesOfMonth;
     boolean enable_totalExpense;
+
+    int goal_daysOfMonth;
+    int goal_streakOfMonth;
+    int goal_caloriesOfMonth;
+    int goal_totalExpense;
+
+    boolean first_launch_of_month = true;
 
     ArrayList<RecordDay> recordDays = new ArrayList<>();
 
@@ -215,13 +224,29 @@ public class RecordMonth {
         return first_launch_of_month;
     }
 
-    public void disableirst_launch_of_month() {
+    public void disableFirst_launch_of_month() {
         this.first_launch_of_month = false;
+    }
+
+    public double getTrafficSignal(){ //if -1.0, nothing is enabled
+        double return_value = -1.0;
+        RecordMonth recordMonth = SharedResources.getRecordMonth(year, month);
+        boolean[] enabled = new boolean[]{
+                recordMonth.isEnable_daysOfMonth(), recordMonth.isEnable_streakOfMonth(), recordMonth.isEnable_totalExpense(), recordMonth.isEnable_caloriesOfMonth()
+        };
+        double[] bar_t = new double[]{
+                recordMonth.goalStat_daysOfMonth(), recordMonth.goalStat_streakOfMonth(), recordMonth.goalStat_totalExpense(), recordMonth.goalStat_caloriesOfMonth()
+        };
+        for(int i=0;i<4;i++){
+            if(enabled[i]) {
+                return_value = bar_t[i] > return_value ? bar_t[i] : return_value;
+            }
+        }
+        return return_value;
     }
 
     public int stat_daysOfMonth(){
         if(!enable_daysOfMonth){
-            double result = 0.0;
             ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
             return arr.size();
 
@@ -232,7 +257,6 @@ public class RecordMonth {
     }
     public int stat_streakOfMonth(){
         if(!enable_streakOfMonth){
-            double result = 0.0;
             ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
 
 
@@ -374,13 +398,6 @@ public class RecordMonth {
         }
         return return_int;
     }
-
-    int goal_daysOfMonth;
-    int goal_streakOfMonth;
-    int goal_caloriesOfMonth;
-    int goal_totalExpense;
-
-    boolean first_launch_of_month = true;
 }
 
 class DescendingRecordDay implements Comparator<RecordDay> {

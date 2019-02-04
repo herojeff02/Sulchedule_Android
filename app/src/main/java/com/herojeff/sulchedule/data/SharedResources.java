@@ -13,6 +13,10 @@ public final class SharedResources {
     public static final int color_primary_dark = Color.parseColor("#0B102F");
     public static final int color_white = Color.parseColor("#FFFFFF");
 
+    public static final int color_traffic_green = Color.parseColor("#4AD863");
+    public static final int color_traffic_yellow = Color.parseColor("#FFC400");
+    public static final int color_traffic_red = Color.parseColor("#FF6060");
+
     public static boolean enable_ad = true;
     public static boolean remove_ad_eligible = false;
     public static boolean first_launch_ever = true;
@@ -201,6 +205,16 @@ public final class SharedResources {
         return false;
     }
     public static RecordMonth getRecordMonth(int year, int month){
+        for(RecordMonth recordMonth:recordMonths){
+            if(recordMonth.year == year && recordMonth.month == month){
+                return recordMonth;
+            }
+        }
+        return appendRecordMonth(year, month);
+    }
+    public static RecordMonth getRecordMonth(){
+        int year = getYear();
+        int month = getMonth();
         for(RecordMonth recordMonth:recordMonths){
             if(recordMonth.year == year && recordMonth.month == month){
                 return recordMonth;

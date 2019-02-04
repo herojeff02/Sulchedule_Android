@@ -1,7 +1,11 @@
 package com.herojeff.sulchedule;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.ColorStateList;
 import android.media.Image;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,50 +22,83 @@ import com.herojeff.sulchedule.data.SharedResources;
 
 public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<TrafficGoalRecyclerViewAdapter.TrafficGoalRecyclerViewHolder> {
 
-    int year = SharedResources.getYear();
-    int month = SharedResources.getMonth();
-    RecordMonth recordMonth = SharedResources.getRecordMonth(year, month);
+    int year;
+    int month;
+    RecordMonth recordMonth;
 
+    boolean[] enabled;
+    String[] left_bottom;
+    int[] right_top;
+    String[] left_top;
+    double[] bar_t;
 
-    String[] left_bottom = {
-        SharedResources.getMonth() + "월 음주 일수", SharedResources.getMonth() + "월 연이은 음주 일수", "지출액", "열량"
-    };
-    int[] right_top = {
-            recordMonth.getGoal_daysOfMonth(), recordMonth.getGoal_streakOfMonth(), recordMonth.getTotalExpense(), recordMonth.getTotalCalorie()
-    };
-    String[] left_top = {
-            recordMonth.stat_daysOfMonth() + "일", recordMonth.stat_streakOfMonth() + "일", recordMonth.stat_totalExpense() + "원", recordMonth.stat_caloriesOfMonth() + "kcal"
-    };
-    double[] bar_t = {
-            recordMonth.goalStat_daysOfMonth(), recordMonth.goalStat_streakOfMonth(), recordMonth.goalStat_totalExpense(), recordMonth.goalStat_caloriesOfMonth()
-    };
+    public TrafficGoalRecyclerViewAdapter() {
+        year = SharedResources.getYear();
+        month = SharedResources.getMonth();
+        recordMonth = SharedResources.getRecordMonth(year, month);
+
+        recordMonth.setGoal_caloriesOfMonth(200);
+        recordMonth.setEnable_caloriesOfMonth(true);
+
+        enabled = new boolean[]{
+                recordMonth.isEnable_daysOfMonth(), recordMonth.isEnable_streakOfMonth(), recordMonth.isEnable_totalExpense(), recordMonth.isEnable_caloriesOfMonth()
+        };
+        bar_t = new double[]{
+                recordMonth.goalStat_daysOfMonth(), recordMonth.goalStat_streakOfMonth(), recordMonth.goalStat_totalExpense(), recordMonth.goalStat_caloriesOfMonth()
+        };
+        left_top = new String[]{
+                recordMonth.stat_daysOfMonth() + "일", recordMonth.stat_streakOfMonth() + "일", recordMonth.stat_totalExpense() + "원", recordMonth.stat_caloriesOfMonth() + "kcal"
+        };
+        right_top = new int[]{
+                recordMonth.getGoal_daysOfMonth(), recordMonth.getGoal_streakOfMonth(), recordMonth.getGoal_totalExpense(), recordMonth.getGoal_caloriesOfMonth()
+        };
+        left_bottom = new String[]{
+                SharedResources.getMonth() + "월 음주 일수", SharedResources.getMonth() + "월 연이은 음주 일수", "지출액", "열량"
+        };
+    }
 
     @NonNull
     @Override
     public TrafficGoalRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_goal_item, viewGroup, false);
 
-        recordMonth.setGoal_caloriesOfMonth(200);
+
 
         return new TrafficGoalRecyclerViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final @NonNull TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i) {
+        if(enabled[i]) {
+            trafficGoalRecyclerViewHolder.text_right_top.setText(String.valueOf(right_top[i]));
+            trafficGoalRecyclerViewHolder.itemView.post(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    int cellWidth = trafficGoalRecyclerViewHolder.graph_full_bar.getWidth();// this will give you cell width dynamically
+                    trafficGoalRecyclerViewHolder.graph_overlay.setLayoutParams(new RelativeLayout.LayoutParams((int) (cellWidth * bar_t[i]), trafficGoalRecyclerViewHolder.graph_full_bar.getHeight()));
+                }
+            });
+        }
+        else{
+            trafficGoalRecyclerViewHolder.text_right_top.setText("비활성화");
+        }
         trafficGoalRecyclerViewHolder.text_left_top.setText(left_top[i]);
-        trafficGoalRecyclerViewHolder.text_right_top.setText(String.valueOf(right_top[i]));
         trafficGoalRecyclerViewHolder.text_left_bottom.setText(left_bottom[i]);
         trafficGoalRecyclerViewHolder.text_right_bottom.setText("한도");
 
-        trafficGoalRecyclerViewHolder.itemView.post(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                int cellWidth = trafficGoalRecyclerViewHolder.graph_full_bar.getWidth();// this will give you cell width dynamically
-                trafficGoalRecyclerViewHolder.graph_overlay.setLayoutParams(new RelativeLayout.LayoutParams((int) (cellWidth * bar_t[i]), trafficGoalRecyclerViewHolder.graph_full_bar.getHeight()));
-            }
-        });
+        if(bar_t[i] >= 1.0){
+            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_red));
+        }
+        else if(bar_t[i] >= 0.7){
+            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_yellow));
+        }
+        else{
+            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_green));
+        }
+
+
     }
 
     @Override

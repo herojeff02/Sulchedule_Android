@@ -88,7 +88,6 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
                 SharedResources.removeSul(k);
                 suls = SharedResources.getSuls();
                 adapter.notifyDataSetChanged();
-                Toast.makeText(context, k, Toast.LENGTH_SHORT).show();
                 ListViewResizeUtility.setListViewHeightBasedOnItems(listview);
             }
         });

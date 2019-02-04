@@ -1,5 +1,6 @@
 package com.herojeff.sulchedule;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +8,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
 
@@ -62,11 +62,21 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.add_button:
-                System.out.println("add sul");
+                showAddSul();
                 break;
             case R.id.pill_more_sul_add:
-                System.out.println("add sul");
+                showAddSul();
                 break;
         }
+    }
+
+    void showAddSul() {
+        final AddSulDialog addCateDialog = new AddSulDialog(this);
+        addCateDialog.show();
+        addCateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+            }
+        });
     }
 }

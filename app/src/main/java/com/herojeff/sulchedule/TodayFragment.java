@@ -1,8 +1,12 @@
 package com.herojeff.sulchedule;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
@@ -129,7 +134,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         Intent intent;
         switch (v.getId()) {
             case R.id.setting_button:
-                System.out.println("setting_button");
+                settingDialog();
                 break;
             case R.id.pill_more_sul:
                 intent = new Intent(getContext(), MoreSulActivity.class);
@@ -140,6 +145,28 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
                 break;
         }
 
+    }
+
+
+    void settingDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this.getContext(), R.style.TodaySettingDialog));
+        builder.setTitle("스마트 팁 표시");
+        builder.setMessage("스마트 팁은 열량, 지출액에 따라 유동적으로 팁을 표시합니다.\n해제하면 지출액과 열량만이 표시됩니다.");
+
+        builder.setPositiveButton("켜기",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.setNegativeButton("끄기",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        builder.show();
     }
 }
 

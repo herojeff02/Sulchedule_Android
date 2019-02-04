@@ -39,7 +39,7 @@ public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
     public PastItemRecyclerViewInnerListViewAdapter(@Nullable RecordDay recordDay, @Nullable RecordMonth recordMonth, boolean shouldLoadAsHeader) {
         if(shouldLoadAsHeader){
             arr.add(new StringPair(String.valueOf(recordMonth.getTotalExpense()) + "원", "총 지출액"));
-            arr.add(new StringPair(String.valueOf(recordMonth.getTotalCalorie()) + "kcal", "총 지출액"));
+            arr.add(new StringPair(String.valueOf(recordMonth.getTotalCalorie()) + "kcal", "총 열량"));
 
 
         }

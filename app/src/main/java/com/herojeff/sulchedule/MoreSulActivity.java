@@ -24,7 +24,7 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_sul);
-        this.getWindow().setNavigationBarColor(SharedResources.color_primary_dark);
+        this.getWindow().setNavigationBarColor(SharedResources.color_primary_dark_dark);
 
         listview_more_sul = findViewById(R.id.listview_more_sul);
         adapter_more_sul = new MoreSulListViewAdapter(SharedResources.getSuls());

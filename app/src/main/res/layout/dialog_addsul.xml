@@ -20,6 +20,7 @@
             android:textColor="@color/colorAccent"
             android:textSize="@dimen/h3"/>
         <EditText
+            android:maxLength="10"
             android:singleLine="true"
             android:id="@+id/text_name"
             android:textColorHint="@color/textTransparent"
@@ -31,6 +32,7 @@
             android:backgroundTint="@color/textWhite"
             android:layout_marginTop="20dp"/>
         <EditText
+            android:maxLength="10"
             android:singleLine="true"
             android:id="@+id/text_unit"
             android:textColorHint="@color/textTransparent"
@@ -42,6 +44,7 @@
             android:backgroundTint="@color/textWhite"
             android:layout_marginTop="2dp"/>
         <EditText
+            android:maxLength="14"
             android:singleLine="true"
             android:inputType="number"
             android:id="@+id/text_kcal"
@@ -54,6 +57,7 @@
             android:backgroundTint="@color/textWhite"
             android:layout_marginTop="2dp"/>
         <EditText
+            android:maxLength="14"
             android:singleLine="true"
             android:inputType="number"
             android:id="@+id/text_price"

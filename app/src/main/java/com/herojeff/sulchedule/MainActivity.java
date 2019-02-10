@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         SharedResources.setFavouriteSul("소주", true);
 
         this.getWindow().setNavigationBarColor(SharedResources.color_primary);
+        this.getWindow().setStatusBarColor(SharedResources.color_primary_dark);
 
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

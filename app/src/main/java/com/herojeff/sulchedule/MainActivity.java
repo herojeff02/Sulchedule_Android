@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         SharedResources.addSul("막걸리", 345, 2000, "병");
         SharedResources.setFavouriteSul("소주", true);
 
+        this.getWindow().setNavigationBarColor(SharedResources.color_primary);
+
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

@@ -8,17 +8,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="61dp">
+
         <View
             android:id="@+id/favourite_bar"
             android:layout_width="4dp"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"/>
+            android:background="@color/colorAccent" />
+
         <TextView
             android:id="@+id/textview_sul"
-            android:layout_marginLeft="17dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="17dp"
             android:layout_toLeftOf="@id/stepper_container"
             android:maxLines="2"
             android:text="name count_bottle"

@@ -1,6 +1,5 @@
 package com.herojeff.sulchedule;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,10 +13,10 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
+import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 import java.util.ArrayList;
 
@@ -84,10 +83,9 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         //set listview height not to clip content
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);
 
-        if(SharedResources.getFavouriteSuls().size() == 0){
+        if (SharedResources.getFavouriteSuls().size() == 0) {
             pervert_area.setVisibility(View.INVISIBLE);
-        }
-        else{
+        } else {
             pervert_area.setVisibility(View.VISIBLE);
         }
 
@@ -120,10 +118,9 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
             listview_sul.setAdapter(adapter_sul);
             ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);
         }
-        if(SharedResources.getFavouriteSuls().size() == 0){
+        if (SharedResources.getFavouriteSuls().size() == 0) {
             pervert_area.setVisibility(View.INVISIBLE);
-        }
-        else{
+        } else {
             pervert_area.setVisibility(View.VISIBLE);
         }
         first = false;
@@ -148,7 +145,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    void settingDialog(){
+    void settingDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this.getContext(), R.style.TodaySettingDialog));
         builder.setTitle("스마트 팁");
         builder.setMessage("켜면 열량, 지출액에 따라 유동적으로 팁을 표시합니다.\n끄면 지출액과 열량만이 표시됩니다.");

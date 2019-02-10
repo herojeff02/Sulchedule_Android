@@ -1,7 +1,5 @@
 package com.herojeff.sulchedule.data;
 
-import android.content.res.ColorStateList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,106 +7,86 @@ import java.util.HashMap;
 
 
 public class RecordMonth {
+    public int year;
+    public int month;
+    boolean enable_daysOfMonth;
+    boolean enable_streakOfMonth;
+    boolean enable_caloriesOfMonth;
+    boolean enable_totalExpense;
+    int goal_daysOfMonth;
+    int goal_streakOfMonth;
+    int goal_caloriesOfMonth;
+    int goal_totalExpense;
+    boolean first_launch_of_month = true;
+    ArrayList<RecordDay> recordDays = new ArrayList<>();
+
     public RecordMonth(int year, int month) {
         this.year = year;
         this.month = month;
     }
 
-    public int year;
-    public int month;
-
-    boolean enable_daysOfMonth;
-    boolean enable_streakOfMonth;
-    boolean enable_caloriesOfMonth;
-    boolean enable_totalExpense;
-
-    int goal_daysOfMonth;
-    int goal_streakOfMonth;
-    int goal_caloriesOfMonth;
-    int goal_totalExpense;
-
-    boolean first_launch_of_month = true;
-
-    ArrayList<RecordDay> recordDays = new ArrayList<>();
-
-    public class MonthlyBest{
-        public int drink_index = -1;
-        public int drink_count = 0;
-        public int drink_expense = 0;
-        public int drink_calorie = 0;
-        public String whom;
-        public int whom_count = 0;
-        public int whom_expense = 0;
-        public int whom_calorie = 0;
-        public String loc;
-        public int loc_count = 0;
-        public int loc_expense = 0;
-        public int loc_calorie = 0;
-    }
-
-    public MonthlyBest getMonthlyBest(){
+    public MonthlyBest getMonthlyBest() {
         MonthlyBest monthlyBest = new MonthlyBest();
         //scanner
         HashMap<Integer, Integer> monthlyBestDrink = new HashMap<>();
         HashMap<String, Integer> monthlyBestWhom = new HashMap<>();
         HashMap<String, Integer> monthlyBestLoc = new HashMap<>();
-        for(RecordDay recordDay:recordDays){
+        for (RecordDay recordDay : recordDays) {
             //consolidation
-            if(recordDay.sul_list.size() != 0){
-                for(int i:recordDay.sul_list.keySet()){
+            if (recordDay.sul_list.size() != 0) {
+                for (int i : recordDay.sul_list.keySet()) {
                     int a;
                     try {
                         a = monthlyBestDrink.get(i);
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         monthlyBestDrink.put(i, 0);
                         a = 0;
                     }
                     int b = recordDay.getCertain_sul_count(i);
                     monthlyBestDrink.remove(i);
-                    monthlyBestDrink.put(i, a+b);
+                    monthlyBestDrink.put(i, a + b);
                 }
-            }
-            else{
+            } else {
 
             }
 
-            for(String i:recordDay.friend_list){
+            for (String i : recordDay.friend_list) {
                 int a;
                 try {
                     a = monthlyBestWhom.get(i);
-                } catch (Exception e){
+                } catch (Exception e) {
                     monthlyBestWhom.put(i, 0);
                     a = 0;
                 }
                 monthlyBestWhom.remove(i);
-                monthlyBestWhom.put(i, a+1);
+                monthlyBestWhom.put(i, a + 1);
             }
-            for(String i:recordDay.location_list){
+            for (String i : recordDay.location_list) {
                 int a;
                 try {
                     a = monthlyBestLoc.get(i);
-                } catch (Exception e){
+                } catch (Exception e) {
                     monthlyBestWhom.put(i, 0);
                     a = 0;
                 }
                 monthlyBestLoc.remove(i);
-                monthlyBestLoc.put(i, a+1);
+                monthlyBestLoc.put(i, a + 1);
             }
         }
         //set value for monthlybest
-        for(int i:monthlyBestDrink.keySet()){
-            if(monthlyBest.drink_count < monthlyBestDrink.get(i)){
+        for (int i : monthlyBestDrink.keySet()) {
+            if (monthlyBest.drink_count < monthlyBestDrink.get(i)) {
                 monthlyBest.drink_count = monthlyBestDrink.get(i);
                 monthlyBest.drink_index = i;
                 monthlyBest.drink_expense = SharedResources.getSul(i).sul_price * monthlyBest.drink_count;
                 monthlyBest.drink_calorie = SharedResources.getSul(i).sul_calorie * monthlyBest.drink_count;
             }
         }
-        for(String i:monthlyBestWhom.keySet()){
-            if(monthlyBest.whom_count < monthlyBestWhom.get(i)){
+        for (String i : monthlyBestWhom.keySet()) {
+            if (monthlyBest.whom_count < monthlyBestWhom.get(i)) {
                 monthlyBest.whom_count = monthlyBestWhom.get(i);
-                for(RecordDay recordDay:recordDays) {
-                    if(recordDay.friend_list.contains(i)){
+                for (RecordDay recordDay : recordDays) {
+                    if (recordDay.friend_list.contains(i)) {
                         monthlyBest.whom_calorie += recordDay.getCalorie();
                         monthlyBest.whom_expense += recordDay.getExpense();
                     }
@@ -116,11 +94,11 @@ public class RecordMonth {
                 monthlyBest.whom = i;
             }
         }
-        for(String i:monthlyBestLoc.keySet()){
-            if(monthlyBest.loc_count < monthlyBestLoc.get(i)){
+        for (String i : monthlyBestLoc.keySet()) {
+            if (monthlyBest.loc_count < monthlyBestLoc.get(i)) {
                 monthlyBest.loc_count = monthlyBestLoc.get(i);
-                for(RecordDay recordDay:recordDays) {
-                    if(recordDay.location_list.contains(i)){
+                for (RecordDay recordDay : recordDays) {
+                    if (recordDay.location_list.contains(i)) {
                         monthlyBest.loc_calorie += recordDay.getCalorie();
                         monthlyBest.loc_expense += recordDay.getExpense();
                     }
@@ -132,16 +110,16 @@ public class RecordMonth {
         return monthlyBest;
     }
 
-    public void cleanup(){
-        for(RecordDay recordDay : recordDays){
-            if(recordDay.getCalorie() == 0 && recordDay.getExpense() == 0 && recordDay.getLocation_list().size() == 0 && recordDay.getFriend_list().size() == 0){
+    public void cleanup() {
+        for (RecordDay recordDay : recordDays) {
+            if (recordDay.getCalorie() == 0 && recordDay.getExpense() == 0 && recordDay.getLocation_list().size() == 0 && recordDay.getFriend_list().size() == 0) {
                 boolean removal_flag = true;
-                for(int i:recordDay.getSul_list().keySet()){
-                    if(recordDay.getCertain_sul_count(i) != 0){
+                for (int i : recordDay.getSul_list().keySet()) {
+                    if (recordDay.getCertain_sul_count(i) != 0) {
                         removal_flag = false;
                     }
                 }
-                if(removal_flag) {
+                if (removal_flag) {
                     recordDays.remove(recordDay);
                 }
             }
@@ -228,7 +206,7 @@ public class RecordMonth {
         this.first_launch_of_month = false;
     }
 
-    public double getTrafficSignal(){ //if -1.0, nothing is enabled
+    public double getTrafficSignal() { //if -1.0, nothing is enabled
         double return_value = -1.0;
         RecordMonth recordMonth = SharedResources.getRecordMonth(year, month);
         boolean[] enabled = new boolean[]{
@@ -237,34 +215,34 @@ public class RecordMonth {
         double[] bar_t = new double[]{
                 recordMonth.goalStat_daysOfMonth(), recordMonth.goalStat_streakOfMonth(), recordMonth.goalStat_totalExpense(), recordMonth.goalStat_caloriesOfMonth()
         };
-        for(int i=0;i<4;i++){
-            if(enabled[i]) {
+        for (int i = 0; i < 4; i++) {
+            if (enabled[i]) {
                 return_value = bar_t[i] > return_value ? bar_t[i] : return_value;
             }
         }
         return return_value;
     }
 
-    public int stat_daysOfMonth(){
-        if(!enable_daysOfMonth){
+    public int stat_daysOfMonth() {
+        if (!enable_daysOfMonth) {
             ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
             return arr.size();
 
-        }
-        else{
+        } else {
             return 0;
         }
     }
-    public int stat_streakOfMonth(){
-        if(!enable_streakOfMonth){
+
+    public int stat_streakOfMonth() {
+        if (!enable_streakOfMonth) {
             ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
 
 
             //is arr.size dynamically refreshed?
 
 
-            for(int i=0;i<arr.size();i++){
-                if(arr.get(i).isTodayEmpty()){
+            for (int i = 0; i < arr.size(); i++) {
+                if (arr.get(i).isTodayEmpty()) {
                     arr.remove(i);
                     i--;
                 }
@@ -273,61 +251,55 @@ public class RecordMonth {
 
             int max = 0, new_max = 1;
             ArrayList<Integer> temp_array = new ArrayList<>();
-            for(int i=0;i<arr.size();i++){
+            for (int i = 0; i < arr.size(); i++) {
                 temp_array.add(arr.get(i).day);
-                max=1;
+                max = 1;
             }
-            int i=0;
-            while (i+1<temp_array.size()){
-                if(temp_array.get(i) + 1 == temp_array.get(i+1)){
+            int i = 0;
+            while (i + 1 < temp_array.size()) {
+                if (temp_array.get(i) + 1 == temp_array.get(i + 1)) {
                     new_max++;
-                    if(new_max>max){
+                    if (new_max > max) {
                         max = new_max;
                     }
-                }
-                else{
-                    new_max=1;
+                } else {
+                    new_max = 1;
                 }
                 i++;
             }
 
             return max;
-        }
-        else{
+        } else {
             return 0;
         }
     }
-    public int stat_caloriesOfMonth(){
+
+    public int stat_caloriesOfMonth() {
         return getTotalCalorie();
     }
-    public int stat_totalExpense(){
+
+    public int stat_totalExpense() {
         return getTotalExpense();
     }
 
-
-
-
-
-    public double goalStat_daysOfMonth(){
-        if(enable_daysOfMonth){
+    public double goalStat_daysOfMonth() {
+        if (enable_daysOfMonth) {
             double result = 0.0;
             ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
-            if(arr.size() == 0){
+            if (arr.size() == 0) {
                 return 0.0;
-            }
-            else if(goal_daysOfMonth == 0){
+            } else if (goal_daysOfMonth == 0) {
                 return 1.0;
-            }
-            else {
+            } else {
                 return (double) arr.size() / (double) goal_daysOfMonth;
             }
-        }
-        else{
+        } else {
             return 0.0;
         }
     }
-    public double goalStat_streakOfMonth(){
-        if(enable_streakOfMonth){
+
+    public double goalStat_streakOfMonth() {
+        if (enable_streakOfMonth) {
             double result = 0.0;
             ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
 
@@ -335,8 +307,8 @@ public class RecordMonth {
             //is arr.size dynamically refreshed?
 
 
-            for(int i=0;i<arr.size();i++){
-                if(arr.get(i).isTodayEmpty()){
+            for (int i = 0; i < arr.size(); i++) {
+                if (arr.get(i).isTodayEmpty()) {
                     arr.remove(i);
                     i--;
                 }
@@ -345,58 +317,72 @@ public class RecordMonth {
 
             int max = 0, new_max = 1;
             ArrayList<Integer> temp_array = new ArrayList<>();
-            for(int i=0;i<arr.size();i++){
+            for (int i = 0; i < arr.size(); i++) {
                 temp_array.add(arr.get(i).day);
-                max=1;
+                max = 1;
             }
-            int i=0;
-            while (i+1<temp_array.size()){
-                if(temp_array.get(i) + 1 == temp_array.get(i+1)){
+            int i = 0;
+            while (i + 1 < temp_array.size()) {
+                if (temp_array.get(i) + 1 == temp_array.get(i + 1)) {
                     new_max++;
-                    if(new_max>max){
+                    if (new_max > max) {
                         max = new_max;
                     }
-                }
-                else{
-                    new_max=1;
+                } else {
+                    new_max = 1;
                 }
                 i++;
             }
 
-            if(max == 0){
+            if (max == 0) {
                 return 0.0;
-            }
-            else if(goal_streakOfMonth == 0){
+            } else if (goal_streakOfMonth == 0) {
                 return 1.0;
-            }
-            else {
+            } else {
                 return (double) max / (double) goal_streakOfMonth;
             }
-        }
-        else{
+        } else {
             return 0.0;
         }
     }
-    public double goalStat_caloriesOfMonth(){
+
+    public double goalStat_caloriesOfMonth() {
         return (double) getTotalCalorie() / (double) goal_caloriesOfMonth;
     }
-    public double goalStat_totalExpense(){
+
+    public double goalStat_totalExpense() {
         return (double) getTotalExpense() / (double) goal_totalExpense;
     }
 
-    public int getTotalExpense(){
+    public int getTotalExpense() {
         int return_int = 0;
-        for(RecordDay recordDay:recordDays){
+        for (RecordDay recordDay : recordDays) {
             return_int += recordDay.getExpense();
         }
         return return_int;
     }
-    public int getTotalCalorie(){
+
+    public int getTotalCalorie() {
         int return_int = 0;
-        for(RecordDay recordDay:recordDays){
+        for (RecordDay recordDay : recordDays) {
             return_int += recordDay.getCalorie();
         }
         return return_int;
+    }
+
+    public class MonthlyBest {
+        public int drink_index = -1;
+        public int drink_count = 0;
+        public int drink_expense = 0;
+        public int drink_calorie = 0;
+        public String whom;
+        public int whom_count = 0;
+        public int whom_expense = 0;
+        public int whom_calorie = 0;
+        public String loc;
+        public int loc_count = 0;
+        public int loc_expense = 0;
+        public int loc_calorie = 0;
     }
 }
 

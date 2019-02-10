@@ -7,32 +7,30 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
+import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 import java.util.ArrayList;
 
 public class MoreSulEditListViewAdapter extends BaseAdapter {
 
-    private ArrayList<Sul> suls = SharedResources.getSuls();
-
     TextView edit_button;
     TextView remove_button;
-
     TextView text_title;
     TextView text_left_top;
     TextView text_left_bottom;
     TextView text_right_top;
-
     MoreSulEditListViewAdapter adapter;
     ListView listview;
+    private ArrayList<Sul> suls = SharedResources.getSuls();
 
     public MoreSulEditListViewAdapter() {
 
     }
-    public void passParent(ListView listview_more_sul_edit, MoreSulEditListViewAdapter adapter){
+
+    public void passParent(ListView listview_more_sul_edit, MoreSulEditListViewAdapter adapter) {
         this.adapter = adapter;
         this.listview = listview_more_sul_edit;
     }

@@ -33,3 +33,5 @@ limitations under the License.
 
 --(Android Studio)Material Icons--
 Apache 2.0
+
+https://medium.com/@bherbst/saving-fragment-state-yourself-522c3bca78c7

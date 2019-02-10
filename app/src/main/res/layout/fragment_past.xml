@@ -45,9 +45,9 @@
             android:textColor="@color/textWhite"
             android:textSize="@dimen/h5" />
     </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_past"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </FrameLayout>

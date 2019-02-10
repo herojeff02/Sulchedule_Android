@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.herojeff.sulchedule.data.SharedResources;
+import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 public class MoreSulActivity extends AppCompatActivity implements View.OnClickListener {
 

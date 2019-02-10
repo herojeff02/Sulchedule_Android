@@ -1,6 +1,5 @@
 package com.herojeff.sulchedule;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
 
@@ -70,25 +67,22 @@ public class TrafficFragment extends Fragment {
         final float alpha = 0.25f;
 
         double k = SharedResources.getRecordMonth().getTrafficSignal();
-        if(k<0){
+        if (k < 0) {
             text_encouragement.setText("less than 0");
             traffic_red.setAlpha(alpha);
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(alpha);
-        }
-        else if(k<0.7){
+        } else if (k < 0.7) {
             text_encouragement.setText("a");
             traffic_red.setAlpha(alpha);
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(1f);
-        }
-        else if(k<1){
+        } else if (k < 1) {
             text_encouragement.setText("b");
             traffic_red.setAlpha(alpha);
             traffic_yellow.setAlpha(1f);
             traffic_green.setAlpha(alpha);
-        }
-        else{
+        } else {
             text_encouragement.setText("c");
             traffic_red.setAlpha(1f);
             traffic_yellow.setAlpha(alpha);

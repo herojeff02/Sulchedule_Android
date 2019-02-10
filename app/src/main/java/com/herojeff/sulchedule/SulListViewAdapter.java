@@ -33,10 +33,9 @@ public class SulListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if(favourites.size() == 0) {
+        if (favourites.size() == 0) {
             return 1;
-        }
-        else{
+        } else {
             return favourites.size();
         }
     }
@@ -67,9 +66,9 @@ public class SulListViewAdapter extends BaseAdapter {
         favourite_bar = convertView.findViewById(R.id.favourite_bar);
         RelativeLayout stepper_container = convertView.findViewById(R.id.stepper_container);
 
-        if(favourites.size() == 0){
+        if (favourites.size() == 0) {
             textView.setText("즐겨찾기를 추가하세요.");
-            textView.setTextColor(Color.argb(150, 255,255,255));
+            textView.setTextColor(Color.argb(150, 255, 255, 255));
             stepper_plus.setVisibility(View.GONE);
             stepper_minus.setVisibility(View.GONE);
             stepper_container.setVisibility(View.GONE);
@@ -77,7 +76,7 @@ public class SulListViewAdapter extends BaseAdapter {
             return convertView;
         }
 
-        if(pos >= SharedResources.getFavouriteSuls().size()){
+        if (pos >= SharedResources.getFavouriteSuls().size()) {
             favourite_bar.setVisibility(View.INVISIBLE);
         }
 
@@ -92,11 +91,11 @@ public class SulListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(favourites.get(pos).getSul_name());
                 --count;
-                if(count<0){
+                if (count < 0) {
                     count = 0;
                 }
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), count);
-                textView = ((View)((View)(v.getParent())).getParent()).findViewById(R.id.textview_sul);
+                textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
             }
         });
@@ -105,7 +104,7 @@ public class SulListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(favourites.get(pos).getSul_name());
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), ++count);
-                textView = ((View)((View)(v.getParent())).getParent()).findViewById(R.id.textview_sul);
+                textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
 
             }

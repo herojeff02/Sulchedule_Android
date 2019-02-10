@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 
 import com.herojeff.sulchedule.data.SharedResources;
+import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 public class MoreSulEditActivity extends AppCompatActivity {
 
@@ -58,7 +59,7 @@ public class MoreSulEditActivity extends AppCompatActivity {
         addCateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                if(addCateDialog.get_did_add()) {
+                if (addCateDialog.get_did_add()) {
                     adapter_more_sul_edit = new MoreSulEditListViewAdapter();
                     adapter_more_sul_edit.passParent(listview_more_sul_edit, adapter_more_sul_edit);
                     listview_more_sul_edit.setAdapter(adapter_more_sul_edit);

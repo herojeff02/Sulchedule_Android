@@ -5,69 +5,74 @@
     android:orientation="vertical"
     android:paddingLeft="17dp"
     android:paddingRight="17dp">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp">
+
         <TextView
             android:id="@+id/text_left_top"
-            android:text="demo1"
-            android:textSize="@dimen/h4"
-            android:textColor="@color/textWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/text_right_top"
-            android:text="demo2"
-            android:textColor="@color/textTransparent"
-            android:textSize="@dimen/h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"/>
+            android:text="demo1"
+            android:textColor="@color/textWhite"
+            android:textSize="@dimen/h4" />
+
+        <TextView
+            android:id="@+id/text_right_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="demo2"
+            android:textColor="@color/textTransparent"
+            android:textSize="@dimen/h4" />
     </RelativeLayout>
+
     <RelativeLayout
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
         android:layout_marginBottom="10dp">
+
         <TextView
             android:id="@+id/text_left_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="demo3"
             android:textColor="@color/textTransparent"
-            android:textSize="@dimen/h5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/h5" />
+
         <TextView
             android:id="@+id/text_right_bottom"
-            android:text="demo4"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/textTransparent"
-            android:textSize="@dimen/h5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="demo4"
+            android:textColor="@color/textTransparent"
+            android:textSize="@dimen/h5" />
     </RelativeLayout>
+
     <RelativeLayout
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
         android:layout_width="match_parent"
         android:layout_height="10dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_marginBottom="30dp">
         <!--bottom layer-->
         <ImageView
             android:id="@+id/graph_full_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:tint="@color/textTransparent"
-            android:src="@drawable/recyclerview_goal_item_graph">
-        </ImageView>
+            android:src="@drawable/recyclerview_goal_item_graph"
+            android:tint="@color/textTransparent"></ImageView>
         <!--top layer-->
         <ImageView
             android:id="@+id/graph_overlay"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:tint="@color/trafficRed"
-            android:src="@drawable/recyclerview_goal_item_graph">
-        </ImageView>
+            android:src="@drawable/recyclerview_goal_item_graph"
+            android:tint="@color/trafficRed"></ImageView>
     </RelativeLayout>
 </LinearLayout>

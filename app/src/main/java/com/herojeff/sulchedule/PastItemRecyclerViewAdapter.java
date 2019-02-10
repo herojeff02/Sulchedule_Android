@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
+import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRecyclerViewAdapter.PastItemRecyclerViewHolder> {
 
@@ -32,21 +33,20 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
     View view;
 
-    public PastItemRecyclerViewAdapter(boolean big, TextView left, TextView right){
+    public PastItemRecyclerViewAdapter(boolean big, TextView left, TextView right) {
         this.headerFlag_Big = big;
         this.left = left;
         this.right = right;
 
     }
 
-    public void clickHeader(boolean isLeft){
-        if(isLeft){
+    public void clickHeader(boolean isLeft) {
+        if (isLeft) {
             headerFlag_Big = false;
             right.setTextColor(SharedResources.color_white);
             left.setTextColor(SharedResources.color_accent);
             parentFragment.setBig(false);
-        }
-        else{
+        } else {
             headerFlag_Big = true;
             right.setTextColor(SharedResources.color_accent);
             left.setTextColor(SharedResources.color_white);
@@ -59,12 +59,11 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
     public PastItemRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         //determines which item to load
-        if(i==0){
+        if (i == 0) {
             headerFlag = true;
-            if(!headerFlag_Big) {
+            if (!headerFlag_Big) {
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_past_header_small, viewGroup, false);
-            }
-            else{
+            } else {
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_past_header_big, viewGroup, false);
 
                 //set listview content
@@ -75,7 +74,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
                 //set listview height not to clip content
                 ListViewResizeUtility.setListViewHeightBasedOnItems(adapter_past_inner_listview_for_header);
 
-                if(view.findViewById(R.id.title_1) != null) {
+                if (view.findViewById(R.id.title_1) != null) {
                     title_1 = view.findViewById(R.id.title_1);
                     title_2 = view.findViewById(R.id.title_2);
                     title_3 = view.findViewById(R.id.title_3);
@@ -85,11 +84,10 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
                     RecordMonth.MonthlyBest monthlyBest = SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).getMonthlyBest();
 
-                    if(monthlyBest.drink_count != 0) {
+                    if (monthlyBest.drink_count != 0) {
                         title_1.setText(SharedResources.getSul(monthlyBest.drink_index).sul_name);
                         desc_1.setText(monthlyBest.drink_count + "병, " + monthlyBest.drink_expense + "원, " + monthlyBest.drink_calorie + "kcal");
-                    }
-                    else{
+                    } else {
                         title_1.setText("정보 부족");
                         desc_1.setText("가장 좋아하는 술");
                     }
@@ -103,8 +101,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
                     if (monthlyBest.loc != null) {
                         title_3.setText(monthlyBest.loc);
                         desc_3.setText(monthlyBest.loc_count + "회, " + monthlyBest.loc_expense + "원, " + monthlyBest.loc_calorie + "kcal");
-                    }
-                    else{
+                    } else {
                         title_3.setText("정보 부족");
                         desc_3.setText("장소");
                     }
@@ -126,8 +123,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
                     clickHeader(false);
                 }
             });
-        }
-        else{
+        } else {
             headerFlag = false;
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_past_item, viewGroup, false);
 
@@ -135,7 +131,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             ListView adapter_past_inner_listview = view.findViewById(R.id.recyclerview_past_inner_item_container);
             TextView tv = view.findViewById(R.id.text_date);
             tv.setText(SharedResources.getMonth() + "월 " + SharedResources.getDay() + "일 (" + SharedResources.getWeekDayKorean() + ")");
-            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()).get(i-1), null, false);
+            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()).get(i - 1), null, false);
             adapter_past_inner_listview.setAdapter(adapter_past_inner_listview_adapter);
             adapter_past_inner_listview.setDividerHeight(0);
             //set listview height not to clip content
@@ -149,10 +145,9 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
     @Override
     public void onBindViewHolder(@NonNull PastItemRecyclerViewHolder pastItemRecyclerViewHolder, int i) {
-        if(pastItemRecyclerViewHolder.isHeader){
+        if (pastItemRecyclerViewHolder.isHeader) {
             headerBindInit(pastItemRecyclerViewHolder);
-        }
-        else {
+        } else {
             bodyBindInit(pastItemRecyclerViewHolder, i);
         }
     }
@@ -175,8 +170,9 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
         return SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).getRecordDays().size() + 1;
     }
 
-    public class PastItemRecyclerViewHolder extends RecyclerView.ViewHolder{
+    public class PastItemRecyclerViewHolder extends RecyclerView.ViewHolder {
         boolean isHeader = headerFlag;
+
         public PastItemRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
         }

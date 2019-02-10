@@ -1,21 +1,14 @@
 package com.herojeff.sulchedule;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.res.ColorStateList;
-import android.media.Image;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
@@ -63,38 +56,32 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_goal_item, viewGroup, false);
 
 
-
         return new TrafficGoalRecyclerViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final @NonNull TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i) {
-        if(enabled[i]) {
+        if (enabled[i]) {
             trafficGoalRecyclerViewHolder.text_right_top.setText(String.valueOf(right_top[i]));
-            trafficGoalRecyclerViewHolder.itemView.post(new Runnable()
-            {
+            trafficGoalRecyclerViewHolder.itemView.post(new Runnable() {
                 @Override
-                public void run()
-                {
+                public void run() {
                     int cellWidth = trafficGoalRecyclerViewHolder.graph_full_bar.getWidth();// this will give you cell width dynamically
                     trafficGoalRecyclerViewHolder.graph_overlay.setLayoutParams(new RelativeLayout.LayoutParams((int) (cellWidth * bar_t[i]), trafficGoalRecyclerViewHolder.graph_full_bar.getHeight()));
                 }
             });
-        }
-        else{
+        } else {
             trafficGoalRecyclerViewHolder.text_right_top.setText("비활성화");
         }
         trafficGoalRecyclerViewHolder.text_left_top.setText(left_top[i]);
         trafficGoalRecyclerViewHolder.text_left_bottom.setText(left_bottom[i]);
         trafficGoalRecyclerViewHolder.text_right_bottom.setText("한도");
 
-        if(bar_t[i] >= 1.0){
+        if (bar_t[i] >= 1.0) {
             trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_red));
-        }
-        else if(bar_t[i] >= 0.7){
+        } else if (bar_t[i] >= 0.7) {
             trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_yellow));
-        }
-        else{
+        } else {
             trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_green));
         }
 
@@ -111,7 +98,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         return 4;
     }
 
-    public class TrafficGoalRecyclerViewHolder extends RecyclerView.ViewHolder{
+    public class TrafficGoalRecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView text_left_top;
         TextView text_right_top;

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.RecordDay;
@@ -13,60 +12,45 @@ import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
 
 import org.jetbrains.annotations.Nullable;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
 
-    class StringPair{
-        String top;
-        String bottom;
-
-        public StringPair(String top, String bottom) {
-            this.top = top;
-            this.bottom = bottom;
-        }
-    }
-
     ArrayList<StringPair> arr = new ArrayList<>();
-
     TextView title;
     TextView description;
-
     public PastItemRecyclerViewInnerListViewAdapter(@Nullable RecordDay recordDay, @Nullable RecordMonth recordMonth, boolean shouldLoadAsHeader) {
-        if(shouldLoadAsHeader){
+        if (shouldLoadAsHeader) {
             arr.add(new StringPair(String.valueOf(recordMonth.getTotalExpense()) + "원", "총 지출액"));
             arr.add(new StringPair(String.valueOf(recordMonth.getTotalCalorie()) + "kcal", "총 열량"));
 
 
-        }
-        else{
+        } else {
             arr.add(new StringPair(String.valueOf(recordDay.getExpense()) + "원", "총 지출액"));
             arr.add(new StringPair(String.valueOf(recordDay.getCalorie()) + "kcal", "총 열량"));
             HashMap<Integer, Integer> sul_list = recordDay.getSul_list();
-            for(int i:sul_list.keySet()) {
+            for (int i : sul_list.keySet()) {
                 if (sul_list.get(i) != 0) {
                     arr.add(new StringPair(String.valueOf(sul_list.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
                 }
             }
             ArrayList<String> friend_list = recordDay.getFriend_list();
             String temp = "";
-            for(int i=0;i<friend_list.size();i++){
+            for (int i = 0; i < friend_list.size(); i++) {
                 temp = temp.concat(friend_list.get(i) + ", ");
             }
-            if(temp.length() >= 2) {
+            if (temp.length() >= 2) {
                 temp = temp.substring(0, temp.length() - 2);
                 arr.add(new StringPair(temp, "함께한 사람"));
             }
             ArrayList<String> location_list = recordDay.getLocation_list();
             temp = "";
-            for(int i=0;i<location_list.size();i++){
+            for (int i = 0; i < location_list.size(); i++) {
                 temp = temp.concat(location_list.get(i) + ", ");
             }
-            if(temp.length() >= 2) {
+            if (temp.length() >= 2) {
                 temp = temp.substring(0, temp.length() - 2);
                 arr.add(new StringPair(temp, "장소"));
             }
@@ -103,6 +87,16 @@ public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
         description.setText(arr.get(pos).bottom);
 
         return convertView;
+    }
+
+    class StringPair {
+        String top;
+        String bottom;
+
+        public StringPair(String top, String bottom) {
+            this.top = top;
+            this.bottom = bottom;
+        }
     }
 
 }

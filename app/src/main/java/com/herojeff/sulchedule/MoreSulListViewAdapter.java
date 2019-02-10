@@ -15,16 +15,16 @@ import java.util.ArrayList;
 
 public class MoreSulListViewAdapter extends BaseAdapter {
 
-    private ArrayList<Sul> array = new ArrayList<>();
-
     TextView textView;
     ImageView stepper_plus;
     ImageView stepper_minus;
     ImageView heart;
+    private ArrayList<Sul> array = new ArrayList<>();
 
     public MoreSulListViewAdapter() {
 
     }
+
     public MoreSulListViewAdapter(ArrayList<Sul> array) {
         this.array = array;
     }
@@ -59,10 +59,9 @@ public class MoreSulListViewAdapter extends BaseAdapter {
         stepper_plus = convertView.findViewById(R.id.stepper_plus);
         heart = convertView.findViewById(R.id.favourite);
 
-        if(!array.get(pos).isFavourite()){
+        if (!array.get(pos).isFavourite()) {
             heart.setImageResource(R.drawable.ic_favourite_hollow);
-        }
-        else{
+        } else {
             heart.setImageResource(R.drawable.ic_favourite_filled);
         }
 
@@ -76,11 +75,11 @@ public class MoreSulListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int count = SharedResources.getRecordDay(SharedResources.getYear(), month, day).getCertain_sul_count(array.get(pos).getSul_name());
                 --count;
-                if(count<0){
+                if (count < 0) {
                     count = 0;
                 }
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(array.get(pos).getSul_name(), count);
-                textView = ((View)((View)(v.getParent())).getParent()).findViewById(R.id.textview_sul);
+                textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
             }
         });
@@ -89,7 +88,7 @@ public class MoreSulListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(array.get(pos).getSul_name());
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(array.get(pos).getSul_name(), ++count);
-                textView = ((View)((View)(v.getParent())).getParent()).findViewById(R.id.textview_sul);
+                textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
 
             }
@@ -97,11 +96,10 @@ public class MoreSulListViewAdapter extends BaseAdapter {
         heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(array.get(pos).isFavourite()){
+                if (array.get(pos).isFavourite()) {
                     array.get(pos).setFavourite(false);
                     setHeartHollow((ImageView) v.findViewById(R.id.favourite));
-                }
-                else{
+                } else {
                     array.get(pos).setFavourite(true);
                     setHeartFilled((ImageView) v.findViewById(R.id.favourite));
                 }
@@ -115,10 +113,12 @@ public class MoreSulListViewAdapter extends BaseAdapter {
         String k = String.valueOf(array.get(pos).getSul_name()) + " " + count + array.get(pos).getSul_unit();
         tv.setText(k);
     }
-    void setHeartHollow(ImageView heart){
+
+    void setHeartHollow(ImageView heart) {
         heart.setImageResource(R.drawable.ic_favourite_hollow);
     }
-    void setHeartFilled(ImageView heart){
+
+    void setHeartFilled(ImageView heart) {
         heart.setImageResource(R.drawable.ic_favourite_filled);
     }
 

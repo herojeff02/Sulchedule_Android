@@ -1,4 +1,4 @@
-package com.herojeff.sulchedule;
+package com.herojeff.sulchedule.helper;
 
 import android.view.View;
 import android.view.ViewGroup;

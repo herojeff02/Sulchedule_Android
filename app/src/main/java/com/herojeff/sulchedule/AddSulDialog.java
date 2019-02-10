@@ -1,14 +1,10 @@
 package com.herojeff.sulchedule;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.IntentService;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,9 +21,13 @@ public class AddSulDialog extends Dialog {
     TextView button_dismiss;
     TextView button_save;
 
-    boolean did_add=false;
+    boolean did_add = false;
 
-    public boolean get_did_add(){
+    public AddSulDialog(Context context) {
+        super(context);
+    }
+
+    public boolean get_did_add() {
         return did_add;
     }
 
@@ -52,11 +52,10 @@ public class AddSulDialog extends Dialog {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length()==0){
+                if (s.length() == 0) {
                     text_price.setHint(s + "단위당 가격(원)");
                     text_kcal.setHint(s + "단위당 열량(kcal)");
-                }
-                else {
+                } else {
                     text_price.setHint(s + "당 가격(원)");
                     text_kcal.setHint(s + "당 열량(kcal)");
                 }
@@ -73,7 +72,7 @@ public class AddSulDialog extends Dialog {
 //                if(text_kcal.getText().length()!=0||text_name.getText().length()!=0||text_unit.getText().length()!=0||text_price.getText().length()!=0){
 //                }
 //                else{
-                    dismiss();
+                dismiss();
 //                }
             }
         });
@@ -81,39 +80,35 @@ public class AddSulDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 boolean flag = true;
-                if(text_kcal.getText().length()==0){
+                if (text_kcal.getText().length() == 0) {
                     flag = false;
                     text_kcal.setError("비워 둘 수 없습니다.");
                 }
-                if(text_name.getText().length()==0){
+                if (text_name.getText().length() == 0) {
                     flag = false;
                     text_name.setError("비워 둘 수 없습니다.");
                 }
-                if(text_unit.getText().length()==0){
+                if (text_unit.getText().length() == 0) {
                     flag = false;
                     text_unit.setError("비워 둘 수 없습니다.");
                 }
-                if(text_price.getText().length()==0){
+                if (text_price.getText().length() == 0) {
                     flag = false;
                     text_price.setError("비워 둘 수 없습니다.");
                 }
 
-                if(flag) {
+                if (flag) {
                     did_add = true;
                     try {
                         SharedResources.addSul(text_name.getText().toString(), Integer.valueOf(text_kcal.getText().toString()), Integer.valueOf(text_price.getText().toString()), text_unit.getText().toString());
                         Toast.makeText(getContext(), "추가됐습니다.", Toast.LENGTH_SHORT).show();
                         dismiss();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         Toast.makeText(getContext(), "문제가 발생했습니다. 개발자에게 문의해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
 
-    }
-
-    public AddSulDialog(Context context) {
-        super(context);
     }
 }

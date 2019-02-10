@@ -7,12 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.SharedResources;
-
-import org.w3c.dom.Text;
 
 
 public class PastFragment extends Fragment {

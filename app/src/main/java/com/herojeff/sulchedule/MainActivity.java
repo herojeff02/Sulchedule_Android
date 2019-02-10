@@ -11,17 +11,12 @@ import android.widget.FrameLayout;
 
 import com.herojeff.sulchedule.data.SharedResources;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public class MainActivity extends AppCompatActivity {
 
     FrameLayout frameLayout;
     Fragment todayFragment;
     Fragment pastFragment;
     Fragment trafficFragment;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +35,19 @@ public class MainActivity extends AppCompatActivity {
         transaction.add(R.id.fragment_container, todayFragment);
         transaction.commit();
 
-        SharedResources.addSul("소주", 300, 4000, "병");
-        SharedResources.addSul("소주", 300, 4000, "병");
-        SharedResources.addSul("소주 잔", 50, 650, "잔");
-        SharedResources.addSul("병맥주 330ml", 122, 2000, "병");
-        SharedResources.addSul("병맥주 500ml", 185, 3000, "병");
-        SharedResources.addSul("생맥주 500cc", 185, 4000, "잔");
-        SharedResources.addSul("캔맥주 355ml", 152, 2000, "캔");
-        SharedResources.addSul("레드와인", 84, 12000, "잔");
-        SharedResources.addSul("화이트와인", 74, 12000, "잔");
-        SharedResources.addSul("막걸리", 345, 2000, "병");
-        SharedResources.setFavouriteSul("소주", true);
+        if (SharedResources.first_launch_ever) {
+            SharedResources.addSul("소주", 300, 4000, "병");
+            SharedResources.addSul("소주", 300, 4000, "병");
+            SharedResources.addSul("소주 잔", 50, 650, "잔");
+            SharedResources.addSul("병맥주 330ml", 122, 2000, "병");
+            SharedResources.addSul("병맥주 500ml", 185, 3000, "병");
+            SharedResources.addSul("생맥주 500cc", 185, 4000, "잔");
+            SharedResources.addSul("캔맥주 355ml", 152, 2000, "캔");
+            SharedResources.addSul("레드와인", 84, 12000, "잔");
+            SharedResources.addSul("화이트와인", 74, 12000, "잔");
+            SharedResources.addSul("막걸리", 345, 2000, "병");
+            SharedResources.setFavouriteSul("소주", true);
+        }
 
         this.getWindow().setNavigationBarColor(SharedResources.color_primary);
         this.getWindow().setStatusBarColor(SharedResources.color_primary_dark);
@@ -60,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment;
                 SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).cleanup();
+//                FragmentStateHelper fragmentStateHelper = new FragmentStateHelper(getSupportFragmentManager());
                 switch (menuItem.getItemId()) {
                     case R.id.navigation_today:
                         fragment = todayFragment;
@@ -74,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = todayFragment;
                         break;
                 }
+
 
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, fragment);

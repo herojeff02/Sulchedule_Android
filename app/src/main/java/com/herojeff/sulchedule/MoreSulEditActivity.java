@@ -7,6 +7,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.herojeff.sulchedule.data.SharedResources;
+
 public class MoreSulEditActivity extends AppCompatActivity {
 
     LinearLayout back_text_button;
@@ -16,6 +18,7 @@ public class MoreSulEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_sul_edit);
+        this.getWindow().setNavigationBarColor(SharedResources.color_primary_dark);
 
         ListView listview_more_sul_edit = findViewById(R.id.listview_more_sul_edit);
         MoreSulEditListViewAdapter adapter_more_sul_edit = new MoreSulEditListViewAdapter();

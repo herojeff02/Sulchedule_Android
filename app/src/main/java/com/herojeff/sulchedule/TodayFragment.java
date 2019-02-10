@@ -150,8 +150,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
 
     void settingDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this.getContext(), R.style.TodaySettingDialog));
-        builder.setTitle("스마트 팁 표시");
-        builder.setMessage("스마트 팁은 열량, 지출액에 따라 유동적으로 팁을 표시합니다.\n해제하면 지출액과 열량만이 표시됩니다.");
+        builder.setTitle("스마트 팁");
+        builder.setMessage("켜면 열량, 지출액에 따라 유동적으로 팁을 표시합니다.\n끄면 지출액과 열량만이 표시됩니다.");
 
         builder.setPositiveButton("켜기",
                 new DialogInterface.OnClickListener() {

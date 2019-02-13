@@ -30,9 +30,6 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         month = SharedResources.getMonth();
         recordMonth = SharedResources.getRecordMonth(year, month);
 
-        recordMonth.setGoal_caloriesOfMonth(200);
-        recordMonth.setEnable_caloriesOfMonth(true);
-
         enabled = new boolean[]{
                 recordMonth.isEnable_daysOfMonth(), recordMonth.isEnable_streakOfMonth(), recordMonth.isEnable_totalExpense(), recordMonth.isEnable_caloriesOfMonth()
         };

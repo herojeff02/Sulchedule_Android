@@ -67,23 +67,24 @@ public class TrafficFragment extends Fragment {
         final float alpha = 0.25f;
 
         double k = SharedResources.getRecordMonth().getTrafficSignal();
+
         if (k < 0) {
-            text_encouragement.setText("less than 0");
+            text_encouragement.setText("목표를 설정하세요.");
             traffic_red.setAlpha(alpha);
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(alpha);
         } else if (k < 0.7) {
-            text_encouragement.setText("a");
+            text_encouragement.setText("잘 하고 있어요!");
             traffic_red.setAlpha(alpha);
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(1f);
         } else if (k < 1) {
-            text_encouragement.setText("b");
+            text_encouragement.setText("아슬아슬해요!");
             traffic_red.setAlpha(alpha);
             traffic_yellow.setAlpha(1f);
             traffic_green.setAlpha(alpha);
         } else {
-            text_encouragement.setText("c");
+            text_encouragement.setText("어떡하려고 그래요…?");
             traffic_red.setAlpha(1f);
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(alpha);

@@ -54,7 +54,7 @@ public class MoreSulEditActivity extends AppCompatActivity {
     }
 
     void showAddSul() {
-        final AddSulDialog addCateDialog = new AddSulDialog(this);
+        final AddSulDialog addCateDialog = new AddSulDialog(this, false, -1);
         addCateDialog.show();
         addCateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override

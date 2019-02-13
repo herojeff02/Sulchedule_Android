@@ -1,12 +1,14 @@
 package com.herojeff.sulchedule;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
@@ -51,7 +53,7 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         final int pos = position;
         final Context context = parent.getContext();
 
@@ -72,11 +74,12 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
         text_right_top.setText(String.valueOf(suls.get(pos).getSul_calorie()) + "kcal");
         text_left_bottom.setText(String.valueOf(suls.get(pos).getSul_price()) + "원");
 
+
+
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("edit!");
-                System.out.println(pos);
+                showEditSul(parent.getContext(), pos);
             }
         });
         remove_button.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +94,16 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
         });
 
         return convertView;
+    }
+
+    void showEditSul(final Context context, int index) {
+        final AddSulDialog addCateDialog = new AddSulDialog(context, true, index);
+        addCateDialog.show();
+        addCateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+            }
+        });
     }
 
 }

@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
 
+import org.jetbrains.annotations.Nullable;
+
 public class AddSulDialog extends Dialog {
 
     EditText text_name;
@@ -22,9 +24,13 @@ public class AddSulDialog extends Dialog {
     TextView button_save;
 
     boolean did_add = false;
+    boolean is_edit_mode = false;
+    int sul_index;
 
-    public AddSulDialog(Context context) {
+    public AddSulDialog(Context context, boolean is_edit_mode, int sul_index) {
         super(context);
+        this.is_edit_mode = is_edit_mode;
+        this.sul_index = sul_index;
     }
 
     public boolean get_did_add() {
@@ -44,6 +50,14 @@ public class AddSulDialog extends Dialog {
         button_dismiss = findViewById(R.id.button_dismiss);
         button_save = findViewById(R.id.button_save);
 
+
+        if(is_edit_mode){
+            text_kcal.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_calorie()));
+            text_name.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_name()));
+            text_unit.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_unit()));
+            text_price.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_price()));
+        }
+        
         text_unit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -36,3 +36,8 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+configurations {
+    cleanedAnnotations
+    compile.exclude group: 'org.jetbrains' , module:'annotations'
+}

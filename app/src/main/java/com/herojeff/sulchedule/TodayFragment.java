@@ -78,7 +78,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         text_tip = view.findViewById(R.id.text_tip);
         String temp = SharedResources.getMonth() + "월 " + SharedResources.getDay() + "일 (" + SharedResources.getWeekDayKorean() + ")";
         text_today.setText(temp);
-        text_tip.setText("곧 Play Store에서 만나요!");
 
         //set listview height not to clip content
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);
@@ -112,6 +111,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        text_tip.setText(SharedResources.getSmartTipString(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
         showArray = SharedResources.getMainSuls(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay());
         if (!first) {
             adapter_sul = new SulListViewAdapter(showArray);

@@ -99,6 +99,16 @@ public class SulListViewAdapter extends BaseAdapter {
                 setTextView(textView, pos, count);
             }
         });
+        stepper_minus.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), 0);
+                textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
+                setTextView(textView, pos, 0);
+
+                return true;
+            }
+        });
         stepper_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

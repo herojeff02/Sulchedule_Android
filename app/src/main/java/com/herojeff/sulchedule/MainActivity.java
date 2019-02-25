@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
             SharedResources.addSul("화이트와인", 74, 12000, "잔");
             SharedResources.addSul("막걸리", 345, 2000, "병");
             SharedResources.setFavouriteSul("소주", true);
+
+            SharedResources.first_launch_ever = false;
         }
 
         this.getWindow().setNavigationBarColor(SharedResources.color_primary);

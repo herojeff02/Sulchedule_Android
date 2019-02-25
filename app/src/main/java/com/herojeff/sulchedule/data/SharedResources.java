@@ -1,9 +1,14 @@
 package com.herojeff.sulchedule.data;
 
 import android.graphics.Color;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Random;
 
 
 public final class SharedResources {
@@ -12,7 +17,6 @@ public final class SharedResources {
     public static final int color_primary_dark = Color.parseColor("#0B102F");
     public static final int color_white = Color.parseColor("#FFFFFF");
     public static final int color_primary_dark_dark = Color.parseColor("#090E1D");
-
 
     public static final int color_traffic_green = Color.parseColor("#4AD863");
     public static final int color_traffic_yellow = Color.parseColor("#FFC400");
@@ -253,5 +257,140 @@ public final class SharedResources {
 
     public static void setFavouriteSul(String sul_name, boolean set) {
         getSul(sul_name).setFavourite(set);
+    }
+
+    public static String getSmartTipString(int year, int month, int day){
+        RecordMonth recordMonth = getRecordMonth(year, month);
+        RecordDay recordDay = getRecordDay(year, month, day);
+        String returnString;
+
+        ArrayList<SmartTipPriorityPair> priorities = new ArrayList<>(Arrays.asList(new SmartTipPriorityPair(recordDay.getExpense(), Mode.DayEXPENSE)
+                , new SmartTipPriorityPair(recordDay.getCalorie(), Mode.DayCALORIE)
+                , new SmartTipPriorityPair(recordDay.getSul_list().keySet().size(), Mode.DaySULKIND)
+                , new SmartTipPriorityPair(recordDay.getFriend_list().size(), Mode.DayFRIENDCOUNT)
+                , new SmartTipPriorityPair(recordDay.getLocation_list().size(), Mode.DayLOCATIONLIST)
+                , new SmartTipPriorityPair(recordMonth.stat_streakOfMonth(), Mode.MonthSTREAK)
+                , new SmartTipPriorityPair(recordMonth.stat_daysOfMonth(), Mode.MonthCOUNT)
+                , new SmartTipPriorityPair(recordMonth.stat_totalExpense(), Mode.MonthEXPENSE)
+                , new SmartTipPriorityPair(recordMonth.stat_caloriesOfMonth(), Mode.MonthCALORIE)));
+
+        Collections.sort(priorities, new DescendingSmartTipPriorityPairValue());
+
+//        priorities.get(0).value == 0 ||
+        if(recordDay.isTodayEmpty()){
+            String[] helloList = {"안녕하세요!", "어떤 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
+            returnString = helloList[new Random().nextInt(helloList.length)];
+        }
+        else {
+            returnString = priorities.get(0).getSmartTipString();
+        }
+
+        return returnString;
+    }
+
+    static class SmartTipPriorityPair{
+        int value;
+        int comparison;
+        Mode mode;
+        double priority;
+        boolean day_check = false;
+
+        public SmartTipPriorityPair(int value, int comparison, Mode mode) {
+            this.value = value;
+            this.comparison = comparison;
+            this.mode = mode;
+        }
+        public SmartTipPriorityPair(int value, Mode mode){
+            this.value = value;
+            this.mode = mode;
+            priority = getPriority();
+        }
+
+        public double getPriority(){
+            switch (mode){
+                case DayEXPENSE:
+                    priority = (double)value / (double)20000;
+                    break;
+                case DayCALORIE:
+                    priority = (double)value / (double)1000;
+                    break;
+                case DayFRIENDCOUNT:
+                    if(value>5){
+                        priority = 6.0;
+                    }
+                    else {
+                        priority = 0.0;
+                    }
+                case DayLOCATIONLIST:
+                    if(value>3){
+                        priority = 8.0;
+                    }
+                    else {
+                        priority = 0.0;
+                    }
+                    break;
+                case DaySULKIND:
+                    if(value>4){
+                        priority = 10.0;
+                    }
+                    else {
+                        priority = 0.0;
+                    }
+                    break;
+                case MonthCALORIE:
+                    priority = (double)value / (double)6000;
+                    break;
+                case MonthCOUNT:
+                    priority = (double)value / (double)8;
+                    break;
+                case MonthEXPENSE:
+                    priority = (double)value / (double)100000;
+                    break;
+                case MonthSTREAK:
+                    priority = (double)value / (double)4;
+                    break;
+            }
+            return priority;
+        }
+
+        public String getSmartTipString(){
+            switch (mode){
+                case DayEXPENSE:
+                    return "오늘 "+value+"원을 쓰셨어요!";
+                case DayCALORIE:
+                    return String.format("%.1f", getKM(value)) +"km를 걸으셔야 체중이 유지됩니다.";
+                case DayFRIENDCOUNT:
+                    return "친구가 꽤 많으시네요!";
+                case DayLOCATIONLIST:
+                    return "몇 차까지 가실 건가요?";
+                case DaySULKIND:
+                    return "술 종류가 이렇게 많은지 몰랐어요.";
+                case MonthCALORIE:
+                    return "이번 달에 "+value+ "kcal를 쓰셔야 해요!";
+                case MonthCOUNT:
+                    return "이번 달에 " + value +"일 음주하셨어요!";
+                case MonthEXPENSE:
+                    return "이번 달에 "+value+"원을 쓰셨어요!";
+                case MonthSTREAK:
+                    return "연이은 음주는 건강에 나빠요 ㅠㅠ";
+                default:
+                    return "";
+            }
+        }
+        public double getKM(int value){
+            return (double)value/50.0;
+        }
+    }
+
+    enum Mode {
+        DayEXPENSE, DayCALORIE, DaySULKIND, DayFRIENDCOUNT, DayLOCATIONLIST, MonthSTREAK, MonthCOUNT, MonthEXPENSE, MonthCALORIE
+    }
+
+    static class DescendingSmartTipPriorityPairValue implements Comparator<SmartTipPriorityPair> {
+        @Override
+        public int compare(SmartTipPriorityPair a, SmartTipPriorityPair b) {
+            Double tmp = b.priority;
+            return tmp.compareTo(a.priority);
+        }
     }
 }

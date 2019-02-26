@@ -264,9 +264,18 @@ public final class SharedResources {
         RecordDay recordDay = getRecordDay(year, month, day);
         String returnString;
 
+
+        int sul_count = 0;
+
+        for (int key: recordDay.getSul_list().keySet()) {
+            if(recordDay.getSul_list().get(key)!=0){
+                sul_count++;
+            }
+        }
+
         ArrayList<SmartTipPriorityPair> priorities = new ArrayList<>(Arrays.asList(new SmartTipPriorityPair(recordDay.getExpense(), Mode.DayEXPENSE)
                 , new SmartTipPriorityPair(recordDay.getCalorie(), Mode.DayCALORIE)
-                , new SmartTipPriorityPair(recordDay.getSul_list().keySet().size(), Mode.DaySULKIND)
+                , new SmartTipPriorityPair(sul_count, Mode.DaySULKIND)
                 , new SmartTipPriorityPair(recordDay.getFriend_list().size(), Mode.DayFRIENDCOUNT)
                 , new SmartTipPriorityPair(recordDay.getLocation_list().size(), Mode.DayLOCATIONLIST)
                 , new SmartTipPriorityPair(recordMonth.stat_streakOfMonth(), Mode.MonthSTREAK)
@@ -276,7 +285,6 @@ public final class SharedResources {
 
         Collections.sort(priorities, new DescendingSmartTipPriorityPairValue());
 
-//        priorities.get(0).value == 0 ||
         if(recordDay.isTodayEmpty()){
             String[] helloList = {"안녕하세요!", "어떤 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
             returnString = helloList[new Random().nextInt(helloList.length)];

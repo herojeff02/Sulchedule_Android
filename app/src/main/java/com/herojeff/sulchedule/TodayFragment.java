@@ -21,7 +21,7 @@ import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 import java.util.ArrayList;
 
 
-public class TodayFragment extends Fragment implements View.OnClickListener {
+public class TodayFragment extends Fragment implements View.OnClickListener, SulListViewAdapter.EventListener {
 
     ImageButton setting_button;
     LinearLayout more_sul_pill;
@@ -70,7 +70,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
 
         //sul adapter
         listview_sul = view.findViewById(R.id.listview_sul);
-        adapter_sul = new SulListViewAdapter(SharedResources.getFavouriteSuls());
+        adapter_sul = new SulListViewAdapter(SharedResources.getFavouriteSuls(), this);
         listview_sul.setAdapter(adapter_sul);
         listview_sul.setDividerHeight(0);
 
@@ -114,7 +114,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         text_tip.setText(SharedResources.getSmartTipString(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
         showArray = SharedResources.getMainSuls(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay());
         if (!first) {
-            adapter_sul = new SulListViewAdapter(showArray);
+            adapter_sul = new SulListViewAdapter(showArray, this);
             listview_sul.setAdapter(adapter_sul);
             ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);
         }
@@ -125,6 +125,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         }
         first = false;
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -164,6 +166,11 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
                 });
 
         builder.show();
+    }
+
+    @Override
+    public void callUpdateTipString() {
+        text_tip.setText(SharedResources.getSmartTipString(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
     }
 }
 

@@ -71,12 +71,4 @@ public class PastFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        button_left.setTextColor(SharedResources.color_accent);
-        button_right.setTextColor(SharedResources.color_white);
-
-        setBig(false);
-    }
 }

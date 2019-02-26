@@ -14,8 +14,11 @@ import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 
 public class SulListViewAdapter extends BaseAdapter {
+
+    EventListener listener;
 
     ArrayList<Sul> favourites;
 
@@ -27,8 +30,13 @@ public class SulListViewAdapter extends BaseAdapter {
     public SulListViewAdapter() {
     }
 
-    public SulListViewAdapter(ArrayList<Sul> favourites) {
+    public interface EventListener {
+        void callUpdateTipString();
+    }
+
+    public SulListViewAdapter(ArrayList<Sul> favourites, EventListener listener) {
         this.favourites = favourites;
+        this.listener = listener;
     }
 
     @Override
@@ -97,6 +105,7 @@ public class SulListViewAdapter extends BaseAdapter {
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), count);
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
+                listener.callUpdateTipString();
             }
         });
         stepper_minus.setOnLongClickListener(new View.OnLongClickListener() {
@@ -105,7 +114,7 @@ public class SulListViewAdapter extends BaseAdapter {
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), 0);
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, 0);
-
+                listener.callUpdateTipString();
                 return true;
             }
         });
@@ -116,13 +125,14 @@ public class SulListViewAdapter extends BaseAdapter {
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), ++count);
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
-
+                listener.callUpdateTipString();
             }
         });
 
 
         return convertView;
     }
+
 
 
     public void setTextView(TextView tv, int pos, int count) {

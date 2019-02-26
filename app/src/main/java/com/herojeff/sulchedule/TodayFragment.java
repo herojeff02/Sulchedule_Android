@@ -111,7 +111,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     @Override
     public void onResume() {
         super.onResume();
-        text_tip.setText(SharedResources.getSmartTipString(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
+        updateTipString();
         showArray = SharedResources.getMainSuls(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay());
         if (!first) {
             adapter_sul = new SulListViewAdapter(showArray, this);
@@ -155,13 +155,15 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         builder.setPositiveButton("켜기",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
+                        SharedResources.smart_tip_string = true;
+                        updateTipString();
                     }
                 });
         builder.setNegativeButton("끄기",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
+                        SharedResources.smart_tip_string = false;
+                        updateTipString();
                     }
                 });
 
@@ -170,6 +172,10 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
 
     @Override
     public void callUpdateTipString() {
+        updateTipString();
+    }
+
+    void updateTipString(){
         text_tip.setText(SharedResources.getSmartTipString(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
     }
 }

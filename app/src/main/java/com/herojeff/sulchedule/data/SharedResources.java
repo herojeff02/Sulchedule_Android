@@ -26,6 +26,8 @@ public final class SharedResources {
     public static boolean remove_ad_eligible = false;
     public static boolean first_launch_ever = true;
 
+    public static boolean smart_tip_string = true;
+
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
     private static ArrayList<Sul> suls = new ArrayList<>();
 
@@ -264,33 +266,36 @@ public final class SharedResources {
         RecordDay recordDay = getRecordDay(year, month, day);
         String returnString;
 
+        if(smart_tip_string) {
+            int sul_count = 0;
 
-        int sul_count = 0;
+            for (int key: recordDay.getSul_list().keySet()) {
+                if(recordDay.getSul_list().get(key)!=0){
+                    sul_count++;
+                }
+            }
 
-        for (int key: recordDay.getSul_list().keySet()) {
-            if(recordDay.getSul_list().get(key)!=0){
-                sul_count++;
+            ArrayList<SmartTipPriorityPair> priorities = new ArrayList<>(Arrays.asList(new SmartTipPriorityPair(recordDay.getExpense(), Mode.DayEXPENSE)
+                    , new SmartTipPriorityPair(recordDay.getCalorie(), Mode.DayCALORIE)
+                    , new SmartTipPriorityPair(sul_count, Mode.DaySULKIND)
+                    , new SmartTipPriorityPair(recordDay.getFriend_list().size(), Mode.DayFRIENDCOUNT)
+                    , new SmartTipPriorityPair(recordDay.getLocation_list().size(), Mode.DayLOCATIONLIST)
+                    , new SmartTipPriorityPair(recordMonth.stat_streakOfMonth(), Mode.MonthSTREAK)
+                    , new SmartTipPriorityPair(recordMonth.stat_daysOfMonth(), Mode.MonthCOUNT)
+                    , new SmartTipPriorityPair(recordMonth.stat_totalExpense(), Mode.MonthEXPENSE)
+                    , new SmartTipPriorityPair(recordMonth.stat_caloriesOfMonth(), Mode.MonthCALORIE)));
+
+            Collections.sort(priorities, new DescendingSmartTipPriorityPairValue());
+
+            if (recordDay.isTodayEmpty()) {
+                String[] helloList = {"안녕하세요!", "어떤 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
+                returnString = helloList[new Random().nextInt(helloList.length)];
+            } else {
+                returnString = priorities.get(0).getSmartTipString();
             }
         }
-
-        ArrayList<SmartTipPriorityPair> priorities = new ArrayList<>(Arrays.asList(new SmartTipPriorityPair(recordDay.getExpense(), Mode.DayEXPENSE)
-                , new SmartTipPriorityPair(recordDay.getCalorie(), Mode.DayCALORIE)
-                , new SmartTipPriorityPair(sul_count, Mode.DaySULKIND)
-                , new SmartTipPriorityPair(recordDay.getFriend_list().size(), Mode.DayFRIENDCOUNT)
-                , new SmartTipPriorityPair(recordDay.getLocation_list().size(), Mode.DayLOCATIONLIST)
-                , new SmartTipPriorityPair(recordMonth.stat_streakOfMonth(), Mode.MonthSTREAK)
-                , new SmartTipPriorityPair(recordMonth.stat_daysOfMonth(), Mode.MonthCOUNT)
-                , new SmartTipPriorityPair(recordMonth.stat_totalExpense(), Mode.MonthEXPENSE)
-                , new SmartTipPriorityPair(recordMonth.stat_caloriesOfMonth(), Mode.MonthCALORIE)));
-
-        Collections.sort(priorities, new DescendingSmartTipPriorityPairValue());
-
-        if(recordDay.isTodayEmpty()){
-            String[] helloList = {"안녕하세요!", "어떤 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
-            returnString = helloList[new Random().nextInt(helloList.length)];
-        }
-        else {
-            returnString = priorities.get(0).getSmartTipString();
+        else{
+            returnString = recordDay.getCalorie() + "kcal, " + recordDay.getExpense() + "원";
         }
 
         return returnString;

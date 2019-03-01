@@ -1,6 +1,8 @@
 package com.herojeff.sulchedule;
 
 import android.content.Context;
+import android.util.SparseArray;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +23,24 @@ public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
     ArrayList<StringPair> arr = new ArrayList<>();
     TextView title;
     TextView description;
+
     public PastItemRecyclerViewInnerListViewAdapter(@Nullable RecordDay recordDay, @Nullable RecordMonth recordMonth, boolean shouldLoadAsHeader) {
         if (shouldLoadAsHeader) {
             arr.add(new StringPair(String.valueOf(recordMonth.getTotalExpense()) + "원", "총 지출액"));
             arr.add(new StringPair(String.valueOf(recordMonth.getTotalCalorie()) + "kcal", "총 열량"));
 
+            HashMap<Integer, Integer> sulCompilation = recordMonth.getMonthlySulCompilation();
+            HashMap<String, Integer> friendCompilation = recordMonth.getMonthlyFriendCompilation();
+            HashMap<String, Integer> locationCompilation = recordMonth.getMonthlyLocationCompilation();
+            for(int i:sulCompilation.keySet()){
+                arr.add(new StringPair(String.valueOf(sulCompilation.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
+            }
+            for(String i:friendCompilation.keySet()){
+                arr.add(new StringPair(String.valueOf(friendCompilation.get(i)) + "회 함께함", i));
+            }
+            for(String i:locationCompilation.keySet()){
+                arr.add(new StringPair(String.valueOf(locationCompilation.get(i)) + "회 방문", i));
+            }
 
         } else {
             arr.add(new StringPair(String.valueOf(recordDay.getExpense()) + "원", "총 지출액"));

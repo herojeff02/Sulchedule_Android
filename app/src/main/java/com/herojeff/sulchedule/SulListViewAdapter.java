@@ -31,7 +31,7 @@ public class SulListViewAdapter extends BaseAdapter {
     }
 
     public interface EventListener {
-        void callUpdateTipString();
+        void callUpdateTipString(boolean refresh_default);
     }
 
     public SulListViewAdapter(ArrayList<Sul> favourites, EventListener listener) {
@@ -105,7 +105,7 @@ public class SulListViewAdapter extends BaseAdapter {
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), count);
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
-                listener.callUpdateTipString();
+                listener.callUpdateTipString(false);
             }
         });
         stepper_minus.setOnLongClickListener(new View.OnLongClickListener() {
@@ -114,7 +114,7 @@ public class SulListViewAdapter extends BaseAdapter {
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), 0);
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, 0);
-                listener.callUpdateTipString();
+                listener.callUpdateTipString(false);
                 return true;
             }
         });
@@ -125,7 +125,7 @@ public class SulListViewAdapter extends BaseAdapter {
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(favourites.get(pos).getSul_name(), ++count);
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
-                listener.callUpdateTipString();
+                listener.callUpdateTipString(false);
             }
         });
 

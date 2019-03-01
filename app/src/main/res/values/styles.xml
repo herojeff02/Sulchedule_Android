@@ -16,7 +16,7 @@
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="TodaySettingDialog" parent="Base.Theme.MaterialComponents.Dialog">
+    <style name="TodaySettingDialog" parent="Base.Theme.AppCompat.Dialog">
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:titleTextColor">#FFFFFF</item>
         <item name="android:backgroundTint">@color/colorPrimary</item>

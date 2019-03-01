@@ -32,9 +32,8 @@ public class MainActivity extends AppCompatActivity {
         ((PastFragment) pastFragment).setPastFragment((PastFragment) pastFragment);
         trafficFragment = new TrafficFragment();
 
-        final FragmentManager transaction = getSupportFragmentManager();
-        transaction.beginTransaction().add(R.id.fragment_container, todayFragment);
-        transaction.beginTransaction().commit();
+//        FragmentManager transaction = getSupportFragmentManager();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, todayFragment).commit();
 
         if (SharedResources.first_launch_ever) {
             SharedResources.addSul("소주", 300, 4000, "병");
@@ -55,37 +54,54 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setNavigationBarColor(SharedResources.color_primary);
         this.getWindow().setStatusBarColor(SharedResources.color_primary_dark);
 
-        transaction.beginTransaction().add(R.id.fragment_container, todayFragment).commit();
-        transaction.beginTransaction().add(R.id.fragment_container, pastFragment).commit();
-        transaction.beginTransaction().add(R.id.fragment_container, trafficFragment).commit();
-        transaction.beginTransaction().show(todayFragment).commit();
-        transaction.beginTransaction().hide(pastFragment).commit();
-        transaction.beginTransaction().hide(trafficFragment).commit();
+//        transaction.beginTransaction().add(R.id.fragment_container, todayFragment).commit();
+//        transaction.beginTransaction().add(R.id.fragment_container, pastFragment).commit();
+//        transaction.beginTransaction().add(R.id.fragment_container, trafficFragment).commit();
+//        transaction.beginTransaction().show(todayFragment).commit();
+//        transaction.beginTransaction().hide(pastFragment).commit();
+//        transaction.beginTransaction().hide(trafficFragment).commit();
 
+//        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).cleanup();
+//                switch (menuItem.getItemId()) {
+//                    case R.id.navigation_today:
+//                        transaction.beginTransaction().show(todayFragment).commit();
+//                        transaction.beginTransaction().hide(pastFragment).commit();
+//                        transaction.beginTransaction().hide(trafficFragment).commit();
+//                        break;
+//                    case R.id.navigation_past:
+//                        transaction.beginTransaction().hide(todayFragment).commit();
+//                        transaction.beginTransaction().show(pastFragment).commit();
+//                        transaction.beginTransaction().hide(trafficFragment).commit();
+//                        break;
+//                    case R.id.navigation_traffic:
+//                        transaction.beginTransaction().hide(todayFragment).commit();
+//                        transaction.beginTransaction().hide(pastFragment).commit();
+//                        transaction.beginTransaction().show(trafficFragment).commit();
+//                        break;
+//                    default:
+//                        break;
+//                }
+//
+//                return true;
+//            }
+//        });
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).cleanup();
-                switch (menuItem.getItemId()) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
                     case R.id.navigation_today:
-                        transaction.beginTransaction().show(todayFragment).commit();
-                        transaction.beginTransaction().hide(pastFragment).commit();
-                        transaction.beginTransaction().hide(trafficFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, todayFragment).commit();
                         break;
                     case R.id.navigation_past:
-                        transaction.beginTransaction().hide(todayFragment).commit();
-                        transaction.beginTransaction().show(pastFragment).commit();
-                        transaction.beginTransaction().hide(trafficFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, pastFragment).commit();
                         break;
                     case R.id.navigation_traffic:
-                        transaction.beginTransaction().hide(todayFragment).commit();
-                        transaction.beginTransaction().hide(pastFragment).commit();
-                        transaction.beginTransaction().show(trafficFragment).commit();
-                        break;
-                    default:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, trafficFragment).commit();
                         break;
                 }
-
                 return true;
             }
         });

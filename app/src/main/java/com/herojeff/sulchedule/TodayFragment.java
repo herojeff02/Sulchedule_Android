@@ -13,15 +13,18 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
-public class TodayFragment extends Fragment implements View.OnClickListener, SulListViewAdapter.EventListener {
+public class TodayFragment extends Fragment implements View.OnClickListener, SulListViewAdapter.EventListener, DatePickerDialog.OnDateSetListener {
 
     ImageButton setting_button;
     LinearLayout more_sul_pill;
@@ -68,6 +71,16 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         pervert_area = view.findViewById(R.id.pervert_area);
         showArray = SharedResources.getMainSuls(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay());
 
+        //캘린더 추가하려는 시도
+//        Calendar now = Calendar.getInstance();
+//        DatePickerDialog dpd = DatePickerDialog.newInstance(
+//                this,
+//                now.get(Calendar.YEAR), // Initial year selection
+//                now.get(Calendar.MONTH), // Initial month selection
+//                now.get(Calendar.DAY_OF_MONTH) // Inital day selection
+//        );
+//        dpd.show(getFragmentManager(), "Datepickerdialog");
+
         //sul adapter
         listview_sul = view.findViewById(R.id.listview_sul);
         adapter_sul = new SulListViewAdapter(SharedResources.getFavouriteSuls(), this);
@@ -89,20 +102,23 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         }
 
         //more_info adapter
-        listview_more_info = view.findViewById(R.id.listview_more_info);
-        adapter_more_info = new MoreInfoListViewAdapter();
-        listview_more_info.setAdapter(adapter_more_info);
-        listview_more_info.setDividerHeight(0);
+        /**개발 후 되살릴 영역**/
+//        listview_more_info = view.findViewById(R.id.listview_more_info);
+//        adapter_more_info = new MoreInfoListViewAdapter();
+//        listview_more_info.setAdapter(adapter_more_info);
+//        listview_more_info.setDividerHeight(0);
 
         //set listview height not to clip content
-        ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
+//        ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
 
         setting_button = view.findViewById(R.id.setting_button);
         setting_button.setOnClickListener(this);
         more_sul_pill = view.findViewById(R.id.pill_more_sul);
         more_sul_pill.setOnClickListener(this);
-        more_blank_pill = view.findViewById(R.id.pill_more_blank);
-        more_blank_pill.setOnClickListener(this);
+
+        /**개발 후 되살릴 영역**/
+//        more_blank_pill = view.findViewById(R.id.pill_more_blank);
+//        more_blank_pill.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return view;
@@ -111,7 +127,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     @Override
     public void onResume() {
         super.onResume();
-        updateTipString();
+        updateTipString(false);
         showArray = SharedResources.getMainSuls(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay());
         if (!first) {
             adapter_sul = new SulListViewAdapter(showArray, this);
@@ -126,7 +142,10 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         first = false;
     }
 
-
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
 
     @Override
     public void onClick(View v) {
@@ -139,9 +158,10 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
                 intent = new Intent(getContext(), MoreSulActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.pill_more_blank:
-                System.out.println("pill_more_blank");
-                break;
+            /**개발 후 되살릴 영역**/
+//            case R.id.pill_more_blank:
+//                System.out.println("pill_more_blank");
+//                break;
         }
 
     }
@@ -156,14 +176,14 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         SharedResources.smart_tip_string = true;
-                        updateTipString();
+                        updateTipString(false);
                     }
                 });
         builder.setNegativeButton("끄기",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         SharedResources.smart_tip_string = false;
-                        updateTipString();
+                        updateTipString(false);
                     }
                 });
 
@@ -171,12 +191,16 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     }
 
     @Override
-    public void callUpdateTipString() {
-        updateTipString();
+    public void callUpdateTipString(boolean refresh_default) {
+        updateTipString(refresh_default);
     }
 
-    void updateTipString(){
-        text_tip.setText(SharedResources.getSmartTipString(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
+    void updateTipString(boolean refresh_default){
+        text_tip.setText(SharedResources.getSmartTipString(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay(), refresh_default));
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        Toast.makeText(getActivity(), "You picked the following date: "+dayOfMonth+"/"+(monthOfYear+1)+"/"+year, Toast.LENGTH_SHORT).show();
     }
 }
-

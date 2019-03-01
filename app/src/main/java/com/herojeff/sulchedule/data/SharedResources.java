@@ -28,6 +28,9 @@ public final class SharedResources {
 
     public static boolean smart_tip_string = true;
 
+    static String[] helloList = {"안녕하세요!", "어떤 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
+    static int randomIndex = new Random().nextInt(helloList.length);
+
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
     private static ArrayList<Sul> suls = new ArrayList<>();
 
@@ -261,7 +264,7 @@ public final class SharedResources {
         getSul(sul_name).setFavourite(set);
     }
 
-    public static String getSmartTipString(int year, int month, int day){
+    public static String getSmartTipString(int year, int month, int day, boolean refresh_default){
         RecordMonth recordMonth = getRecordMonth(year, month);
         RecordDay recordDay = getRecordDay(year, month, day);
         String returnString;
@@ -288,8 +291,10 @@ public final class SharedResources {
             Collections.sort(priorities, new DescendingSmartTipPriorityPairValue());
 
             if (recordDay.isTodayEmpty()) {
-                String[] helloList = {"안녕하세요!", "어떤 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
-                returnString = helloList[new Random().nextInt(helloList.length)];
+                if(refresh_default){
+                    randomIndex = new Random().nextInt(helloList.length);
+                }
+                returnString = helloList[randomIndex];
             } else {
                 returnString = priorities.get(0).getSmartTipString();
             }

@@ -134,6 +134,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()).get(i - 1), null, false);
             adapter_past_inner_listview.setAdapter(adapter_past_inner_listview_adapter);
             adapter_past_inner_listview.setDividerHeight(0);
+
             //set listview height not to clip content
             ListViewResizeUtility.setListViewHeightBasedOnItems(adapter_past_inner_listview);
         }
@@ -167,7 +168,9 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
     @Override
     public int getItemCount() {
-        return SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).getRecordDays().size() + 1;
+        RecordMonth recordMonth = SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth());
+        recordMonth.cleanup();
+        return recordMonth.getRecordDays().size() + 1;
     }
 
     public class PastItemRecyclerViewHolder extends RecyclerView.ViewHolder {

@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.SharedResources;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public class PastFragment extends Fragment {
 
@@ -48,7 +50,7 @@ public class PastFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_past, null);
 
@@ -71,4 +73,13 @@ public class PastFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        button_left.setTextColor(SharedResources.color_accent);
+        button_right.setTextColor(SharedResources.color_white);
+
+        setBig(false);
+    }
 }

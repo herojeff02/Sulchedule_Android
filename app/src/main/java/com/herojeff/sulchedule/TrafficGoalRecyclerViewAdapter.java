@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
 
@@ -26,8 +27,8 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     double[] bar_t;
 
     public TrafficGoalRecyclerViewAdapter() {
-        year = SharedResources.getYear();
-        month = SharedResources.getMonth();
+        year = CustomDayManager.getTodayYear();
+        month = CustomDayManager.getTodayMonth();
         recordMonth = SharedResources.getRecordMonth(year, month);
 
         enabled = new boolean[]{
@@ -43,7 +44,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
                 recordMonth.getGoal_daysOfMonth(), recordMonth.getGoal_streakOfMonth(), recordMonth.getGoal_totalExpense(), recordMonth.getGoal_caloriesOfMonth()
         };
         left_bottom = new String[]{
-                SharedResources.getMonth() + "월 음주 일수", SharedResources.getMonth() + "월 연이은 음주 일수", "지출액", "열량"
+                CustomDayManager.getTodayMonth() + "월 음주 일수", CustomDayManager.getTodayMonth() + "월 연이은 음주 일수", "지출액", "열량"
         };
     }
 

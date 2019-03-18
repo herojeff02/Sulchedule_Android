@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
@@ -68,7 +69,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
 
         View view = inflater.inflate(R.layout.fragment_today, null);
         pervert_area = view.findViewById(R.id.pervert_area);
-        showArray = SharedResources.getMainSuls(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay());
+        showArray = SharedResources.getMainSuls(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay());
 
         //캘린더 추가하려는 시도
 //        Calendar now = Calendar.getInstance();
@@ -88,7 +89,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
 
         text_today = view.findViewById(R.id.text_today);
         text_tip = view.findViewById(R.id.text_tip);
-        String temp = SharedResources.getMonth() + "월 " + SharedResources.getDay() + "일 (" + SharedResources.getWeekDayKorean() + ")";
+        String temp = CustomDayManager.getMonth() + "월 " + CustomDayManager.getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")";
         text_today.setText(temp);
 
         //set listview height not to clip content
@@ -126,8 +127,9 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     @Override
     public void onResume() {
         super.onResume();
+        CustomDayManager.initCustomDay();
         updateTipString(false);
-        showArray = SharedResources.getMainSuls(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay());
+        showArray = SharedResources.getMainSuls(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay());
         if (!first) {
             adapter_sul = new SulListViewAdapter(showArray, this);
             listview_sul.setAdapter(adapter_sul);
@@ -195,7 +197,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     }
 
     void updateTipString(boolean refresh_default) {
-        text_tip.setText(SharedResources.getSmartTipString(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay(), refresh_default));
+        text_tip.setText(SharedResources.getSmartTipString(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay(), refresh_default));
     }
 
     @Override

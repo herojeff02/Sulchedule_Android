@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 
@@ -84,9 +85,9 @@ public class SulListViewAdapter extends BaseAdapter {
         }
 
 
-        final int year = SharedResources.getYear();
-        final int month = SharedResources.getMonth();
-        final int day = SharedResources.getDay();
+        final int year = CustomDayManager.getYear();
+        final int month = CustomDayManager.getMonth();
+        final int day = CustomDayManager.getDay();
         int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(favourites.get(pos).getSul_name());
         textView.setText(String.valueOf(favourites.get(pos).getSul_name()) + " " + count + favourites.get(pos).getSul_unit());
         stepper_minus.setOnClickListener(new View.OnClickListener() {

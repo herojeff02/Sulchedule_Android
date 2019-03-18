@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.SharedResources;
 
 import org.jetbrains.annotations.NotNull;
@@ -39,9 +40,9 @@ public class PastFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
 
         if (big) {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()));
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()));
         } else {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()));
         }
 
         ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;
@@ -71,9 +72,9 @@ public class PastFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         if (big) {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()));
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()));
         } else {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()));
         }
 
         ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;
@@ -87,6 +88,8 @@ public class PastFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        CustomDayManager.initCustomDay();
 
         button_left.setTextColor(SharedResources.color_accent);
         button_right.setTextColor(SharedResources.color_white);

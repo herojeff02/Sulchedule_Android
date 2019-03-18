@@ -132,7 +132,7 @@ public final class SharedResources {
     public static ArrayList<RecordDay> getRecentRecordDays(int year, int month, int day) {
         ArrayList<RecordDay> returnArray = new ArrayList<>();
         if (day < 14) {
-            returnArray.addAll(SharedResources.getMonthlyRecordDayArrayFromLastMonth(year, month, SharedResources.getDay()));
+            returnArray.addAll(SharedResources.getMonthlyRecordDayArrayFromLastMonth(year, month, day));
             returnArray.addAll(SharedResources.getMonthlyRecordDayArray(year, month));
         } else {
             returnArray.addAll(SharedResources.getMonthlyRecordDayArrayStartingFrom(year, month, day));
@@ -254,8 +254,8 @@ public final class SharedResources {
     }
 
     public static RecordMonth getRecordMonth() {
-        int year = getYear();
-        int month = getMonth();
+        int year = CustomDayManager.getYear();
+        int month = CustomDayManager.getMonth();
         for (RecordMonth recordMonth : recordMonths) {
             if (recordMonth.year == year && recordMonth.month == month) {
                 return recordMonth;

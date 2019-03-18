@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.SharedResources;
 
 
@@ -77,6 +78,8 @@ public class TrafficFragment extends Fragment {
     public void onResume() {
         super.onResume();
         final float alpha = 0.25f;
+
+        CustomDayManager.initCustomDay();
 
         double k = SharedResources.getRecordMonth().getTrafficSignal();
 

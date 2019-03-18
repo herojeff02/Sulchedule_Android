@@ -8,9 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
             SharedResources.first_launch_ever = gson.fromJson(json_first_launch, Boolean.class);
             SharedResources.setSuls(k);
         }
+
+        CustomDayManager.initCustomDay();
 
 
         frameLayout = findViewById(R.id.fragment_container);
@@ -129,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testField() {
-        SharedResources.appendRecordDay(2019, 3, 14);
         SharedResources.getRecordDay(2019, 3, 14).setCertain_sul_count(2, 5);
     }
 
@@ -138,5 +141,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         SaveManager.setPrefs(getSharedPreferences("trial", MODE_PRIVATE));
         SaveManager.save();
+
+        Toast.makeText(this, String.valueOf(SharedResources.getRecordMonth().getRecordDays().size()), Toast.LENGTH_SHORT).show();
     }
 }

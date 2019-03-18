@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 
@@ -65,15 +66,15 @@ public class MoreSulListViewAdapter extends BaseAdapter {
             heart.setImageResource(R.drawable.ic_favourite_filled);
         }
 
-        final int year = SharedResources.getYear();
-        final int month = SharedResources.getMonth();
-        final int day = SharedResources.getDay();
+        final int year = CustomDayManager.getYear();
+        final int month = CustomDayManager.getMonth();
+        final int day = CustomDayManager.getDay();
         int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(array.get(pos).getSul_name());
         textView.setText(String.valueOf(array.get(pos).getSul_name()) + " " + count + array.get(pos).getSul_unit());
         stepper_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int count = SharedResources.getRecordDay(SharedResources.getYear(), month, day).getCertain_sul_count(array.get(pos).getSul_name());
+                int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(array.get(pos).getSul_name());
                 --count;
                 if (count < 0) {
                     count = 0;

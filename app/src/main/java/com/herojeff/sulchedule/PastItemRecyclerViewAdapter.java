@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.RecordDay;
 import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
@@ -73,7 +75,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
                 //set listview content
                 ListView adapter_past_inner_listview_for_header = view.findViewById(R.id.recyclerview_past_inner_item_container_header);
-                PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(null, SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()), true);
+                PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(null, SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()), true);
                 adapter_past_inner_listview_for_header.setAdapter(adapter_past_inner_listview_adapter);
                 adapter_past_inner_listview_for_header.setDividerHeight(0);
                 //set listview height not to clip content
@@ -87,7 +89,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
                     desc_2 = view.findViewById(R.id.desc_2);
                     desc_3 = view.findViewById(R.id.desc_3);
 
-                    RecordMonth.MonthlyBest monthlyBest = SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).getMonthlyBest();
+                    RecordMonth.MonthlyBest monthlyBest = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()).getMonthlyBest();
 
                     if (monthlyBest.drink_count != 0) {
                         title_1.setText(SharedResources.getSul(monthlyBest.drink_index).sul_name);
@@ -135,7 +137,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             //set listview content
             ListView adapter_past_inner_listview = view.findViewById(R.id.recyclerview_past_inner_item_container);
             TextView tv = view.findViewById(R.id.text_date);
-            tv.setText(SharedResources.getMonth() + "월 " + SharedResources.getDay() + "일 (" + SharedResources.getWeekDayKorean() + ")");
+            tv.setText("999월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
 
             PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(recordDays.get(i - 1), null, false);
             adapter_past_inner_listview.setAdapter(adapter_past_inner_listview_adapter);
@@ -174,8 +176,9 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
     @Override
     public int getItemCount() {
-        RecordMonth recordMonth = SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth());
+        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
         recordMonth.cleanup();
+        System.out.println(recordMonth.getRecordDays().size());
         return recordMonth.getRecordDays().size() + 1;
     }
 

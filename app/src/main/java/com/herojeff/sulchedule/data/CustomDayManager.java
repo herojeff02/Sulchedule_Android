@@ -3,10 +3,16 @@ package com.herojeff.sulchedule.data;
 import java.util.Date;
 
 public class CustomDayManager {
+    private static int year;
+    private static int month;
+    private static int day;
     int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    private int year;
-    private int month;
-    private int day;
+
+    public static void initCustomDay(){
+        year = getTodayYear();
+        month = getTodayMonth();
+        day = getTodayDay();
+    }
 
     public static int getTodayYear() {
         Date today = new Date();
@@ -30,34 +36,19 @@ public class CustomDayManager {
     }
 
     public static int getYear() {
-        Date today = new Date();
-        return today.getYear();
-    }
-
-    public void setYear(int year) {
-        this.year = year;
+        return year;
     }
 
     public static int getMonth() {
-        Date today = new Date();
-        return today.getMonth() + 1;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
+        return month;
     }
 
     public static int getDay() {
-        Date today = new Date();
-        return today.getDate();
-    }
-
-    public void setDay(int day) {
-        this.day = day;
+        return day;
     }
 
     public static String getWeekDayKorean() {
-        Date today = new Date();
+        Date today = new Date(year, month, day);
         String[] weekDayKorean = {"일", "월", "화", "수", "목", "금", "토", "일"};
         return weekDayKorean[today.getDay()];
     }

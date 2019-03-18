@@ -1,6 +1,5 @@
 package com.herojeff.sulchedule;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,10 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
-import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 
 public class TrafficFragment extends Fragment {

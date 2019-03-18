@@ -9,12 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.herojeff.sulchedule.data.RecordDay;
 import com.herojeff.sulchedule.data.SharedResources;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 
 public class PastFragment extends Fragment {
@@ -41,13 +38,12 @@ public class PastFragment extends Fragment {
         this.big = big;
         layoutManager = new LinearLayoutManager(getActivity());
 
-        if(big){
+        if (big) {
             adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()));
-        }
-        else {
+        } else {
             adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
         }
-        
+
         ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;
         ((PastItemRecyclerViewAdapter) adapter).parentFragment = pastFragment;
         recyclerView.setAdapter(adapter);
@@ -74,10 +70,9 @@ public class PastFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        if(big){
+        if (big) {
             adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()));
-        }
-        else {
+        } else {
             adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
         }
 

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //retrieve data
         SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
         Gson gson = new Gson();
-        if(!SharedResources.first_launch_ever) {
+        if (!SharedResources.first_launch_ever) {
             String json = mPrefs.getString("suls", "");
             ArrayList<Sul> k = gson.fromJson(json, new TypeToken<ArrayList<Sul>>() {
             }.getType());
@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
             SharedResources.first_launch_ever = gson.fromJson(json_first_launch, Boolean.class);
             SharedResources.setSuls(k);
         }
-
-
 
 
         frameLayout = findViewById(R.id.fragment_container);
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.navigation_today:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, todayFragment).commit();
                         break;
@@ -131,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testField() {
-        SharedResources.appendRecordDay(2019,3,14);
-        SharedResources.getRecordDay(2019,3,14).setCertain_sul_count(2,5);
+        SharedResources.appendRecordDay(2019, 3, 14);
+        SharedResources.getRecordDay(2019, 3, 14).setCertain_sul_count(2, 5);
     }
 
     @Override

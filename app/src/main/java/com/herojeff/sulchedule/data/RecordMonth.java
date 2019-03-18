@@ -370,6 +370,59 @@ public class RecordMonth {
         return return_int;
     }
 
+    public HashMap<Integer, Integer> getMonthlySulCompilation() {
+        HashMap<Integer, Integer> returnMap = new HashMap<>();
+
+        for (RecordDay recordDay : recordDays) {
+            HashMap<Integer, Integer> recordDayTempMap = recordDay.getSul_list();
+            for (int i : recordDayTempMap.keySet()) {
+                if (!returnMap.containsKey(i)) {
+                    returnMap.put(i, 0);
+                }
+                int setValue = returnMap.get(i);
+                setValue += recordDayTempMap.get(i);
+                returnMap.put(i, setValue);
+            }
+        }
+
+        return returnMap;
+    }
+
+    public HashMap<String, Integer> getMonthlyFriendCompilation() {
+        HashMap<String, Integer> returnMap = new HashMap<>();
+
+        for (RecordDay recordDay : recordDays) {
+            recordDay.getFriend_list();
+            for (String i : recordDay.getFriend_list()) {
+                if (!returnMap.containsKey(i)) {
+                    returnMap.put(i, 0);
+                }
+                int setValue = returnMap.get(i);
+                setValue++;
+                returnMap.put(i, setValue);
+            }
+        }
+
+        return returnMap;
+    }
+
+    public HashMap<String, Integer> getMonthlyLocationCompilation() {
+        HashMap<String, Integer> returnMap = new HashMap<>();
+
+        for (RecordDay recordDay : recordDays) {
+            for (String i : recordDay.getLocation_list()) {
+                if (!returnMap.containsKey(i)) {
+                    returnMap.put(i, 0);
+                }
+                int setValue = returnMap.get(i);
+                setValue++;
+                returnMap.put(i, setValue);
+            }
+        }
+
+        return returnMap;
+    }
+
     public class MonthlyBest {
         public int drink_index = -1;
         public int drink_count = 0;
@@ -383,57 +436,6 @@ public class RecordMonth {
         public int loc_count = 0;
         public int loc_expense = 0;
         public int loc_calorie = 0;
-    }
-
-    public HashMap<Integer, Integer> getMonthlySulCompilation(){
-        HashMap<Integer, Integer> returnMap = new HashMap<>();
-
-        for(RecordDay recordDay:recordDays){
-            HashMap<Integer, Integer> recordDayTempMap = recordDay.getSul_list();
-            for(int i:recordDayTempMap.keySet()){
-                if(!returnMap.containsKey(i)){
-                    returnMap.put(i, 0);
-                }
-                int setValue = returnMap.get(i);
-                setValue += recordDayTempMap.get(i);
-                returnMap.put(i, setValue);
-            }
-        }
-
-        return returnMap;
-    }
-    public HashMap<String, Integer> getMonthlyFriendCompilation(){
-        HashMap<String, Integer> returnMap = new HashMap<>();
-
-        for(RecordDay recordDay:recordDays){
-            recordDay.getFriend_list();
-            for(String i:recordDay.getFriend_list()){
-                if(!returnMap.containsKey(i)){
-                    returnMap.put(i, 0);
-                }
-                int setValue = returnMap.get(i);
-                setValue ++;
-                returnMap.put(i, setValue);
-            }
-        }
-
-        return returnMap;
-    }
-    public HashMap<String, Integer> getMonthlyLocationCompilation(){
-        HashMap<String, Integer> returnMap = new HashMap<>();
-
-        for(RecordDay recordDay:recordDays){
-            for(String i:recordDay.getLocation_list()){
-                if(!returnMap.containsKey(i)){
-                    returnMap.put(i, 0);
-                }
-                int setValue = returnMap.get(i);
-                setValue++;
-                returnMap.put(i, setValue);
-            }
-        }
-
-        return returnMap;
     }
 }
 

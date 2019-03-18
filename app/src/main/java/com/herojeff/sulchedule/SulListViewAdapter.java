@@ -14,7 +14,6 @@ import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 
 import java.util.ArrayList;
-import java.util.EventListener;
 
 public class SulListViewAdapter extends BaseAdapter {
 
@@ -28,10 +27,6 @@ public class SulListViewAdapter extends BaseAdapter {
     View favourite_bar;
 
     public SulListViewAdapter() {
-    }
-
-    public interface EventListener {
-        void callUpdateTipString(boolean refresh_default);
     }
 
     public SulListViewAdapter(ArrayList<Sul> favourites, EventListener listener) {
@@ -133,11 +128,14 @@ public class SulListViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-
-
     public void setTextView(TextView tv, int pos, int count) {
         String k = String.valueOf(favourites.get(pos).getSul_name()) + " " + count + favourites.get(pos).getSul_unit();
         tv.setText(k);
+    }
+
+
+    public interface EventListener {
+        void callUpdateTipString(boolean refresh_default);
     }
 
 }

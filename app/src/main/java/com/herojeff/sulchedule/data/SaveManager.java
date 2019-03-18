@@ -1,6 +1,5 @@
 package com.herojeff.sulchedule.data;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
@@ -9,7 +8,7 @@ public final class SaveManager {
     private static final Object MyObject = new MyObject();
     public static SharedPreferences mPrefs;
 
-    public static void setPrefs(SharedPreferences tempPrefs){
+    public static void setPrefs(SharedPreferences tempPrefs) {
         mPrefs = tempPrefs;
     }
 
@@ -27,8 +26,9 @@ public final class SaveManager {
         MyObject obj = gson.fromJson(json, MyObject.class);
     }
 
-    static class MyObject{
+    static class MyObject {
         int k = 2352;
+
         public MyObject() {
         }
     }

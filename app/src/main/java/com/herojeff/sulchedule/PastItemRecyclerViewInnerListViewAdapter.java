@@ -1,8 +1,6 @@
 package com.herojeff.sulchedule;
 
 import android.content.Context;
-import android.util.SparseArray;
-import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,13 +30,13 @@ public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
             HashMap<Integer, Integer> sulCompilation = recordMonth.getMonthlySulCompilation();
             HashMap<String, Integer> friendCompilation = recordMonth.getMonthlyFriendCompilation();
             HashMap<String, Integer> locationCompilation = recordMonth.getMonthlyLocationCompilation();
-            for(int i:sulCompilation.keySet()){
+            for (int i : sulCompilation.keySet()) {
                 arr.add(new StringPair(String.valueOf(sulCompilation.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
             }
-            for(String i:friendCompilation.keySet()){
+            for (String i : friendCompilation.keySet()) {
                 arr.add(new StringPair(String.valueOf(friendCompilation.get(i)) + "회 함께함", i));
             }
-            for(String i:locationCompilation.keySet()){
+            for (String i : locationCompilation.keySet()) {
                 arr.add(new StringPair(String.valueOf(locationCompilation.get(i)) + "회 방문", i));
             }
 

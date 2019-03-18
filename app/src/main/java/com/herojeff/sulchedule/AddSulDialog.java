@@ -49,13 +49,13 @@ public class AddSulDialog extends Dialog {
         button_save = findViewById(R.id.button_save);
 
 
-        if(is_edit_mode){
+        if (is_edit_mode) {
             text_kcal.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_calorie()));
             text_name.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_name()));
             text_unit.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_unit()));
             text_price.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_price()));
         }
-        
+
         text_unit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

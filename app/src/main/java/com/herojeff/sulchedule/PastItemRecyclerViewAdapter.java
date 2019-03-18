@@ -137,7 +137,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             TextView tv = view.findViewById(R.id.text_date);
             tv.setText(SharedResources.getMonth() + "월 " + SharedResources.getDay() + "일 (" + SharedResources.getWeekDayKorean() + ")");
 
-            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(recordDays.get(i-1), null, false);
+            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(recordDays.get(i - 1), null, false);
             adapter_past_inner_listview.setAdapter(adapter_past_inner_listview_adapter);
             adapter_past_inner_listview.setDividerHeight(0);
 

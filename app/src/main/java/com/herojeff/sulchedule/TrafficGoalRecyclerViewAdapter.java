@@ -83,7 +83,6 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         }
     }
 
-    
 
     @Override
     public void onViewAttachedToWindow(@NonNull TrafficGoalRecyclerViewHolder holder) {

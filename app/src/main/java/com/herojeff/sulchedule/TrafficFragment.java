@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.CustomDayManager;
+import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
 
 
@@ -80,6 +81,8 @@ public class TrafficFragment extends Fragment {
         final float alpha = 0.25f;
 
         CustomDayManager.initCustomDay();
+        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
+        recordMonth.cleanup();
 
         double k = SharedResources.getRecordMonth().getTrafficSignal();
 

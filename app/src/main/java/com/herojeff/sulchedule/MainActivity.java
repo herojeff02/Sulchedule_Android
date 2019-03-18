@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
@@ -74,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
             SharedResources.first_launch_ever = false;
         }
 
-        this.getWindow().setNavigationBarColor(SharedResources.color_primary);
-        this.getWindow().setStatusBarColor(SharedResources.color_primary_dark);
+        this.getWindow().setNavigationBarColor(CustomColor.color_primary);
+        this.getWindow().setStatusBarColor(CustomColor.color_primary_dark);
 
 //        transaction.beginTransaction().add(R.id.fragment_container, todayFragment).commit();
 //        transaction.beginTransaction().add(R.id.fragment_container, pastFragment).commit();
@@ -139,6 +140,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+
+        SharedResources.cleanup();
+
         SaveManager.setPrefs(getSharedPreferences("trial", MODE_PRIVATE));
         SaveManager.save();
 

@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.RecordDay;
 import com.herojeff.sulchedule.data.RecordMonth;
@@ -23,6 +24,8 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
     public PastFragment parentFragment;
     boolean headerFlag = false;
     boolean headerFlag_Big;
+
+    int currMonth, currIndex = 0;
 
     TextView button_left_interceptor;
     TextView button_right_interceptor;
@@ -40,23 +43,25 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
     View view;
 
-    public PastItemRecyclerViewAdapter(boolean big, TextView left, TextView right, ArrayList<RecordDay> recordDays) {
+    public PastItemRecyclerViewAdapter(boolean big, TextView left, TextView right, ArrayList<RecordDay> recordDays, int currMonth, int currIndex) {
         this.headerFlag_Big = big;
         this.left = left;
         this.right = right;
         this.recordDays = recordDays;
+        this.currIndex = currIndex;
+        this.currMonth = currMonth;
     }
 
     public void clickHeader(boolean isLeft) {
         if (isLeft) {
             headerFlag_Big = false;
-            right.setTextColor(SharedResources.color_white);
-            left.setTextColor(SharedResources.color_accent);
+            right.setTextColor(CustomColor.color_white);
+            left.setTextColor(CustomColor.color_accent);
             parentFragment.setBig(false);
         } else {
             headerFlag_Big = true;
-            right.setTextColor(SharedResources.color_accent);
-            left.setTextColor(SharedResources.color_white);
+            right.setTextColor(CustomColor.color_accent);
+            left.setTextColor(CustomColor.color_white);
             parentFragment.setBig(true);
         }
     }
@@ -137,7 +142,15 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             //set listview content
             ListView adapter_past_inner_listview = view.findViewById(R.id.recyclerview_past_inner_item_container);
             TextView tv = view.findViewById(R.id.text_date);
-            tv.setText("999월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
+            System.out.println(currMonth);
+            System.out.println(currIndex);
+
+            if(i-1 < currIndex) {
+                tv.setText(currMonth - 1 + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
+            }
+            else{
+                tv.setText(currMonth + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
+            }
 
             PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(recordDays.get(i - 1), null, false);
             adapter_past_inner_listview.setAdapter(adapter_past_inner_listview_adapter);
@@ -176,10 +189,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
     @Override
     public int getItemCount() {
-        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
-        recordMonth.cleanup();
-        System.out.println(recordMonth.getRecordDays().size());
-        return recordMonth.getRecordDays().size() + 1;
+        return recordDays.size() + 1;
     }
 
     public class PastItemRecyclerViewHolder extends RecyclerView.ViewHolder {

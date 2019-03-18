@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.CustomDayManager;
+import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
@@ -127,7 +128,11 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     @Override
     public void onResume() {
         super.onResume();
+
         CustomDayManager.initCustomDay();
+        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
+        recordMonth.cleanup();
+
         updateTipString(false);
         showArray = SharedResources.getMainSuls(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay());
         if (!first) {

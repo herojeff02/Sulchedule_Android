@@ -88,4 +88,9 @@ public class CustomDayManager {
             month--;
         }
     }
+
+    public static int getLastDayOfMonth(int month){
+        int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        return lastDayOfMonth[month-1];
+    }
 }

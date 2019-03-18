@@ -7,9 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowId;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
+import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
 
 import org.jetbrains.annotations.NotNull;
@@ -40,9 +43,9 @@ public class PastFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
 
         if (big) {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()));
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()), CustomDayManager.getTodayMonth(), 0);
         } else {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()));
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()), CustomDayManager.getTodayMonth(), SharedResources.getMonthlyRecordDayArrayFromLastMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()).size());
         }
 
         ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;
@@ -60,6 +63,9 @@ public class PastFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_past, null);
 
+        CustomDayManager.initCustomDay();
+        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
+        recordMonth.cleanup();
 
         button_left = view.findViewById(R.id.button_left);
         button_right = view.findViewById(R.id.button_right);
@@ -72,9 +78,9 @@ public class PastFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         if (big) {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()));
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()), CustomDayManager.getTodayMonth(), 0);
         } else {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()));
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()), CustomDayManager.getTodayMonth(), SharedResources.getMonthlyRecordDayArrayFromLastMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()).size());
         }
 
         ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;
@@ -90,9 +96,11 @@ public class PastFragment extends Fragment {
         super.onResume();
 
         CustomDayManager.initCustomDay();
+        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
+        recordMonth.cleanup();
 
-        button_left.setTextColor(SharedResources.color_accent);
-        button_right.setTextColor(SharedResources.color_white);
+        button_left.setTextColor(CustomColor.color_accent);
+        button_right.setTextColor(CustomColor.color_white);
 
         setBig(false);
     }

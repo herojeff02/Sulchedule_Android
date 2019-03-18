@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
@@ -60,7 +61,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     public void onBindViewHolder(final @NonNull TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i) {
         if (enabled[i]) {
             trafficGoalRecyclerViewHolder.text_right_top.setText(String.valueOf(right_top[i]));
-            trafficGoalRecyclerViewHolder.text_right_top.setTextColor(SharedResources.color_white);
+            trafficGoalRecyclerViewHolder.text_right_top.setTextColor(CustomColor.color_white);
             trafficGoalRecyclerViewHolder.itemView.post(new Runnable() {
                 @Override
                 public void run() {
@@ -76,11 +77,11 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         trafficGoalRecyclerViewHolder.text_right_bottom.setText("한도");
 
         if (bar_t[i] >= 1.0) {
-            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_red));
+            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_red));
         } else if (bar_t[i] >= 0.7) {
-            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_yellow));
+            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_yellow));
         } else {
-            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_green));
+            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_green));
         }
     }
 

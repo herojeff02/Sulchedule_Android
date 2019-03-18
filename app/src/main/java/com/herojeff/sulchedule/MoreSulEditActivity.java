@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
+import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
@@ -25,7 +26,7 @@ public class MoreSulEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_sul_edit);
-        this.getWindow().setNavigationBarColor(SharedResources.color_primary_dark_dark);
+        this.getWindow().setNavigationBarColor(CustomColor.color_primary_dark_dark);
 
         scrollview_sul_edit = findViewById(R.id.scrollview_sul_edit);
         listview_more_sul_edit = findViewById(R.id.listview_more_sul_edit);

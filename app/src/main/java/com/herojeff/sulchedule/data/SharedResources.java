@@ -10,16 +10,6 @@ import java.util.Random;
 
 
 public final class SharedResources {
-    public static final int color_accent = Color.parseColor("#FFDC67");
-    public static final int color_primary = Color.parseColor("#252B53");
-    public static final int color_primary_dark = Color.parseColor("#0B102F");
-    public static final int color_white = Color.parseColor("#FFFFFF");
-    public static final int color_primary_dark_dark = Color.parseColor("#090E1D");
-
-    public static final int color_traffic_green = Color.parseColor("#4AD863");
-    public static final int color_traffic_yellow = Color.parseColor("#FFC400");
-    public static final int color_traffic_red = Color.parseColor("#FF6060");
-
     public static boolean enable_ad = true;
     public static boolean remove_ad_eligible = false;
     public static boolean first_launch_ever = true;
@@ -76,11 +66,12 @@ public final class SharedResources {
         if (index == -1) {
             return null;
         }
-        if (suls.get(index).isSul_enabled()) {
-            return suls.get(index);
-        } else {
-            return null;
-        }
+        return suls.get(index);
+//        if (suls.get(index).isSul_enabled()) {
+//            return suls.get(index);
+//        } else {
+//            return null;
+//        }
     }
 
     public static boolean sulExists(String sul_name) {
@@ -158,13 +149,11 @@ public final class SharedResources {
     //records
     public static ArrayList<RecordDay> getMonthlyRecordDayArrayFromLastMonth(int year, int month, int day) {
         month--;
-        int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         ArrayList<RecordDay> returnArray = new ArrayList<>();
         for (RecordMonth recordMonth : recordMonths) {
             if (recordMonth.year == year && recordMonth.month == month) {
                 for (RecordDay recordDay : recordMonth.getRecordDays()) {
-                    int finalDayOfMonth = lastDayOfMonth[month - 1];
-                    if (recordDay.getDay() > finalDayOfMonth - 14 + day) {
+                    if (recordDay.getDay() > CustomDayManager.getLastDayOfMonth(month) - 14 + day) {
                         returnArray.add(recordDay);
                     }
                 }
@@ -271,6 +260,12 @@ public final class SharedResources {
             }
         }
         return false;
+    }
+
+    public static void cleanup(){
+        for(RecordMonth recordMonth : recordMonths){
+            recordMonth.cleanup();
+        }
     }
 
 

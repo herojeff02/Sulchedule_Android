@@ -169,9 +169,22 @@ public final class SharedResources {
             returnArray.addAll(SharedResources.getMonthlyRecordDayArray(year, month));
         }
         else{
-            returnArray.addAll(SharedResources.getMonthlyRecordDayArray(year, month));
+            returnArray.addAll(SharedResources.getMonthlyRecordDayArrayStartingFrom(year, month, day));
         }
-
+        return returnArray;
+    }
+    //records
+    public static ArrayList<RecordDay> getMonthlyRecordDayArrayStartingFrom(int year, int month, int day) {
+        ArrayList<RecordDay> returnArray = new ArrayList<>();
+        for (RecordMonth recordMonth : recordMonths) {
+            if (recordMonth.year == year && recordMonth.month == month) {
+                for(RecordDay recordDay : recordMonth.getRecordDays()) {
+                    if(recordDay.getDay() > day-14) {
+                        returnArray.add(recordDay);
+                    }
+                }
+            }
+        }
         return returnArray;
     }
     //records
@@ -183,7 +196,7 @@ public final class SharedResources {
             if (recordMonth.year == year && recordMonth.month == month) {
                 for(RecordDay recordDay : recordMonth.getRecordDays()) {
                     int finalDayOfMonth = lastDayOfMonth[month-1];
-                    if(recordDay.getDay() > finalDayOfMonth-14) {
+                    if(recordDay.getDay() > finalDayOfMonth-14+day) {
                         returnArray.add(recordDay);
                     }
                 }

@@ -68,7 +68,13 @@ public class PastFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
+        if(big){
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()));
+        }
+        else {
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(SharedResources.getYear(), SharedResources.getMonth(), SharedResources.getDay()));
+        }
+
         ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;
         ((PastItemRecyclerViewAdapter) adapter).parentFragment = pastFragment;
 

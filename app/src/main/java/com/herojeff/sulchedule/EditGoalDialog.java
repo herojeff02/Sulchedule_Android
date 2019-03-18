@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
 
-public class AddSulDialog extends Dialog {
+import org.jetbrains.annotations.Nullable;
+
+public class EditGoalDialog extends Dialog {
 
     EditText text_name;
     EditText text_unit;
@@ -25,7 +27,7 @@ public class AddSulDialog extends Dialog {
     boolean is_edit_mode = false;
     int sul_index;
 
-    public AddSulDialog(Context context, boolean is_edit_mode, int sul_index) {
+    public EditGoalDialog(Context context, boolean is_edit_mode, int sul_index) {
         super(context);
         this.is_edit_mode = is_edit_mode;
         this.sul_index = sul_index;

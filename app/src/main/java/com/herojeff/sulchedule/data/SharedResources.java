@@ -1,13 +1,19 @@
 package com.herojeff.sulchedule.data;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Random;
 
 
@@ -33,6 +39,10 @@ public final class SharedResources {
 
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
     private static ArrayList<Sul> suls = new ArrayList<>();
+
+    public static void setSuls(ArrayList<Sul> sul){
+        suls = sul;
+    }
 
     public static int getYear() {
         Date today = new Date();
@@ -152,6 +162,36 @@ public final class SharedResources {
     }
 
     //records
+    public static ArrayList<RecordDay> getRecentRecordDays(int year, int month, int day) {
+        ArrayList<RecordDay> returnArray = new ArrayList<>();
+        if(day < 14){
+            returnArray.addAll(SharedResources.getMonthlyRecordDayArrayFromLastMonth(year, month, SharedResources.getDay()));
+            returnArray.addAll(SharedResources.getMonthlyRecordDayArray(year, month));
+        }
+        else{
+            returnArray.addAll(SharedResources.getMonthlyRecordDayArray(year, month));
+        }
+
+        return returnArray;
+    }
+    //records
+    public static ArrayList<RecordDay> getMonthlyRecordDayArrayFromLastMonth(int year, int month, int day) {
+        month--;
+        int[] lastDayOfMonth = {31,28,31,30,31,30,31,31,30,31,30,31};
+        ArrayList<RecordDay> returnArray = new ArrayList<>();
+        for (RecordMonth recordMonth : recordMonths) {
+            if (recordMonth.year == year && recordMonth.month == month) {
+                for(RecordDay recordDay : recordMonth.getRecordDays()) {
+                    int finalDayOfMonth = lastDayOfMonth[month-1];
+                    if(recordDay.getDay() > finalDayOfMonth-14) {
+                        returnArray.add(recordDay);
+                    }
+                }
+            }
+        }
+        return returnArray;
+    }
+    //records
     public static ArrayList<RecordDay> getMonthlyRecordDayArray(int year, int month) {
         for (RecordMonth recordMonth : recordMonths) {
             if (recordMonth.year == year && recordMonth.month == month) {
@@ -252,13 +292,7 @@ public final class SharedResources {
     }
 
 
-    public static void save() {
 
-    }
-
-    public static void load() {
-
-    }
 
     public static void setFavouriteSul(String sul_name, boolean set) {
         getSul(sul_name).setFavourite(set);

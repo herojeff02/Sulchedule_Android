@@ -52,7 +52,6 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     public TrafficGoalRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_goal_item, viewGroup, false);
 
-
         return new TrafficGoalRecyclerViewHolder(view);
     }
 
@@ -60,6 +59,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     public void onBindViewHolder(final @NonNull TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i) {
         if (enabled[i]) {
             trafficGoalRecyclerViewHolder.text_right_top.setText(String.valueOf(right_top[i]));
+            trafficGoalRecyclerViewHolder.text_right_top.setTextColor(SharedResources.color_white);
             trafficGoalRecyclerViewHolder.itemView.post(new Runnable() {
                 @Override
                 public void run() {
@@ -81,9 +81,9 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         } else {
             trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(SharedResources.color_traffic_green));
         }
-
-
     }
+
+    
 
     @Override
     public void onViewAttachedToWindow(@NonNull TrafficGoalRecyclerViewHolder holder) {

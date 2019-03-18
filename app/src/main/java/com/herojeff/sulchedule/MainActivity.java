@@ -1,16 +1,21 @@
 package com.herojeff.sulchedule;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
+import com.herojeff.sulchedule.data.Sul;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +28,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //retrieve data
+        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+        Gson gson = new Gson();
+        if(!SharedResources.first_launch_ever) {
+            String json = mPrefs.getString("suls", "");
+            ArrayList<Sul> k = gson.fromJson(json, new TypeToken<ArrayList<Sul>>() {
+            }.getType());
+            String json_first_launch = mPrefs.getString("boolean", "false");
+
+            SharedResources.first_launch_ever = gson.fromJson(json_first_launch, Boolean.class);
+            SharedResources.setSuls(k);
+        }
+
+
+
 
         frameLayout = findViewById(R.id.fragment_container);
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -105,7 +126,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        testField();
     }
 
+    private void testField() {
+        SharedResources.appendRecordDay(2019,3,14);
+        SharedResources.getRecordDay(2019,3,14).setCertain_sul_count(2,5);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SaveManager.setPrefs(getSharedPreferences("trial", MODE_PRIVATE));
+        SaveManager.save();
+    }
 }

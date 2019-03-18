@@ -1,5 +1,6 @@
 package com.herojeff.sulchedule;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.SharedResources;
+import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 
 public class TrafficFragment extends Fragment {
@@ -23,6 +26,9 @@ public class TrafficFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    ImageView setting_button;
+
+    boolean edit_mode = false;
 
     public TrafficFragment() {
         // Required empty public constructor
@@ -52,11 +58,20 @@ public class TrafficFragment extends Fragment {
         traffic_yellow = view.findViewById(R.id.traffic_yellow);
         traffic_green = view.findViewById(R.id.traffic_green);
         text_encouragement = view.findViewById(R.id.text_encouragement);
+        setting_button = view.findViewById(R.id.setting_button);
 
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         adapter = new TrafficGoalRecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
+
+        setting_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit_mode = !edit_mode;
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         return view;
     }

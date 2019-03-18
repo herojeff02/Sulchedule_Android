@@ -8,9 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.RecordDay;
 import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
+
+import java.util.ArrayList;
 
 public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRecyclerViewAdapter.PastItemRecyclerViewHolder> {
 
@@ -31,13 +34,15 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
     TextView desc_2;
     TextView desc_3;
 
+    ArrayList<RecordDay> recordDays;
+
     View view;
 
-    public PastItemRecyclerViewAdapter(boolean big, TextView left, TextView right) {
+    public PastItemRecyclerViewAdapter(boolean big, TextView left, TextView right, ArrayList<RecordDay> recordDays) {
         this.headerFlag_Big = big;
         this.left = left;
         this.right = right;
-
+        this.recordDays = recordDays;
     }
 
     public void clickHeader(boolean isLeft) {
@@ -131,7 +136,8 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             ListView adapter_past_inner_listview = view.findViewById(R.id.recyclerview_past_inner_item_container);
             TextView tv = view.findViewById(R.id.text_date);
             tv.setText(SharedResources.getMonth() + "월 " + SharedResources.getDay() + "일 (" + SharedResources.getWeekDayKorean() + ")");
-            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(SharedResources.getMonthlyRecordDayArray(SharedResources.getYear(), SharedResources.getMonth()).get(i - 1), null, false);
+
+            PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(recordDays.get(i-1), null, false);
             adapter_past_inner_listview.setAdapter(adapter_past_inner_listview_adapter);
             adapter_past_inner_listview.setDividerHeight(0);
 

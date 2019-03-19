@@ -74,7 +74,7 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     void showAddSul() {
-        final AddSulDialog addCateDialog = new AddSulDialog(this, false, -1);
+        final AddSulDialog addCateDialog = new AddSulDialog(this, false, "");
         addCateDialog.show();
         addCateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override

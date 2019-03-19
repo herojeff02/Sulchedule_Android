@@ -1,8 +1,10 @@
 package com.herojeff.sulchedule;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -55,7 +57,7 @@ public class MoreSulEditActivity extends AppCompatActivity {
     }
 
     void showAddSul() {
-        final AddSulDialog addCateDialog = new AddSulDialog(this, false, -1);
+        final AddSulDialog addCateDialog = new AddSulDialog(this, false, "");
         addCateDialog.show();
         addCateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override

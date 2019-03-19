@@ -20,15 +20,16 @@ public class AddSulDialog extends Dialog {
     EditText text_price;
     TextView button_dismiss;
     TextView button_save;
+    TextView title_text;
 
     boolean did_add = false;
     boolean is_edit_mode = false;
-    int sul_index;
+    String sul_name;
 
-    public AddSulDialog(Context context, boolean is_edit_mode, int sul_index) {
+    public AddSulDialog(Context context, boolean is_edit_mode, String sul_name) {
         super(context);
         this.is_edit_mode = is_edit_mode;
-        this.sul_index = sul_index;
+        this.sul_name = sul_name;
     }
 
     public boolean get_did_add() {
@@ -47,13 +48,15 @@ public class AddSulDialog extends Dialog {
         text_price = findViewById(R.id.text_price);
         button_dismiss = findViewById(R.id.button_dismiss);
         button_save = findViewById(R.id.button_save);
+        title_text = findViewById(R.id.title_text);
 
 
         if (is_edit_mode) {
-            text_kcal.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_calorie()));
-            text_name.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_name()));
-            text_unit.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_unit()));
-            text_price.setText(String.valueOf(SharedResources.getSul(sul_index).getSul_price()));
+            title_text.setText(sul_name + " 정보 수정");
+            text_kcal.setText(String.valueOf(SharedResources.getSul(sul_name).getSul_calorie()));
+            text_name.setText(String.valueOf(SharedResources.getSul(sul_name).getSul_name()));
+            text_unit.setText(String.valueOf(SharedResources.getSul(sul_name).getSul_unit()));
+            text_price.setText(String.valueOf(SharedResources.getSul(sul_name).getSul_price()));
         }
 
         text_unit.addTextChangedListener(new TextWatcher() {

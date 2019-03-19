@@ -1,7 +1,11 @@
 package com.herojeff.sulchedule;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.text.Html;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
@@ -77,25 +82,22 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showEditSul(parent.getContext(), pos);
+                showEditSul(parent.getContext(), suls.get(pos).sul_name);
             }
         });
+        final View finalConvertView = convertView;
         remove_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String k = suls.get(pos).sul_name;
-                SharedResources.removeSul(k);
-                suls = SharedResources.getSuls();
-                adapter.notifyDataSetChanged();
-                ListViewResizeUtility.setListViewHeightBasedOnItems(listview);
+                deleteDialog(finalConvertView, suls.get(pos).sul_name);
             }
         });
 
         return convertView;
     }
 
-    void showEditSul(final Context context, int index) {
-        final AddSulDialog addCateDialog = new AddSulDialog(context, true, index);
+    void showEditSul(final Context context, String sul_name) {
+        final AddSulDialog addCateDialog = new AddSulDialog(context, true, sul_name);
         addCateDialog.show();
         addCateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
@@ -104,4 +106,31 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
         });
     }
 
+    void deleteDialog(View view, final String sul_name) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(view.getContext(), R.style.TodaySettingDialog));
+        builder.setTitle(Html.fromHtml("<b>" + sul_name + "을(를) 삭제할까요?" + "</b>"));
+        builder.setMessage("기록은 삭제되지 않으며, 주류의 이름만 제거됩니다.");
+
+        builder.setPositiveButton("삭제",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedResources.removeSul(sul_name);
+
+                        suls = SharedResources.getSuls();
+                        adapter.notifyDataSetChanged();
+                        ListViewResizeUtility.setListViewHeightBasedOnItems(listview);
+                    }
+                }).create();
+        AlertDialog alertDialog = builder.setNegativeButton("취소",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                }).create();
+
+//        builder.show();
+        alertDialog.show();
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(CustomColor.color_traffic_red);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(CustomColor.color_traffic_yellow);
+    }
 }

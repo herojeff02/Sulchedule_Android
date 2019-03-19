@@ -28,7 +28,7 @@ public class RecordDay {
             return true;
         }
         for (int k : sul_list.keySet()) {
-            if (sul_list.get(k) != 0 && SharedResources.getSul(k).isSul_enabled()) {
+            if (sul_list.get(k) != 0) {
                 return false;
             }
         }
@@ -37,6 +37,15 @@ public class RecordDay {
 
     public ArrayList<String> getFriend_list() {
         return friend_list;
+    }
+
+    public boolean containsDeletedSul(){
+        for (int k : sul_list.keySet()) {
+            if (sul_list.get(k) != 0 && !SharedResources.getSul(k).isSul_enabled()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<String> getLocation_list() {
@@ -98,7 +107,6 @@ public class RecordDay {
         ArrayList<Sul> return_sul = new ArrayList<>();
         for (Sul sul : SharedResources.getSuls()) {
             if (sul.isSul_enabled()) {
-
                 return_sul.add(sul);
             }
         }

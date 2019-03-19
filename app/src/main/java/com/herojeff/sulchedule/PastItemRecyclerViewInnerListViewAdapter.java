@@ -46,7 +46,9 @@ public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
             HashMap<Integer, Integer> sul_list = recordDay.getSul_list();
             for (int i : sul_list.keySet()) {
                 if (sul_list.get(i) != 0) {
-                    arr.add(new StringPair(String.valueOf(sul_list.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
+                    if(SharedResources.getSul(i).isSul_enabled()) {
+                        arr.add(new StringPair(String.valueOf(sul_list.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
+                    }
                 }
             }
             ArrayList<String> friend_list = recordDay.getFriend_list();

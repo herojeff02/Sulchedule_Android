@@ -129,10 +129,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     public void onResume() {
         super.onResume();
 
-        CustomDayManager.initCustomDay();
-        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
-        recordMonth.cleanup();
-
         updateTipString(false);
         showArray = SharedResources.getMainSuls(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay());
         if (!first) {

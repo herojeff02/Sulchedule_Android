@@ -142,14 +142,18 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             //set listview content
             ListView adapter_past_inner_listview = view.findViewById(R.id.recyclerview_past_inner_item_container);
             TextView tv = view.findViewById(R.id.text_date);
-            System.out.println(currMonth);
-            System.out.println(currIndex);
 
             if(i-1 < currIndex) {
                 tv.setText(currMonth - 1 + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
+                if(recordDays.get(i-1).containsDeletedSul()) {
+                    tv.append(" (삭제된 주류 포함)");
+                }
             }
             else{
                 tv.setText(currMonth + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
+                if(recordDays.get(i-1).containsDeletedSul()) {
+                    tv.append(" (삭제된 주류 포함)");
+                }
             }
 
             PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(recordDays.get(i - 1), null, false);

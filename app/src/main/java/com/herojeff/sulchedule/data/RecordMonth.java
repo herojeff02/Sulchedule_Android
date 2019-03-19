@@ -120,6 +120,7 @@ public class RecordMonth {
                     }
                 }
                 if (removal_flag) {
+                    System.out.println("removing recordDay");
                     recordDays.remove(recordDay);
                 }
             }
@@ -208,12 +209,11 @@ public class RecordMonth {
 
     public double getTrafficSignal() { //if -1.0, nothing is enabled
         double return_value = -1.0;
-        RecordMonth recordMonth = SharedResources.getRecordMonth(year, month);
         boolean[] enabled = new boolean[]{
-                recordMonth.isEnable_daysOfMonth(), recordMonth.isEnable_streakOfMonth(), recordMonth.isEnable_totalExpense(), recordMonth.isEnable_caloriesOfMonth()
+                isEnable_daysOfMonth(), isEnable_streakOfMonth(), isEnable_totalExpense(), isEnable_caloriesOfMonth()
         };
         double[] bar_t = new double[]{
-                recordMonth.goalStat_daysOfMonth(), recordMonth.goalStat_streakOfMonth(), recordMonth.goalStat_totalExpense(), recordMonth.goalStat_caloriesOfMonth()
+                goalStat_daysOfMonth(), goalStat_streakOfMonth(), goalStat_totalExpense(), goalStat_caloriesOfMonth()
         };
         for (int i = 0; i < 4; i++) {
             if (enabled[i]) {

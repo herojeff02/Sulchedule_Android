@@ -26,7 +26,7 @@ public class MoreSulEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_sul_edit);
-        this.getWindow().setNavigationBarColor(CustomColor.color_primary_dark_dark);
+        this.getWindow().setNavigationBarColor(CustomColor.color_primary_dark);
 
         scrollview_sul_edit = findViewById(R.id.scrollview_sul_edit);
         listview_more_sul_edit = findViewById(R.id.listview_more_sul_edit);

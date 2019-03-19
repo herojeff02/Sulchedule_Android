@@ -80,10 +80,6 @@ public class TrafficFragment extends Fragment {
         super.onResume();
         final float alpha = 0.25f;
 
-        CustomDayManager.initCustomDay();
-        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
-        recordMonth.cleanup();
-
         double k = SharedResources.getRecordMonth().getTrafficSignal();
 
         if (k < 0) {

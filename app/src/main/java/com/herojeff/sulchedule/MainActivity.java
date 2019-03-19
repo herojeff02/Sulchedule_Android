@@ -32,19 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //retrieve data
-        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
-        Gson gson = new Gson();
-        if (!SharedResources.first_launch_ever) {
-            String json = mPrefs.getString("suls", "");
-            ArrayList<Sul> k = gson.fromJson(json, new TypeToken<ArrayList<Sul>>() {
-            }.getType());
-            String json_first_launch = mPrefs.getString("boolean", "false");
-
-            SharedResources.first_launch_ever = gson.fromJson(json_first_launch, Boolean.class);
-            SharedResources.setSuls(k);
-        }
-
         CustomDayManager.initCustomDay();
 
 
@@ -76,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         this.getWindow().setNavigationBarColor(CustomColor.color_primary);
-        this.getWindow().setStatusBarColor(CustomColor.color_primary_dark);
+        this.getWindow().setStatusBarColor(CustomColor.color_primary_dark_dark);
 
 //        transaction.beginTransaction().add(R.id.fragment_container, todayFragment).commit();
 //        transaction.beginTransaction().add(R.id.fragment_container, pastFragment).commit();
@@ -115,6 +102,12 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                CustomDayManager.initCustomDay();
+                SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()).cleanup();
+
+
+
                 switch (item.getItemId()) {
                     case R.id.navigation_today:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, todayFragment).commit();
@@ -145,7 +138,5 @@ public class MainActivity extends AppCompatActivity {
 
         SaveManager.setPrefs(getSharedPreferences("trial", MODE_PRIVATE));
         SaveManager.save();
-
-        Toast.makeText(this, String.valueOf(SharedResources.getRecordMonth().getRecordDays().size()), Toast.LENGTH_SHORT).show();
     }
 }

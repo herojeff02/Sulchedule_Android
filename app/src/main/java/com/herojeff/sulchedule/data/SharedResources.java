@@ -112,7 +112,7 @@ public final class SharedResources {
 
         RecordDay recordDay = getRecordDay(year, month, day);
         for (int sul_index : recordDay.sul_list.keySet()) {
-            if (recordDay.getCertain_sul_count(sul_index) != 0 && !getSul(sul_index).isFavourite()) {
+            if (recordDay.getCertain_sul_count(sul_index) != 0 && !getSul(sul_index).isFavourite() && getSul(sul_index).isSul_enabled()) {
                 suls.add(getSul(sul_index));
             }
         }

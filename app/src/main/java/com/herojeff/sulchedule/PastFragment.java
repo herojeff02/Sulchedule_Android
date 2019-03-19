@@ -63,10 +63,6 @@ public class PastFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_past, null);
 
-        CustomDayManager.initCustomDay();
-        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
-        recordMonth.cleanup();
-
         button_left = view.findViewById(R.id.button_left);
         button_right = view.findViewById(R.id.button_right);
 
@@ -94,10 +90,6 @@ public class PastFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        CustomDayManager.initCustomDay();
-        RecordMonth recordMonth = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth());
-        recordMonth.cleanup();
 
         button_left.setTextColor(CustomColor.color_accent);
         button_right.setTextColor(CustomColor.color_white);

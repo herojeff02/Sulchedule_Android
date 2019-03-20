@@ -33,21 +33,21 @@ public class RecordMonth {
         HashMap<String, Integer> monthlyBestLoc = new HashMap<>();
         for (RecordDay recordDay : recordDays) {
             //consolidation
-            if (recordDay.sul_list.size() != 0) {
-                for (int i : recordDay.sul_list.keySet()) {
-                    int a;
-                    try {
-                        a = monthlyBestDrink.get(i);
-                    } catch (Exception e) {
-                        monthlyBestDrink.put(i, 0);
-                        a = 0;
+            if (recordDay.getSul_list().size() != 0) {
+                for (int i : recordDay.getSul_list().keySet()) {
+                    if(SharedResources.getSul(i).isSul_enabled()) {
+                        int a;
+                        try {
+                            a = monthlyBestDrink.get(i);
+                        } catch (Exception e) {
+                            monthlyBestDrink.put(i, 0);
+                            a = 0;
+                        }
+                        int b = recordDay.getCertain_sul_count(i);
+                        monthlyBestDrink.remove(i);
+                        monthlyBestDrink.put(i, a + b);
                     }
-                    int b = recordDay.getCertain_sul_count(i);
-                    monthlyBestDrink.remove(i);
-                    monthlyBestDrink.put(i, a + b);
                 }
-            } else {
-
             }
 
             for (String i : recordDay.friend_list) {

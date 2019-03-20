@@ -14,6 +14,7 @@ import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.RecordDay;
 import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
+import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 import java.util.ArrayList;
@@ -97,7 +98,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
                     RecordMonth.MonthlyBest monthlyBest = SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()).getMonthlyBest();
 
                     if (monthlyBest.drink_count != 0) {
-                        title_1.setText(SharedResources.getSul(monthlyBest.drink_index).sul_name);
+                        title_1.setText(SharedResources.getSul(monthlyBest.drink_index).getSul_name());
                         desc_1.setText(monthlyBest.drink_count + "병, " + monthlyBest.drink_expense + "원, " + monthlyBest.drink_calorie + "kcal");
                     } else {
                         title_1.setText("정보 부족");
@@ -115,7 +116,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
                         desc_3.setText(monthlyBest.loc_count + "회, " + monthlyBest.loc_expense + "원, " + monthlyBest.loc_calorie + "kcal");
                     } else {
                         title_3.setText("정보 부족");
-                        desc_3.setText("장소");
+                        desc_3.setText("좋아하는 장소");
                     }
                 }
             }

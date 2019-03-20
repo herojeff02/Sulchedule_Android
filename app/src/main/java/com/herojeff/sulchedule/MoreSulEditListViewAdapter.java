@@ -131,6 +131,6 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
 //        builder.show();
         alertDialog.show();
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(CustomColor.color_traffic_red);
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(CustomColor.color_traffic_yellow);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(CustomColor.color_accent);
     }
 }

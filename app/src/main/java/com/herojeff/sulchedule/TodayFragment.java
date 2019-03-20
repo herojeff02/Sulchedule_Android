@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
@@ -158,6 +159,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
                 break;
             case R.id.pill_more_sul:
                 intent = new Intent(getContext(), MoreSulActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             /**개발 후 되살릴 영역**/
@@ -174,22 +176,26 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         builder.setTitle("스마트 팁");
         builder.setMessage("켜면 열량, 지출액에 따라 유동적으로 팁을 표시합니다.\n끄면 지출액과 열량만이 표시됩니다.");
 
+        AlertDialog dialog;
+
         builder.setPositiveButton("켜기",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         SharedResources.smart_tip_string = true;
                         updateTipString(false);
                     }
-                });
-        builder.setNegativeButton("끄기",
+                }).create();
+        dialog = builder.setNegativeButton("끄기",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         SharedResources.smart_tip_string = false;
                         updateTipString(false);
                     }
-                });
+                }).create();
 
-        builder.show();
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(CustomColor.color_accent);
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(CustomColor.color_accent);
     }
 
     @Override

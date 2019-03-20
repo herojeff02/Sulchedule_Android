@@ -47,7 +47,7 @@
                 android:layout_toLeftOf="@id/button_save"
                 android:padding="16dp"
                 android:text="닫기"
-                android:textColor="@color/textWhite"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/h6" />
 
             <TextView

@@ -62,6 +62,7 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.setting_button:
                 intent = new Intent(getApplicationContext(), MoreSulEditActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
             case R.id.add_button:

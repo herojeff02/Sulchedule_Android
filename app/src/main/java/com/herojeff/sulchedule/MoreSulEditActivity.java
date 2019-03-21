@@ -1,10 +1,8 @@
 package com.herojeff.sulchedule;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -12,7 +10,6 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 
 import com.herojeff.sulchedule.data.CustomColor;
-import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 public class MoreSulEditActivity extends AppCompatActivity {

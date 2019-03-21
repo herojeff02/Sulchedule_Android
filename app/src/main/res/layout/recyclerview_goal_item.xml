@@ -8,15 +8,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-2dp">
 
         <TextView
             android:id="@+id/text_left_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="demo1"
             android:layout_marginBottom="2dp"
             android:clickable="false"
+            android:text="demo1"
             android:textColor="@color/textWhite"
             android:textSize="@dimen/h4" />
 
@@ -25,16 +26,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="demo2"
-            android:hint="비활성화"
             android:layout_marginTop="-7dp"
             android:layout_marginRight="-3dp"
-            android:textColorHint="@color/textTransparent"
-            android:textAlignment="viewEnd"
-            android:singleLine="true"
+            android:layout_marginBottom="-5dp"
+            android:hint="목표 설정"
+            android:imeOptions="actionDone"
             android:inputType="number"
-            android:layout_marginBottom="-6dp"
+            android:lines="1"
+            android:singleLine="true"
+            android:text="demo2"
+            android:textAlignment="viewEnd"
             android:textColor="@color/textWhite"
+            android:textColorHint="@color/colorAccent"
             android:textSize="@dimen/h4" />
     </RelativeLayout>
 

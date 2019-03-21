@@ -58,17 +58,6 @@
             android:textColor="@color/textWhite"
             android:textSize="@dimen/h5" />
 
-        <ImageView
-            android:id="@+id/setting_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="9dp"
-            android:padding="20dp"
-            android:src="@drawable/ic_settings"
-            android:tint="@color/textWhite" />
-
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

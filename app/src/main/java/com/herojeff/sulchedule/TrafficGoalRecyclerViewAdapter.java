@@ -101,6 +101,47 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         return 4;
     }
 
+    void initSpinnerValue() {
+        spinner.add(0, new ArrayList<Integer>());
+        spinner.add(1, new ArrayList<Integer>());
+        spinner.add(2, new ArrayList<Integer>());
+        spinner.add(3, new ArrayList<Integer>());
+
+        //0
+        for (int i = -1; i <= CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth()); i++) {
+            spinner.get(0).add(i);
+        }
+
+        //1
+        for (int i = -1; i <= CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth()); i++) {
+            spinner.get(1).add(i);
+        }
+
+        //2
+        for (int i = -1; i <= 19; i++) {
+            spinner.get(2).add(i * 5000);
+        }
+        for (int i = 2; i <= 10; i++) {
+            spinner.get(2).add(i * 10000);
+        }
+        //5000씩, 100000까지, 50000씩, 500000까지
+
+        //3
+        for (int i = -1; i <= 19; i++) {
+            spinner.get(3).add(i * 50);
+        }
+        for (int i = 10; i <= 49; i++) {
+            spinner.get(3).add(i * 100);
+        }
+        for (int i = 10; i <= 19; i++) {
+            spinner.get(3).add(i * 500);
+        }
+        for (int i = 2; i <= 20; i++) {
+            spinner.get(3).add(i * 5000);
+        }
+        //50씩, 1000까지, 100씩, 5000까지, 500씩, 10000까지, 5000씩 100000까지
+    }
+
     public class TrafficGoalRecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView text_left_top;
@@ -122,46 +163,5 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
 
 
         }
-    }
-
-    void initSpinnerValue(){
-        spinner.add(0, new ArrayList<Integer>());
-        spinner.add(1, new ArrayList<Integer>());
-        spinner.add(2, new ArrayList<Integer>());
-        spinner.add(3, new ArrayList<Integer>());
-
-        //0
-        for (int i = -1; i<=CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth());i++){
-            spinner.get(0).add(i);
-        }
-
-        //1
-        for (int i = -1; i<=CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth());i++){
-            spinner.get(1).add(i);
-        }
-
-        //2
-        for (int i = -1; i<=19;i++){
-            spinner.get(2).add(i*5000);
-        }
-        for (int i = 2; i<=10;i++){
-            spinner.get(2).add(i*10000);
-        }
-        //5000씩, 100000까지, 50000씩, 500000까지
-
-        //3
-        for (int i = -1; i<=19;i++){
-            spinner.get(3).add(i*50);
-        }
-        for (int i = 10; i<=49;i++){
-            spinner.get(3).add(i*100);
-        }
-        for (int i = 10; i<=19;i++){
-            spinner.get(3).add(i*500);
-        }
-        for (int i = 2; i<=20;i++){
-            spinner.get(3).add(i*5000);
-        }
-        //50씩, 1000까지, 100씩, 5000까지, 500씩, 10000까지, 5000씩 100000까지
     }
 }

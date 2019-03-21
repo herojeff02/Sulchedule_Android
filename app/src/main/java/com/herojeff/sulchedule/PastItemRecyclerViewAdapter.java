@@ -7,14 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.RecordDay;
 import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
-import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 import java.util.ArrayList;
@@ -144,15 +142,14 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             ListView adapter_past_inner_listview = view.findViewById(R.id.recyclerview_past_inner_item_container);
             TextView tv = view.findViewById(R.id.text_date);
 
-            if(i-1 < currIndex) {
+            if (i - 1 < currIndex) {
                 tv.setText(currMonth - 1 + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
-                if(recordDays.get(i-1).containsDeletedSul()) {
+                if (recordDays.get(i - 1).containsDeletedSul()) {
                     tv.append(" (삭제된 주류 포함)");
                 }
-            }
-            else{
+            } else {
                 tv.setText(currMonth + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
-                if(recordDays.get(i-1).containsDeletedSul()) {
+                if (recordDays.get(i - 1).containsDeletedSul()) {
                     tv.append(" (삭제된 주류 포함)");
                 }
             }

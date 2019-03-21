@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.herojeff.sulchedule.data.CustomDayManager;
-import com.herojeff.sulchedule.data.RecordMonth;
 import com.herojeff.sulchedule.data.SharedResources;
 
 
@@ -25,7 +23,6 @@ public class TrafficFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    ImageView setting_button;
 
     boolean edit_mode = false;
 
@@ -57,20 +54,11 @@ public class TrafficFragment extends Fragment {
         traffic_yellow = view.findViewById(R.id.traffic_yellow);
         traffic_green = view.findViewById(R.id.traffic_green);
         text_encouragement = view.findViewById(R.id.text_encouragement);
-        setting_button = view.findViewById(R.id.setting_button);
 
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         adapter = new TrafficGoalRecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
-
-        setting_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                edit_mode = !edit_mode;
-                adapter.notifyDataSetChanged();
-            }
-        });
 
         return view;
     }

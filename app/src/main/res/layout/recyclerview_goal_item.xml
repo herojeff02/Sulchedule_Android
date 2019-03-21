@@ -8,24 +8,33 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/text_left_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="demo1"
+            android:layout_marginBottom="2dp"
+            android:clickable="false"
             android:textColor="@color/textWhite"
             android:textSize="@dimen/h4" />
 
-        <TextView
+        <EditText
             android:id="@+id/text_right_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="demo2"
-            android:textColor="@color/textTransparent"
+            android:hint="비활성화"
+            android:layout_marginTop="-7dp"
+            android:layout_marginRight="-3dp"
+            android:textColorHint="@color/textTransparent"
+            android:textAlignment="viewEnd"
+            android:singleLine="true"
+            android:inputType="number"
+            android:layout_marginBottom="-6dp"
+            android:textColor="@color/textWhite"
             android:textSize="@dimen/h4" />
     </RelativeLayout>
 
@@ -34,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:id="@+id/text_left_bottom"

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -74,7 +75,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
                 }
             });
         } else {
-            trafficGoalRecyclerViewHolder.text_right_top.setText("비활성화");
+            trafficGoalRecyclerViewHolder.text_right_top.setText("");
         }
         trafficGoalRecyclerViewHolder.text_left_top.setText(left_top[i]);
         trafficGoalRecyclerViewHolder.text_left_bottom.setText(left_bottom[i]);
@@ -103,7 +104,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     public class TrafficGoalRecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView text_left_top;
-        TextView text_right_top;
+        EditText text_right_top;
         TextView text_left_bottom;
         TextView text_right_bottom;
         ImageView graph_overlay;

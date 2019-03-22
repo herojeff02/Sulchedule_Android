@@ -82,6 +82,7 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
                 PastItemRecyclerViewInnerListViewAdapter adapter_past_inner_listview_adapter = new PastItemRecyclerViewInnerListViewAdapter(null, SharedResources.getRecordMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()), true);
                 adapter_past_inner_listview_for_header.setAdapter(adapter_past_inner_listview_adapter);
                 adapter_past_inner_listview_for_header.setDividerHeight(0);
+                adapter_past_inner_listview_for_header.setEnabled(false);
                 //set listview height not to clip content
                 ListViewResizeUtility.setListViewHeightBasedOnItems(adapter_past_inner_listview_for_header);
 
@@ -141,6 +142,8 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             //set listview content
             ListView adapter_past_inner_listview = view.findViewById(R.id.recyclerview_past_inner_item_container);
             TextView tv = view.findViewById(R.id.text_date);
+
+            adapter_past_inner_listview.setEnabled(false);
 
             if (i - 1 < currIndex) {
                 tv.setText(currMonth - 1 + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");

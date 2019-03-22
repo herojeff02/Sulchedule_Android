@@ -71,7 +71,7 @@ public class TrafficFragment extends Fragment {
         double k = SharedResources.getRecordMonth().getTrafficSignal();
 
         if (k < 0) {
-            text_encouragement.setText("목표를 설정하세요.");
+            text_encouragement.setText("노란 글씨를 눌러 목표 설정");
             traffic_red.setAlpha(alpha);
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(alpha);

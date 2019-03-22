@@ -56,6 +56,10 @@
             android:layout_toRightOf="@id/traffic_container"
             android:text="잘하고 있어요!!"
             android:textColor="@color/textWhite"
+            android:paddingRight="16dp"
+            android:maxLines="1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10dp"
             android:textSize="@dimen/h5" />
 
     </RelativeLayout>

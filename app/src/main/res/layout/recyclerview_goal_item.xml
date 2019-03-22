@@ -6,14 +6,16 @@
     android:paddingLeft="17dp"
     android:paddingRight="17dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginBottom="-2dp">
 
         <TextView
             android:id="@+id/text_left_top"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:clickable="false"
@@ -21,27 +23,20 @@
             android:textColor="@color/textWhite"
             android:textSize="@dimen/h4" />
 
-        <EditText
+        <TextView
             android:id="@+id/text_right_top"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="-7dp"
-            android:layout_marginRight="-3dp"
-            android:layout_marginBottom="-5dp"
-            android:hint="목표 설정"
-            android:imeOptions="actionDone"
-            android:inputType="number"
-            android:lines="1"
-            android:singleLine="true"
             android:text="demo2"
             android:textAlignment="viewEnd"
             android:textColor="@color/textWhite"
-            android:textColorHint="@color/colorAccent"
             android:textSize="@dimen/h4" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/edit_goal_touch_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="1dp"

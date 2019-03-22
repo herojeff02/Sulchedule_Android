@@ -1,12 +1,17 @@
 package com.herojeff.sulchedule;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,13 +35,19 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     String[] left_top;
     double[] bar_t;
 
-    ArrayList<ArrayList<Integer>> spinner = new ArrayList<>();
+    Context context;
+
+    ArrayList<ArrayList<String>> spinnerValues = new ArrayList<>();
 
     public TrafficGoalRecyclerViewAdapter() {
         year = CustomDayManager.getTodayYear();
         month = CustomDayManager.getTodayMonth();
         recordMonth = SharedResources.getRecordMonth(year, month);
 
+        refreshDisplayArrayValue();
+    }
+
+    private void refreshDisplayArrayValue() {
         enabled = new boolean[]{
                 recordMonth.isEnable_daysOfMonth(), recordMonth.isEnable_streakOfMonth(), recordMonth.isEnable_totalExpense(), recordMonth.isEnable_caloriesOfMonth()
         };
@@ -58,6 +69,9 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     @Override
     public TrafficGoalRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_goal_item, viewGroup, false);
+        context = view.getContext();
+
+        initSpinnerValue();
 
         return new TrafficGoalRecyclerViewHolder(view);
     }
@@ -75,7 +89,8 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
                 }
             });
         } else {
-            trafficGoalRecyclerViewHolder.text_right_top.setText("");
+            trafficGoalRecyclerViewHolder.text_right_top.setTextColor(CustomColor.color_accent);
+            trafficGoalRecyclerViewHolder.text_right_top.setText("목표 설정");
         }
         trafficGoalRecyclerViewHolder.text_left_top.setText(left_top[i]);
         trafficGoalRecyclerViewHolder.text_left_bottom.setText(left_bottom[i]);
@@ -88,6 +103,77 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         } else {
             trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_green));
         }
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.goal_dialog_item);
+        adapter.addAll(spinnerValues.get(i));
+
+        trafficGoalRecyclerViewHolder.text_right_top.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(view.getContext(), R.style.TodaySettingDialog));
+                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        trafficGoalRecyclerViewHolder.text_right_top.setText(adapter.getItem(i));
+                        switch (trafficGoalRecyclerViewHolder.getAdapterPosition()){
+                            case 0:
+                                if(i==0){
+                                    SharedResources.getRecordMonth().setEnable_daysOfMonth(false);
+                                }
+                                else{
+                                    SharedResources.getRecordMonth().setEnable_daysOfMonth(true);
+                                    String k = spinnerValues.get(0).get(i);
+                                    SharedResources.getRecordMonth().setGoal_daysOfMonth(Integer.parseInt(k.substring(0, k.length()-1)));
+                                }
+                                break;
+                            case 1:
+                                if(i==0){
+                                    SharedResources.getRecordMonth().setEnable_streakOfMonth(false);
+                                }
+                                else{
+                                    SharedResources.getRecordMonth().setEnable_streakOfMonth(true);
+                                    String k = spinnerValues.get(1).get(i);
+                                    SharedResources.getRecordMonth().setGoal_streakOfMonth(Integer.parseInt(k.substring(0, k.length()-1)));
+                                }
+                                break;
+                            case 2:
+                                if(i==0){
+                                    SharedResources.getRecordMonth().setEnable_totalExpense(false);
+                                }
+                                else{
+                                    SharedResources.getRecordMonth().setEnable_totalExpense(true);
+                                    String k = spinnerValues.get(2).get(i);
+                                    SharedResources.getRecordMonth().setGoal_totalExpense(Integer.parseInt(k.substring(0, k.length()-1)));
+                                }
+                                break;
+                            case 3:
+                                if(i==0){
+                                    SharedResources.getRecordMonth().setEnable_caloriesOfMonth(false);
+                                }
+                                else{
+                                    SharedResources.getRecordMonth().setEnable_caloriesOfMonth(true);
+                                    String k = spinnerValues.get(3).get(i);
+                                    SharedResources.getRecordMonth().setGoal_caloriesOfMonth(Integer.parseInt(k.substring(0, k.length()-4)));
+                                }
+                                break;
+
+                        }
+
+                        refreshDisplayArrayValue();
+                    }
+                });
+
+
+                builder.setTitle(left_bottom[i] + " 설정");
+
+                Dialog dialog = builder.create();
+                int width = (int)(view.getResources().getDisplayMetrics().widthPixels*0.90);
+                int height = (int)(view.getResources().getDisplayMetrics().heightPixels*0.60);
+
+                dialog.show();
+                dialog.getWindow().setLayout(width, height);
+            }
+        });
     }
 
 
@@ -102,42 +188,47 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     }
 
     void initSpinnerValue() {
-        spinner.add(0, new ArrayList<Integer>());
-        spinner.add(1, new ArrayList<Integer>());
-        spinner.add(2, new ArrayList<Integer>());
-        spinner.add(3, new ArrayList<Integer>());
+        spinnerValues.add(0, new ArrayList<String>());
+        spinnerValues.add(1, new ArrayList<String>());
+        spinnerValues.add(2, new ArrayList<String>());
+        spinnerValues.add(3, new ArrayList<String>());
+
+        spinnerValues.get(0).add("목표 비활성화");
+        spinnerValues.get(1).add("목표 비활성화");
+        spinnerValues.get(2).add("목표 비활성화");
+        spinnerValues.get(3).add("목표 비활성화");
 
         //0
-        for (int i = -1; i <= CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth()); i++) {
-            spinner.get(0).add(i);
+        for (int i = 0; i <= CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth()); i++) {
+            spinnerValues.get(0).add(String.valueOf(i) + "일");
         }
 
         //1
-        for (int i = -1; i <= CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth()); i++) {
-            spinner.get(1).add(i);
+        for (int i = 0; i <= CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth()); i++) {
+            spinnerValues.get(1).add(String.valueOf(i) + "일");
         }
 
         //2
-        for (int i = -1; i <= 19; i++) {
-            spinner.get(2).add(i * 5000);
+        for (int i = 0; i <= 19; i++) {
+            spinnerValues.get(2).add(String.valueOf(i * 5000) + "원");
         }
         for (int i = 2; i <= 10; i++) {
-            spinner.get(2).add(i * 10000);
+            spinnerValues.get(2).add(String.valueOf(i * 50000) + "원");
         }
         //5000씩, 100000까지, 50000씩, 500000까지
 
         //3
-        for (int i = -1; i <= 19; i++) {
-            spinner.get(3).add(i * 50);
+        for (int i = 0; i <= 19; i++) {
+            spinnerValues.get(3).add(String.valueOf(i * 50) + "kcal");
         }
         for (int i = 10; i <= 49; i++) {
-            spinner.get(3).add(i * 100);
+            spinnerValues.get(3).add(String.valueOf(i * 100) + "kcal");
         }
         for (int i = 10; i <= 19; i++) {
-            spinner.get(3).add(i * 500);
+            spinnerValues.get(3).add(String.valueOf(i * 500) + "kcal");
         }
         for (int i = 2; i <= 20; i++) {
-            spinner.get(3).add(i * 5000);
+            spinnerValues.get(3).add(String.valueOf(i * 5000) + "kcal");
         }
         //50씩, 1000까지, 100씩, 5000까지, 500씩, 10000까지, 5000씩 100000까지
     }
@@ -145,7 +236,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     public class TrafficGoalRecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView text_left_top;
-        EditText text_right_top;
+        TextView text_right_top;
         TextView text_left_bottom;
         TextView text_right_bottom;
         ImageView graph_overlay;

@@ -1,7 +1,5 @@
 package com.herojeff.sulchedule.data;
 
-import android.graphics.Color;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -111,7 +109,7 @@ public final class SharedResources {
         ArrayList<Sul> suls = getFavouriteSuls();
 
         RecordDay recordDay = getRecordDay(year, month, day);
-        for (int sul_index : recordDay.sul_list.keySet()) {
+        for (int sul_index : recordDay.getSul_list().keySet()) {
             if (recordDay.getCertain_sul_count(sul_index) != 0 && !getSul(sul_index).isFavourite() && getSul(sul_index).isSul_enabled()) {
                 suls.add(getSul(sul_index));
             }
@@ -135,7 +133,7 @@ public final class SharedResources {
     public static ArrayList<RecordDay> getMonthlyRecordDayArrayStartingFrom(int year, int month, int day) {
         ArrayList<RecordDay> returnArray = new ArrayList<>();
         for (RecordMonth recordMonth : recordMonths) {
-            if (recordMonth.year == year && recordMonth.month == month) {
+            if (recordMonth.getYear() == year && recordMonth.getMonth() == month) {
                 for (RecordDay recordDay : recordMonth.getRecordDays()) {
                     if (recordDay.getDay() > day - 14) {
                         returnArray.add(recordDay);
@@ -151,7 +149,7 @@ public final class SharedResources {
         month--;
         ArrayList<RecordDay> returnArray = new ArrayList<>();
         for (RecordMonth recordMonth : recordMonths) {
-            if (recordMonth.year == year && recordMonth.month == month) {
+            if (recordMonth.getYear() == year && recordMonth.getMonth() == month) {
                 for (RecordDay recordDay : recordMonth.getRecordDays()) {
                     if (recordDay.getDay() > CustomDayManager.getLastDayOfMonth(month) - 14 + day) {
                         returnArray.add(recordDay);
@@ -165,7 +163,7 @@ public final class SharedResources {
     //records
     public static ArrayList<RecordDay> getMonthlyRecordDayArray(int year, int month) {
         for (RecordMonth recordMonth : recordMonths) {
-            if (recordMonth.year == year && recordMonth.month == month) {
+            if (recordMonth.getYear() == year && recordMonth.getMonth() == month) {
                 return recordMonth.getRecordDays();
             }
         }
@@ -173,7 +171,7 @@ public final class SharedResources {
     }
 
     public static void appendRecordDay(int year, int month, @org.jetbrains.annotations.NotNull RecordDay recordDay) {
-        if (!recordDay_exists(year, month, recordDay.day)) {
+        if (!recordDay_exists(year, month, recordDay.getDay())) {
             getRecordMonth(year, month).getRecordDays().add(recordDay);
         }
     }
@@ -189,11 +187,11 @@ public final class SharedResources {
     }
 
     public static RecordMonth appendRecordMonth(RecordMonth recordMonth) {
-        if (!recordMonth_exists(recordMonth.year, recordMonth.month)) {
+        if (!recordMonth_exists(recordMonth.getYear(), recordMonth.getMonth())) {
             recordMonths.add(recordMonth);
             return recordMonth;
         } else {
-            return getRecordMonth(recordMonth.year, recordMonth.month);
+            return getRecordMonth(recordMonth.getYear(), recordMonth.getMonth());
         }
     }
 
@@ -209,9 +207,9 @@ public final class SharedResources {
 
     public static RecordDay getRecordDay(int year, int month, int day) {
         for (RecordMonth recordMonth : recordMonths) {
-            if (recordMonth.year == year && recordMonth.month == month) {
+            if (recordMonth.getYear() == year && recordMonth.getMonth() == month) {
                 for (RecordDay recordDay : recordMonth.getRecordDays()) {
-                    if (recordDay.day == day) {
+                    if (recordDay.getDay() == day) {
                         return recordDay;
                     }
                 }
@@ -222,9 +220,9 @@ public final class SharedResources {
 
     public static boolean recordDay_exists(int year, int month, int day) {
         for (RecordMonth recordMonth : recordMonths) {
-            if (recordMonth.year == year && recordMonth.month == month) {
+            if (recordMonth.getYear() == year && recordMonth.getMonth() == month) {
                 for (RecordDay recordDay : recordMonth.getRecordDays()) {
-                    if (recordDay.day == day) {
+                    if (recordDay.getDay() == day) {
                         return true;
                     }
                 }
@@ -235,7 +233,7 @@ public final class SharedResources {
 
     public static RecordMonth getRecordMonth(int year, int month) {
         for (RecordMonth recordMonth : recordMonths) {
-            if (recordMonth.year == year && recordMonth.month == month) {
+            if (recordMonth.getYear() == year && recordMonth.getMonth() == month) {
                 return recordMonth;
             }
         }
@@ -246,7 +244,7 @@ public final class SharedResources {
         int year = CustomDayManager.getYear();
         int month = CustomDayManager.getMonth();
         for (RecordMonth recordMonth : recordMonths) {
-            if (recordMonth.year == year && recordMonth.month == month) {
+            if (recordMonth.getYear() == year && recordMonth.getMonth() == month) {
                 return recordMonth;
             }
         }
@@ -255,7 +253,7 @@ public final class SharedResources {
 
     public static boolean recordMonth_exists(int year, int month) {
         for (RecordMonth recordMonth : recordMonths) {
-            if (recordMonth.year == year && recordMonth.month == month) {
+            if (recordMonth.getYear() == year && recordMonth.getMonth() == month) {
                 return true;
             }
         }

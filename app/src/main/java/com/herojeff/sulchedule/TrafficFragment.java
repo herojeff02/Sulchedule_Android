@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.SharedResources;
 
+import java.util.Random;
+
 
 public class TrafficFragment extends Fragment {
 
@@ -23,8 +25,6 @@ public class TrafficFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-
-    boolean edit_mode = false;
 
     public TrafficFragment() {
         // Required empty public constructor
@@ -66,6 +66,11 @@ public class TrafficFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        initTrafficLight();
+    }
+
+    public void initTrafficLight(){
         final float alpha = 0.25f;
 
         double k = SharedResources.getRecordMonth().getTrafficSignal();
@@ -76,17 +81,20 @@ public class TrafficFragment extends Fragment {
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(alpha);
         } else if (k < 0.7) {
-            text_encouragement.setText("잘 하고 있어요!");
+            String[] strings = {"잘하고 있어요!", "이대로만 하면 돼요!", "파이팅!!!"};
+            text_encouragement.setText(strings[new Random().nextInt(strings.length)]);
             traffic_red.setAlpha(alpha);
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(1f);
         } else if (k < 1) {
-            text_encouragement.setText("아슬아슬해요!");
+            String[] strings = {"아슬아슬해요!", "자칫하면..."};
+            text_encouragement.setText(strings[new Random().nextInt(strings.length)]);
             traffic_red.setAlpha(alpha);
             traffic_yellow.setAlpha(1f);
             traffic_green.setAlpha(alpha);
         } else {
-            text_encouragement.setText("어떡하려고 그래요…?");
+            String[] strings = {"어떡하려고 그래요…?", "미자 아줌마! 배에 힘 안 줬다!", "어 그렇게 드로우를 많이 하면", "오 심상치 않은데? 오 심상치..."};
+            text_encouragement.setText(strings[new Random().nextInt(strings.length)]);
             traffic_red.setAlpha(1f);
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(alpha);

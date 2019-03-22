@@ -7,22 +7,74 @@ import java.util.HashMap;
 
 
 public class RecordMonth {
-    public int year;
-    public int month;
-    boolean enable_daysOfMonth;
-    boolean enable_streakOfMonth;
-    boolean enable_caloriesOfMonth;
-    boolean enable_totalExpense;
-    int goal_daysOfMonth;
-    int goal_streakOfMonth;
-    int goal_caloriesOfMonth;
-    int goal_totalExpense;
-    boolean first_launch_of_month = true;
-    ArrayList<RecordDay> recordDays = new ArrayList<>();
+    private int year;
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public void setFirst_launch_of_month(boolean first_launch_of_month) {
+        this.first_launch_of_month = first_launch_of_month;
+    }
+
+    private int month;
+    private boolean enable_daysOfMonth = false;
+    private boolean enable_streakOfMonth = false;
+    private boolean enable_caloriesOfMonth = false;
+    private boolean enable_totalExpense = false;
+    private int goal_daysOfMonth = 0;
+    private int goal_streakOfMonth = 0;
+    private int goal_caloriesOfMonth = 0;
+    private int goal_totalExpense = 0;
+    private boolean first_launch_of_month = true;
+    private ArrayList<RecordDay> recordDays = new ArrayList<>();
 
     public RecordMonth(int year, int month) {
         this.year = year;
         this.month = month;
+
+        previousMonthGoalMigration(year, month);
+    }
+
+    void previousMonthGoalMigration(int source_year, int source_month){
+        //set source year, month
+        if(source_month <= 1){
+            source_year--;
+            source_month = 12;
+        }
+        else{
+            source_month--;
+        }
+
+        //migration process
+        if(SharedResources.recordMonth_exists(source_year, source_month)){
+            RecordMonth source_recordMonth = SharedResources.getRecordMonth(source_year, source_month);
+
+            enable_daysOfMonth = source_recordMonth.isEnable_daysOfMonth();
+            enable_caloriesOfMonth = source_recordMonth.isEnable_caloriesOfMonth();
+            enable_streakOfMonth = source_recordMonth.isEnable_streakOfMonth();
+            enable_totalExpense = source_recordMonth.isEnable_totalExpense();
+
+            goal_daysOfMonth = source_recordMonth.getGoal_daysOfMonth();
+            goal_caloriesOfMonth = source_recordMonth.getGoal_caloriesOfMonth();
+            goal_streakOfMonth = source_recordMonth.getGoal_streakOfMonth();
+            goal_totalExpense = source_recordMonth.getGoal_totalExpense();
+        }
+        else{
+            //leave everything as it is
+        }
     }
 
     public MonthlyBest getMonthlyBest() {
@@ -50,7 +102,7 @@ public class RecordMonth {
                 }
             }
 
-            for (String i : recordDay.friend_list) {
+            for (String i : recordDay.getFriend_list()) {
                 int a;
                 try {
                     a = monthlyBestWhom.get(i);
@@ -61,7 +113,7 @@ public class RecordMonth {
                 monthlyBestWhom.remove(i);
                 monthlyBestWhom.put(i, a + 1);
             }
-            for (String i : recordDay.location_list) {
+            for (String i : recordDay.getLocation_list()) {
                 int a;
                 try {
                     a = monthlyBestLoc.get(i);
@@ -86,7 +138,7 @@ public class RecordMonth {
             if (monthlyBest.whom_count < monthlyBestWhom.get(i)) {
                 monthlyBest.whom_count = monthlyBestWhom.get(i);
                 for (RecordDay recordDay : recordDays) {
-                    if (recordDay.friend_list.contains(i)) {
+                    if (recordDay.getFriend_list().contains(i)) {
                         monthlyBest.whom_calorie += recordDay.getCalorie();
                         monthlyBest.whom_expense += recordDay.getExpense();
                     }
@@ -98,7 +150,7 @@ public class RecordMonth {
             if (monthlyBest.loc_count < monthlyBestLoc.get(i)) {
                 monthlyBest.loc_count = monthlyBestLoc.get(i);
                 for (RecordDay recordDay : recordDays) {
-                    if (recordDay.location_list.contains(i)) {
+                    if (recordDay.getLocation_list().contains(i)) {
                         monthlyBest.loc_calorie += recordDay.getCalorie();
                         monthlyBest.loc_expense += recordDay.getExpense();
                     }
@@ -224,54 +276,45 @@ public class RecordMonth {
     }
 
     public int stat_daysOfMonth() {
-        if (!enable_daysOfMonth) {
-            ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
-            return arr.size();
-
-        } else {
-            return 0;
-        }
+        ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
+        return arr.size();
     }
 
     public int stat_streakOfMonth() {
-        if (!enable_streakOfMonth) {
-            ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
+        ArrayList<RecordDay> arr = SharedResources.getMonthlyRecordDayArray(year, month);
 
 
-            //is arr.size dynamically refreshed?
+        //is arr.size dynamically refreshed?
 
 
-            for (int i = 0; i < arr.size(); i++) {
-                if (arr.get(i).isTodayEmpty()) {
-                    arr.remove(i);
-                    i--;
-                }
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).isTodayEmpty()) {
+                arr.remove(i);
+                i--;
             }
-            Collections.sort(arr, new DescendingRecordDay());
-
-            int max = 0, new_max = 1;
-            ArrayList<Integer> temp_array = new ArrayList<>();
-            for (int i = 0; i < arr.size(); i++) {
-                temp_array.add(arr.get(i).day);
-                max = 1;
-            }
-            int i = 0;
-            while (i + 1 < temp_array.size()) {
-                if (temp_array.get(i) + 1 == temp_array.get(i + 1)) {
-                    new_max++;
-                    if (new_max > max) {
-                        max = new_max;
-                    }
-                } else {
-                    new_max = 1;
-                }
-                i++;
-            }
-
-            return max;
-        } else {
-            return 0;
         }
+        Collections.sort(arr, new DescendingRecordDay());
+
+        int max = 0, new_max = 1;
+        ArrayList<Integer> temp_array = new ArrayList<>();
+        for (int i = 0; i < arr.size(); i++) {
+            temp_array.add(arr.get(i).getDay());
+            max = 1;
+        }
+        int i = 0;
+        while (i + 1 < temp_array.size()) {
+            if (temp_array.get(i) + 1 == temp_array.get(i + 1)) {
+                new_max++;
+                if (new_max > max) {
+                    max = new_max;
+                }
+            } else {
+                new_max = 1;
+            }
+            i++;
+        }
+
+        return max;
     }
 
     public int stat_caloriesOfMonth() {
@@ -318,7 +361,7 @@ public class RecordMonth {
             int max = 0, new_max = 1;
             ArrayList<Integer> temp_array = new ArrayList<>();
             for (int i = 0; i < arr.size(); i++) {
-                temp_array.add(arr.get(i).day);
+                temp_array.add(arr.get(i).getDay());
                 max = 1;
             }
             int i = 0;

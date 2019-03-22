@@ -78,31 +78,8 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
 
     @Override
     public void onBindViewHolder(final @NonNull TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i) {
-        if (enabled[i]) {
-            trafficGoalRecyclerViewHolder.text_right_top.setText(String.valueOf(right_top[i]));
-            trafficGoalRecyclerViewHolder.text_right_top.setTextColor(CustomColor.color_white);
-            trafficGoalRecyclerViewHolder.itemView.post(new Runnable() {
-                @Override
-                public void run() {
-                    int cellWidth = trafficGoalRecyclerViewHolder.graph_full_bar.getWidth();// this will give you cell width dynamically
-                    trafficGoalRecyclerViewHolder.graph_overlay.setLayoutParams(new RelativeLayout.LayoutParams((int) (cellWidth * bar_t[i]), trafficGoalRecyclerViewHolder.graph_full_bar.getHeight()));
-                }
-            });
-        } else {
-            trafficGoalRecyclerViewHolder.text_right_top.setTextColor(CustomColor.color_accent);
-            trafficGoalRecyclerViewHolder.text_right_top.setText("목표 설정");
-        }
-        trafficGoalRecyclerViewHolder.text_left_top.setText(left_top[i]);
-        trafficGoalRecyclerViewHolder.text_left_bottom.setText(left_bottom[i]);
-        trafficGoalRecyclerViewHolder.text_right_bottom.setText("한도");
-
-        if (bar_t[i] >= 1.0) {
-            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_red));
-        } else if (bar_t[i] >= 0.7) {
-            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_yellow));
-        } else {
-            trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_green));
-        }
+        textInit(trafficGoalRecyclerViewHolder, i);
+        barInit(trafficGoalRecyclerViewHolder, i, enabled[i]);
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(context, R.layout.goal_dialog_item);
         adapter.addAll(spinnerValues.get(i));
@@ -110,68 +87,121 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         trafficGoalRecyclerViewHolder.text_right_top.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(view.getContext(), R.style.TodaySettingDialog));
-                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                createDialog(adapter, view, trafficGoalRecyclerViewHolder, i);
+            }
+        });
+    }
+
+    private void barInit(final TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i, boolean enabled) {
+        if(enabled) {
+            trafficGoalRecyclerViewHolder.itemView.post(new Runnable() {
+                @Override
+                public void run() {
+                    int cellWidth = trafficGoalRecyclerViewHolder.graph_full_bar.getWidth();// this will give you cell width dynamically
+                    trafficGoalRecyclerViewHolder.graph_overlay.setLayoutParams(new RelativeLayout.LayoutParams((int) (cellWidth * bar_t[i]), trafficGoalRecyclerViewHolder.graph_full_bar.getHeight()));
+                }
+            });
+
+            if (bar_t[i] >= 1.0) {
+                trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_red));
+            } else if (bar_t[i] >= 0.7) {
+                trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_yellow));
+            } else {
+                trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_green));
+            }
+        }
+        else{
+            trafficGoalRecyclerViewHolder.itemView.post(new Runnable() {
+                @Override
+                public void run() {
+                    trafficGoalRecyclerViewHolder.graph_overlay.setLayoutParams(new RelativeLayout.LayoutParams(0, trafficGoalRecyclerViewHolder.graph_full_bar.getHeight()));
+                }
+            });
+        }
+    }
+
+    private void textInit(final TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i) {
+        if (enabled[i]) {
+            trafficGoalRecyclerViewHolder.text_right_top.setText(String.valueOf(right_top[i]));
+            trafficGoalRecyclerViewHolder.text_right_top.setTextColor(CustomColor.color_white);
+        } else {
+            trafficGoalRecyclerViewHolder.text_right_top.setTextColor(CustomColor.color_accent);
+            trafficGoalRecyclerViewHolder.text_right_top.setText("목표 설정");
+        }
+        trafficGoalRecyclerViewHolder.text_left_top.setText(left_top[i]);
+        trafficGoalRecyclerViewHolder.text_left_bottom.setText(left_bottom[i]);
+        trafficGoalRecyclerViewHolder.text_right_bottom.setText("한도");
+    }
+
+    void createDialog(ArrayAdapter<String> adapter, View view, final TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i){
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(view.getContext(), R.style.TodaySettingDialog));
+        builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 //                        trafficGoalRecyclerViewHolder.text_right_top.setText(adapter.getItem(i));
-                        switch (trafficGoalRecyclerViewHolder.getAdapterPosition()){
-                            case 0:
-                                if(i==0){
-                                    SharedResources.getRecordMonth().setEnable_daysOfMonth(false);
-                                }
-                                else{
-                                    SharedResources.getRecordMonth().setEnable_daysOfMonth(true);
-                                    String k = spinnerValues.get(0).get(i);
-                                    SharedResources.getRecordMonth().setGoal_daysOfMonth(Integer.parseInt(k.substring(0, k.length()-1)));
-                                }
-                                break;
-                            case 1:
-                                if(i==0){
-                                    SharedResources.getRecordMonth().setEnable_streakOfMonth(false);
-                                }
-                                else{
-                                    SharedResources.getRecordMonth().setEnable_streakOfMonth(true);
-                                    String k = spinnerValues.get(1).get(i);
-                                    SharedResources.getRecordMonth().setGoal_streakOfMonth(Integer.parseInt(k.substring(0, k.length()-1)));
-                                }
-                                break;
-                            case 2:
-                                if(i==0){
-                                    SharedResources.getRecordMonth().setEnable_totalExpense(false);
-                                }
-                                else{
-                                    SharedResources.getRecordMonth().setEnable_totalExpense(true);
-                                    String k = spinnerValues.get(2).get(i);
-                                    SharedResources.getRecordMonth().setGoal_totalExpense(Integer.parseInt(k.substring(0, k.length()-1)));
-                                }
-                                break;
-                            case 3:
-                                if(i==0){
-                                    SharedResources.getRecordMonth().setEnable_caloriesOfMonth(false);
-                                }
-                                else{
-                                    SharedResources.getRecordMonth().setEnable_caloriesOfMonth(true);
-                                    String k = spinnerValues.get(3).get(i);
-                                    SharedResources.getRecordMonth().setGoal_caloriesOfMonth(Integer.parseInt(k.substring(0, k.length()-4)));
-                                }
-                                break;
-
+                switch (trafficGoalRecyclerViewHolder.getAdapterPosition()){
+                    case 0:
+                        if(i==0){
+                            SharedResources.getRecordMonth().setEnable_daysOfMonth(false);
                         }
+                        else{
+                            SharedResources.getRecordMonth().setEnable_daysOfMonth(true);
+                            String k = spinnerValues.get(0).get(i);
+                            SharedResources.getRecordMonth().setGoal_daysOfMonth(Integer.parseInt(k.substring(0, k.length()-1)));
+                        }
+                        break;
+                    case 1:
+                        if(i==0){
+                            SharedResources.getRecordMonth().setEnable_streakOfMonth(false);
+                        }
+                        else{
+                            SharedResources.getRecordMonth().setEnable_streakOfMonth(true);
+                            String k = spinnerValues.get(1).get(i);
+                            SharedResources.getRecordMonth().setGoal_streakOfMonth(Integer.parseInt(k.substring(0, k.length()-1)));
+                        }
+                        break;
+                    case 2:
+                        if(i==0){
+                            SharedResources.getRecordMonth().setEnable_totalExpense(false);
+                        }
+                        else{
+                            SharedResources.getRecordMonth().setEnable_totalExpense(true);
+                            String k = spinnerValues.get(2).get(i);
+                            SharedResources.getRecordMonth().setGoal_totalExpense(Integer.parseInt(k.substring(0, k.length()-1)));
+                        }
+                        break;
+                    case 3:
+                        if(i==0){
+                            SharedResources.getRecordMonth().setEnable_caloriesOfMonth(false);
+                        }
+                        else{
+                            SharedResources.getRecordMonth().setEnable_caloriesOfMonth(true);
+                            String k = spinnerValues.get(3).get(i);
+                            SharedResources.getRecordMonth().setGoal_caloriesOfMonth(Integer.parseInt(k.substring(0, k.length()-4)));
+                        }
+                        break;
 
-                        refreshDisplayArrayValue();
-                    }
-                });
+                }
+
+                refreshDisplayArrayValue();
+            }
+        });
 
 
-                builder.setTitle(left_bottom[i] + " 설정");
+        builder.setTitle(left_bottom[i] + " 설정");
 
-                Dialog dialog = builder.create();
-                int width = (int)(view.getResources().getDisplayMetrics().widthPixels*0.90);
-                int height = (int)(view.getResources().getDisplayMetrics().heightPixels*0.60);
+        Dialog dialog = builder.create();
+        int width = (int)(view.getResources().getDisplayMetrics().widthPixels*0.90);
+        int height = (int)(view.getResources().getDisplayMetrics().heightPixels*0.60);
 
-                dialog.show();
-                dialog.getWindow().setLayout(width, height);
+        dialog.show();
+        dialog.getWindow().setLayout(width, height);
+
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                barInit(trafficGoalRecyclerViewHolder, i, enabled[i]);
+                textInit(trafficGoalRecyclerViewHolder, i);
             }
         });
     }
@@ -251,8 +281,6 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
             text_right_bottom = itemView.findViewById(R.id.text_right_bottom);
             graph_overlay = itemView.findViewById(R.id.graph_overlay);
             graph_full_bar = itemView.findViewById(R.id.graph_full_bar);
-
-
         }
     }
 }

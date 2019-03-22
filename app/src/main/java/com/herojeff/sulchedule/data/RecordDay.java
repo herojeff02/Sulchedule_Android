@@ -5,15 +5,15 @@ import java.util.HashMap;
 
 public class RecordDay {
 
-    public int day;
-    ArrayList<String> location_list = new ArrayList<>();
-    ArrayList<String> friend_list = new ArrayList<>();
-    HashMap<Integer, Integer> sul_list = new HashMap<>(); /*<sul_index, sul_count>*/
-    boolean custom_expense_enabled = false;
-    int custom_expense = 0;
-    boolean custom_calorie_enabled = false;
-    int custom_calorie = 0;
-    boolean first_launch_of_day = true;
+    private int day;
+    private ArrayList<String> location_list = new ArrayList<>();
+    private ArrayList<String> friend_list = new ArrayList<>();
+    private HashMap<Integer, Integer> sul_list = new HashMap<>(); /*<sul_index, sul_count>*/
+    private boolean custom_expense_enabled = false;
+    private int custom_expense = 0;
+    private boolean custom_calorie_enabled = false;
+    private int custom_calorie = 0;
+    private boolean first_launch_of_day = true;
 
     public RecordDay(int day) {
         this.day = day;

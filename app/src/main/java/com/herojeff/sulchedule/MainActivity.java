@@ -1,5 +1,6 @@
 package com.herojeff.sulchedule;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -20,13 +21,17 @@ public class MainActivity extends AppCompatActivity {
     Fragment pastFragment;
     Fragment trafficFragment;
 
+    SharedPreferences mPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CustomDayManager.initCustomDay();
+        SaveManager.setPrefs(getPreferences(MODE_PRIVATE));
+        SaveManager.load();
 
+        CustomDayManager.initCustomDay();
 
         frameLayout = findViewById(R.id.fragment_container);
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -36,21 +41,20 @@ public class MainActivity extends AppCompatActivity {
         ((PastFragment) pastFragment).setPastFragment((PastFragment) pastFragment);
         trafficFragment = new TrafficFragment();
 
-//        FragmentManager transaction = getSupportFragmentManager();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, todayFragment).commit();
 
         if (SharedResources.first_launch_ever) {
-            SharedResources.addSul("소주", 300, 4000, "병");
-            SharedResources.addSul("소주", 300, 4000, "병");
-            SharedResources.addSul("소주 잔", 50, 650, "잔");
-            SharedResources.addSul("병맥주 330ml", 122, 2000, "병");
-            SharedResources.addSul("병맥주 500ml", 185, 3000, "병");
-            SharedResources.addSul("생맥주 500cc", 185, 4000, "잔");
-            SharedResources.addSul("캔맥주 355ml", 152, 2000, "캔");
-            SharedResources.addSul("레드와인", 84, 12000, "잔");
-            SharedResources.addSul("화이트와인", 74, 12000, "잔");
-            SharedResources.addSul("막걸리", 345, 2000, "병");
-            SharedResources.setFavouriteSul("소주", true);
+//            SharedResources.addSul("소주", 300, 4000, "병");
+//            SharedResources.addSul("소주", 300, 4000, "병");
+//            SharedResources.addSul("소주 잔", 50, 650, "잔");
+//            SharedResources.addSul("병맥주 330ml", 122, 2000, "병");
+//            SharedResources.addSul("병맥주 500ml", 185, 3000, "병");
+//            SharedResources.addSul("생맥주 500cc", 185, 4000, "잔");
+//            SharedResources.addSul("캔맥주 355ml", 152, 2000, "캔");
+//            SharedResources.addSul("레드와인", 84, 12000, "잔");
+//            SharedResources.addSul("화이트와인", 74, 12000, "잔");
+//            SharedResources.addSul("막걸리", 345, 2000, "병");
+//            SharedResources.setFavouriteSul("소주", true);
 
             SharedResources.first_launch_ever = false;
         }
@@ -58,40 +62,6 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setNavigationBarColor(CustomColor.color_primary);
         this.getWindow().setStatusBarColor(CustomColor.color_primary_dark_dark);
 
-//        transaction.beginTransaction().add(R.id.fragment_container, todayFragment).commit();
-//        transaction.beginTransaction().add(R.id.fragment_container, pastFragment).commit();
-//        transaction.beginTransaction().add(R.id.fragment_container, trafficFragment).commit();
-//        transaction.beginTransaction().show(todayFragment).commit();
-//        transaction.beginTransaction().hide(pastFragment).commit();
-//        transaction.beginTransaction().hide(trafficFragment).commit();
-
-//        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                SharedResources.getRecordMonth(SharedResources.getYear(), SharedResources.getMonth()).cleanup();
-//                switch (menuItem.getItemId()) {
-//                    case R.id.navigation_today:
-//                        transaction.beginTransaction().show(todayFragment).commit();
-//                        transaction.beginTransaction().hide(pastFragment).commit();
-//                        transaction.beginTransaction().hide(trafficFragment).commit();
-//                        break;
-//                    case R.id.navigation_past:
-//                        transaction.beginTransaction().hide(todayFragment).commit();
-//                        transaction.beginTransaction().show(pastFragment).commit();
-//                        transaction.beginTransaction().hide(trafficFragment).commit();
-//                        break;
-//                    case R.id.navigation_traffic:
-//                        transaction.beginTransaction().hide(todayFragment).commit();
-//                        transaction.beginTransaction().hide(pastFragment).commit();
-//                        transaction.beginTransaction().show(trafficFragment).commit();
-//                        break;
-//                    default:
-//                        break;
-//                }
-//
-//                return true;
-//            }
-//        });
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -119,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testField() {
-        SharedResources.getRecordDay(2019, 3, 14).setCertain_sul_count(2, 5);
     }
 
     @Override
@@ -127,8 +96,22 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
 
         SharedResources.cleanup();
+        SaveManager.save();
+    }
 
-        SaveManager.setPrefs(getSharedPreferences("trial", MODE_PRIVATE));
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        SharedResources.cleanup();
+        SaveManager.save();
+    }
+
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+
+        SharedResources.cleanup();
         SaveManager.save();
     }
 }

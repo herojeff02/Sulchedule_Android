@@ -18,6 +18,14 @@ public final class SharedResources {
     static int randomIndex = new Random().nextInt(helloList.length);
     private static ArrayList<Sul> suls = new ArrayList<>();
 
+    public static ArrayList<Sul> getSulsRAW(){
+        return suls;
+    }
+
+    public static void setSulsRAW(Object fetched_sul){
+        suls = (ArrayList<Sul>) fetched_sul;
+    }
+
     //sul
     public static boolean addSul(String sul_name, int sul_calorie, int sul_price, String sul_unit) {
         if (!sulExists(sul_name)) {
@@ -310,6 +318,14 @@ public final class SharedResources {
         }
 
         return returnString;
+    }
+
+    public static void setRecordMonthsRAW(Object list) {
+        recordMonths = (ArrayList<RecordMonth>) list;
+    }
+
+    public static ArrayList<RecordMonth> getRecordMonthsRAW() {
+        return recordMonths;
     }
 
     enum Mode {

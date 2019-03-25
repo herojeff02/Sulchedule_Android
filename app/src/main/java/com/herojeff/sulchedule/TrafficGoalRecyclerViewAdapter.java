@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.RecordMonth;
+import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 
 import java.util.ArrayList;
@@ -183,6 +184,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
 
                 }
 
+                SaveManager.saveRecordArrayList();
                 refreshDisplayArrayValue();
             }
         });

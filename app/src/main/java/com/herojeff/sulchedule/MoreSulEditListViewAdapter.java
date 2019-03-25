@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.CustomColor;
+import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
@@ -119,6 +120,8 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
                         suls = SharedResources.getSuls();
                         adapter.notifyDataSetChanged();
                         ListViewResizeUtility.setListViewHeightBasedOnItems(listview);
+
+                        SaveManager.saveSulArrayList();
                     }
                 }).create();
         AlertDialog alertDialog = builder.setNegativeButton("취소",

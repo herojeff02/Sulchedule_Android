@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
+import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
@@ -182,6 +183,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
                     public void onClick(DialogInterface dialog, int which) {
                         SharedResources.enable_smart_tip_string = true;
                         updateTipString(false);
+                        SaveManager.saveUserSettings();
                     }
                 }).create();
         dialog = builder.setNegativeButton("끄기",
@@ -189,6 +191,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
                     public void onClick(DialogInterface dialog, int which) {
                         SharedResources.enable_smart_tip_string = false;
                         updateTipString(false);
+                        SaveManager.saveUserSettings();
                     }
                 }).create();
 

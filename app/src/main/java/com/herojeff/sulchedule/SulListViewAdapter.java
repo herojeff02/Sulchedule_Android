@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.CustomDayManager;
+import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 
@@ -102,6 +103,7 @@ public class SulListViewAdapter extends BaseAdapter {
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
                 listener.callUpdateTipString(false);
+                SaveManager.saveRecordArrayList();
             }
         });
         stepper_minus.setOnLongClickListener(new View.OnLongClickListener() {
@@ -111,6 +113,7 @@ public class SulListViewAdapter extends BaseAdapter {
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, 0);
                 listener.callUpdateTipString(false);
+                SaveManager.saveRecordArrayList();
                 return true;
             }
         });
@@ -122,6 +125,7 @@ public class SulListViewAdapter extends BaseAdapter {
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
                 listener.callUpdateTipString(false);
+                SaveManager.saveRecordArrayList();
             }
         });
 

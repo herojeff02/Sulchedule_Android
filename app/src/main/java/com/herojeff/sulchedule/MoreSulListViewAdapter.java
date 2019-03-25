@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.CustomDayManager;
+import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 
@@ -82,6 +83,17 @@ public class MoreSulListViewAdapter extends BaseAdapter {
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(array.get(pos).getSul_name(), count);
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
+                SaveManager.saveRecordArrayList();
+            }
+        });
+        stepper_minus.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                SharedResources.getRecordDay(year, month, day).setCertain_sul_count(array.get(pos).getSul_name(), 0);
+                textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
+                setTextView(textView, pos, 0);
+                SaveManager.saveRecordArrayList();
+                return true;
             }
         });
         stepper_plus.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +103,7 @@ public class MoreSulListViewAdapter extends BaseAdapter {
                 SharedResources.getRecordDay(year, month, day).setCertain_sul_count(array.get(pos).getSul_name(), ++count);
                 textView = ((View) ((View) (v.getParent())).getParent()).findViewById(R.id.textview_sul);
                 setTextView(textView, pos, count);
-
+                SaveManager.saveRecordArrayList();
             }
         });
         heart.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +116,7 @@ public class MoreSulListViewAdapter extends BaseAdapter {
                     array.get(pos).setFavourite(true);
                     setHeartFilled((ImageView) v.findViewById(R.id.favourite));
                 }
+                SaveManager.saveSulArrayList();
             }
         });
 

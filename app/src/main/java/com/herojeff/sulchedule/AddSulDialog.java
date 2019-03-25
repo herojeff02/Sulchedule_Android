@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 
 public class AddSulDialog extends Dialog {
@@ -84,11 +85,7 @@ public class AddSulDialog extends Dialog {
         button_dismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(text_kcal.getText().length()!=0||text_name.getText().length()!=0||text_unit.getText().length()!=0||text_price.getText().length()!=0){
-//                }
-//                else{
                 dismiss();
-//                }
             }
         });
         button_save.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +114,7 @@ public class AddSulDialog extends Dialog {
                     try {
                         SharedResources.addSul(text_name.getText().toString(), Integer.valueOf(text_kcal.getText().toString()), Integer.valueOf(text_price.getText().toString()), text_unit.getText().toString());
                         Toast.makeText(getContext(), "추가됐습니다.", Toast.LENGTH_SHORT).show();
+                        SaveManager.saveSulArrayList();
                         dismiss();
                     } catch (Exception e) {
                         Toast.makeText(getContext(), "문제가 발생했습니다. 개발자에게 문의해주세요.", Toast.LENGTH_SHORT).show();

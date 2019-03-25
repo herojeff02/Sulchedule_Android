@@ -14,7 +14,7 @@ public final class SharedResources {
 
     public static boolean enable_smart_tip_string = true;
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
-    static String[] helloList = {"안녕하세요!", "어떤 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
+    static String[] helloList = {"안녕하세요!", "무슨 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
     static int randomIndex = new Random().nextInt(helloList.length);
     private static ArrayList<Sul> suls = new ArrayList<>();
 

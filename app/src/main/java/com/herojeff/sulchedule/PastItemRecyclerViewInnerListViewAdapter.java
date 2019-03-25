@@ -48,7 +48,7 @@ public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
             HashMap<Integer, Integer> sul_list = recordDay.getSul_list();
             for (int i : sul_list.keySet()) {
                 if (sul_list.get(i) != 0) {
-                    if (SharedResources.getSul(i).isSul_enabled()) {
+                    if (SharedResources.getSul(i).isSul_enabled() && recordDay.getCertain_sul_count(i) != 0) {
                         arr.add(new StringPair(String.valueOf(sul_list.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
                     }
                 }

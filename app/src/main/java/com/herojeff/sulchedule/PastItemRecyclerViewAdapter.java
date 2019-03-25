@@ -19,12 +19,13 @@ import java.util.ArrayList;
 
 public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRecyclerViewAdapter.PastItemRecyclerViewHolder> {
 
+
     public RecyclerView.Adapter adapter;
     public PastFragment parentFragment;
     boolean headerFlag = false;
     boolean headerFlag_Big;
 
-    int currMonth, currIndex = 0;
+    int currYear, currMonth, currIndex = 0;
 
     TextView button_left_interceptor;
     TextView button_right_interceptor;
@@ -42,13 +43,14 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
 
     View view;
 
-    public PastItemRecyclerViewAdapter(boolean big, TextView left, TextView right, ArrayList<RecordDay> recordDays, int currMonth, int currIndex) {
+    public PastItemRecyclerViewAdapter(boolean big, TextView left, TextView right, ArrayList<RecordDay> recordDays, int currYear, int currMonth, int currIndex) {
         this.headerFlag_Big = big;
         this.left = left;
         this.right = right;
         this.recordDays = recordDays;
         this.currIndex = currIndex;
         this.currMonth = currMonth;
+        this.currYear = currYear;
     }
 
     public void clickHeader(boolean isLeft) {
@@ -146,12 +148,12 @@ public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRe
             adapter_past_inner_listview.setEnabled(false);
 
             if (i - 1 < currIndex) {
-                tv.setText(currMonth - 1 + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
+                tv.setText(currMonth - 1 + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean(currYear, currMonth, recordDays.get(i - 1).getDay()) + ")");
                 if (recordDays.get(i - 1).containsDeletedSul()) {
                     tv.append(" (삭제된 주류 포함)");
                 }
             } else {
-                tv.setText(currMonth + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")");
+                tv.setText(currMonth + "월 " + recordDays.get(i - 1).getDay() + "일 (" + CustomDayManager.getWeekDayKorean(currYear, currMonth, recordDays.get(i - 1).getDay()) + ")");
                 if (recordDays.get(i - 1).containsDeletedSul()) {
                     tv.append(" (삭제된 주류 포함)");
                 }

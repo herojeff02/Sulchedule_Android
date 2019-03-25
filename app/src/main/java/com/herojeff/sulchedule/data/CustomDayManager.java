@@ -1,5 +1,8 @@
 package com.herojeff.sulchedule.data;
 
+import android.util.Log;
+
+import java.util.Calendar;
 import java.util.Date;
 
 public class CustomDayManager {
@@ -29,12 +32,6 @@ public class CustomDayManager {
         return today.getDate();
     }
 
-    public static String getTodayWeekDayKorean() {
-        Date today = new Date();
-        String[] weekDayKorean = {"일", "월", "화", "수", "목", "금", "토", "일"};
-        return weekDayKorean[today.getDay()];
-    }
-
     public static int getYear() {
         return year;
     }
@@ -47,10 +44,36 @@ public class CustomDayManager {
         return day;
     }
 
-    public static String getWeekDayKorean() {
-        Date today = new Date(year, month, day);
-        String[] weekDayKorean = {"일", "월", "화", "수", "목", "금", "토", "일"};
-        return weekDayKorean[today.getDay()];
+    public static String getWeekDayKorean(int year, int month, int day) {
+        Date today = new Date(year, month-1, day-1);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(today);
+
+        Log.d("year", String.valueOf(cal.get(Calendar.YEAR)));
+        Log.d("month", String.valueOf(cal.get(Calendar.MONTH)));
+        Log.d("day", String.valueOf(Calendar.DAY_OF_MONTH));
+
+        switch (cal.get(Calendar.DAY_OF_WEEK)){
+            case 1:
+                return "월";
+            case 2:
+                return "화";
+            case 3:
+                return "수";
+            case 4:
+                return "목";
+            case 5:
+                return "금";
+            case 6:
+                return "토";
+            case 7:
+                return "일";
+        }
+
+        return "WTF";
+
+//        String[] weekDayKorean = {월", "화", "수", "목", "금", "토", "일"};
+//        return weekDayKorean[today.getDay()];
     }
 
     public void setNextDay() {

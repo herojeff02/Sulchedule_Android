@@ -90,7 +90,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
 
         text_today = view.findViewById(R.id.text_today);
         text_tip = view.findViewById(R.id.text_tip);
-        String temp = CustomDayManager.getMonth() + "월 " + CustomDayManager.getDay() + "일 (" + CustomDayManager.getWeekDayKorean() + ")";
+        String temp = CustomDayManager.getMonth() + "월 " + CustomDayManager.getDay() + "일 (" + CustomDayManager.getWeekDayKorean(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay()) + ")";
         text_today.setText(temp);
 
         //set listview height not to clip content

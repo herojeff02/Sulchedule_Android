@@ -41,9 +41,9 @@ public class PastFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
 
         if (big) {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()), CustomDayManager.getTodayMonth(), 0);
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()), CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), 0);
         } else {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()), CustomDayManager.getTodayMonth(), SharedResources.getMonthlyRecordDayArrayFromLastMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()).size());
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()), CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), SharedResources.getMonthlyRecordDayArrayFromLastMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()).size());
         }
 
         ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;
@@ -72,9 +72,9 @@ public class PastFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         if (big) {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()), CustomDayManager.getTodayMonth(), 0);
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getMonthlyRecordDayArray(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth()), CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), 0);
         } else {
-            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()), CustomDayManager.getTodayMonth(), SharedResources.getMonthlyRecordDayArrayFromLastMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()).size());
+            adapter = new PastItemRecyclerViewAdapter(big, button_left, button_right, SharedResources.getRecentRecordDays(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayYear(), SharedResources.getMonthlyRecordDayArrayFromLastMonth(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay()).size());
         }
 
         ((PastItemRecyclerViewAdapter) adapter).adapter = adapter;

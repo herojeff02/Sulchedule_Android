@@ -84,7 +84,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
 
         //sul adapter
         listview_sul = view.findViewById(R.id.listview_sul);
-        adapter_sul = new SulListViewAdapter(SharedResources.getFavouriteSuls(), this);
+        adapter_sul = new SulListViewAdapter(showArray, this);
         listview_sul.setAdapter(adapter_sul);
         listview_sul.setDividerHeight(0);
 
@@ -180,14 +180,14 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         builder.setPositiveButton("켜기",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        SharedResources.smart_tip_string = true;
+                        SharedResources.enable_smart_tip_string = true;
                         updateTipString(false);
                     }
                 }).create();
         dialog = builder.setNegativeButton("끄기",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        SharedResources.smart_tip_string = false;
+                        SharedResources.enable_smart_tip_string = false;
                         updateTipString(false);
                     }
                 }).create();

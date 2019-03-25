@@ -29,20 +29,29 @@ public final class SaveManager {
         prefsEditor.commit();
     }
     public static void saveUserSettings(){
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
         //smart tip on?
+        String json = gson.toJson(SharedResources.enable_smart_tip_string);
+        prefsEditor.putString("smartTipEnabled", json);
         //first launch?
+        json = gson.toJson(SharedResources.first_launch_ever);
+        prefsEditor.putString("firstLaunchEver", json);
         //ad on?
+        json = gson.toJson(SharedResources.enable_ad);
+        prefsEditor.putString("adEnabled", json);
         //eligible for ad off?
-    }
-    public static void saveGoal(){
+        json = gson.toJson(SharedResources.remove_ad_eligible);
+        prefsEditor.putString("eligibleForAdDisable", json);
 
+        //commit
+        prefsEditor.commit();
     }
 
     public static void save(){
         saveSulArrayList();
         saveRecordArrayList();
         saveUserSettings();
-        saveGoal();
     }
 
     public static void load() {
@@ -52,12 +61,26 @@ public final class SaveManager {
         SharedResources.setSulsRAW(gson.fromJson(json, new TypeToken<ArrayList<Sul>>(){}.getType()));
 
         json = mPrefs.getString("recordMonths", "");
-        SharedResources.setRecordMonthsRAW(gson.fromJson(json, new TypeToken<ArrayList<Sul>>(){}.getType()));
+        SharedResources.setRecordMonthsRAW(gson.fromJson(json, new TypeToken<ArrayList<RecordMonth>>(){}.getType()));
 
-//        json = mPrefs.getString("suls", "");
-//        SharedResources.setSulsRAW(gson.fromJson(json, new TypeToken<ArrayList<Sul>>(){}.getType()));
-//
-//        json = mPrefs.getString("suls", "");
-//        SharedResources.setSulsRAW(gson.fromJson(json, new TypeToken<ArrayList<Sul>>(){}.getType()));
+        json = mPrefs.getString("smartTipEnabled", "");
+        SharedResources.enable_smart_tip_string = gson.fromJson(json, Boolean.class);
+        json = mPrefs.getString("adEnabled", "");
+        SharedResources.enable_ad = gson.fromJson(json, Boolean.class);
+        json = mPrefs.getString("eligibleForAdDisable", "");
+        SharedResources.remove_ad_eligible = gson.fromJson(json, Boolean.class);
+    }
+
+    public static boolean getFirstLaunch() {
+        Gson gson = new Gson();
+        String json = mPrefs.getString("firstLaunchEver", "");
+        try {
+            SharedResources.first_launch_ever = gson.fromJson(json, Boolean.class);
+        } catch (Exception e){
+            SharedResources.first_launch_ever = true;
+            return true;
+        }
+
+        return SharedResources.first_launch_ever;
     }
 }

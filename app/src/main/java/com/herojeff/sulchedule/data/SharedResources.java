@@ -12,7 +12,7 @@ public final class SharedResources {
     public static boolean remove_ad_eligible = false;
     public static boolean first_launch_ever = true;
 
-    public static boolean smart_tip_string = true;
+    public static boolean enable_smart_tip_string = true;
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
     static String[] helloList = {"안녕하세요!", "어떤 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
     static int randomIndex = new Random().nextInt(helloList.length);
@@ -284,7 +284,7 @@ public final class SharedResources {
         RecordDay recordDay = getRecordDay(year, month, day);
         String returnString;
 
-        if (smart_tip_string) {
+        if (enable_smart_tip_string) {
             int sul_count = 0;
 
             for (int key : recordDay.getSul_list().keySet()) {

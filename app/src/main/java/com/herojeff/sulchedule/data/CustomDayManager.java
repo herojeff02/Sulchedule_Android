@@ -1,7 +1,5 @@
 package com.herojeff.sulchedule.data;
 
-import android.util.Log;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -48,10 +46,6 @@ public class CustomDayManager {
         Date today = new Date(year, month-1, day-1);
         Calendar cal = Calendar.getInstance();
         cal.setTime(today);
-
-        Log.d("year", String.valueOf(cal.get(Calendar.YEAR)));
-        Log.d("month", String.valueOf(cal.get(Calendar.MONTH)));
-        Log.d("day", String.valueOf(Calendar.DAY_OF_MONTH));
 
         switch (cal.get(Calendar.DAY_OF_WEEK)){
             case 1:

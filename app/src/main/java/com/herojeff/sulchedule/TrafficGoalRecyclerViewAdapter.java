@@ -5,8 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +21,9 @@ import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<TrafficGoalRecyclerViewAdapter.TrafficGoalRecyclerViewHolder> {
 
@@ -134,6 +135,12 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
             trafficGoalRecyclerViewHolder.text_right_top.setText("목표 설정");
         }
         trafficGoalRecyclerViewHolder.text_left_top.setText(left_top[i]);
+        if(bar_t[i]>=1.0 && enabled[i]){
+            trafficGoalRecyclerViewHolder.text_left_top.setTextColor(CustomColor.color_traffic_red);
+        }
+        else{
+            trafficGoalRecyclerViewHolder.text_left_top.setTextColor(CustomColor.color_white);
+        }
         trafficGoalRecyclerViewHolder.text_left_bottom.setText(left_bottom[i]);
         trafficGoalRecyclerViewHolder.text_right_bottom.setText("한도");
     }

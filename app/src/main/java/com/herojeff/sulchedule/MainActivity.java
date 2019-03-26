@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
@@ -31,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
             SaveManager.load();
         }
         else{
-            Toast.makeText(this, "welcome", Toast.LENGTH_SHORT).show();
-
             SharedResources.addSul("소주", 300, 4000, "병");
             SharedResources.addSul("소주", 300, 4000, "병");
             SharedResources.addSul("소주 잔", 50, 650, "잔");
@@ -92,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void tutorial() {
+
     }
 
     private void testField() {

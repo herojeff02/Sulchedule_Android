@@ -26,6 +26,8 @@ import java.util.ArrayList;
 
 public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<TrafficGoalRecyclerViewAdapter.TrafficGoalRecyclerViewHolder> {
 
+    TrafficIndicatorUpdateListener updateListener;
+
     int year;
     int month;
     RecordMonth recordMonth;
@@ -40,10 +42,12 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
 
     ArrayList<ArrayList<String>> spinnerValues = new ArrayList<>();
 
-    public TrafficGoalRecyclerViewAdapter() {
+    public TrafficGoalRecyclerViewAdapter(TrafficIndicatorUpdateListener listener) {
         year = CustomDayManager.getTodayYear();
         month = CustomDayManager.getTodayMonth();
         recordMonth = SharedResources.getRecordMonth(year, month);
+
+        updateListener = listener;
 
         refreshDisplayArrayValue();
     }
@@ -204,8 +208,13 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
             public void onDismiss(DialogInterface dialogInterface) {
                 barInit(trafficGoalRecyclerViewHolder, i, enabled[i]);
                 textInit(trafficGoalRecyclerViewHolder, i);
+                trafficIndicatorInit();
             }
         });
+    }
+
+    public void trafficIndicatorInit() {
+        updateListener.trafficIndicatorInit();
     }
 
 

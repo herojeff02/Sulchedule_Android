@@ -26,7 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:paddingBottom="15dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="14dp"
             android:text="팁아 길어져라 으아아아"
             android:textColor="@color/textWhite"
             android:textSize="@dimen/h5" />

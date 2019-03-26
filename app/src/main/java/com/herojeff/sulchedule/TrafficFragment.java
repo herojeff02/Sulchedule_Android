@@ -15,7 +15,9 @@ import com.herojeff.sulchedule.data.SharedResources;
 import java.util.Random;
 
 
-public class TrafficFragment extends Fragment {
+
+
+public class TrafficFragment extends Fragment implements TrafficIndicatorUpdateListener {
 
     ImageView traffic_red;
     ImageView traffic_yellow;
@@ -57,7 +59,7 @@ public class TrafficFragment extends Fragment {
 
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new TrafficGoalRecyclerViewAdapter();
+        adapter = new TrafficGoalRecyclerViewAdapter(this);
         recyclerView.setAdapter(adapter);
 
         return view;
@@ -99,5 +101,10 @@ public class TrafficFragment extends Fragment {
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(alpha);
         }
+    }
+
+    @Override
+    public void trafficIndicatorInit() {
+        initTrafficLight();
     }
 }

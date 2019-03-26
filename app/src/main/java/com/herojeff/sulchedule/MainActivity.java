@@ -126,10 +126,16 @@ public class MainActivity extends AppCompatActivity {
         dialog = builder.setPositiveButton("시작해요!",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        SharedResources.first_launch_ever = false;
                         dialog.dismiss();
                     }
                 }).create();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                SharedResources.first_launch_ever = false;
+
+            }
+        });
 
         dialog.show();
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(CustomColor.color_accent);

@@ -62,8 +62,6 @@ public class TrafficFragment extends Fragment implements TrafficIndicatorUpdateL
         adapter = new TrafficGoalRecyclerViewAdapter(this);
         recyclerView.setAdapter(adapter);
 
-        AutofitHelper.create(text_encouragement);
-
         return view;
     }
 
@@ -103,6 +101,9 @@ public class TrafficFragment extends Fragment implements TrafficIndicatorUpdateL
             traffic_yellow.setAlpha(alpha);
             traffic_green.setAlpha(alpha);
         }
+
+        text_encouragement.setTextSize(16);
+        AutofitHelper.create(text_encouragement);
     }
 
     @Override

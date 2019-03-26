@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
@@ -21,12 +20,11 @@ import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
 
 
-public class TodayFragment extends Fragment implements View.OnClickListener, SulListViewAdapter.EventListener, DatePickerDialog.OnDateSetListener {
+public class TodayFragment extends Fragment implements View.OnClickListener, SulListViewAdapter.EventListener {
 
     ImageButton setting_button;
     LinearLayout more_sul_pill;
@@ -207,10 +205,5 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
 
     void updateTipString(boolean refresh_default) {
         text_tip.setText(SharedResources.getSmartTipString(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay(), refresh_default));
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        Toast.makeText(getActivity(), "You picked the following date: " + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year, Toast.LENGTH_SHORT).show();
     }
 }

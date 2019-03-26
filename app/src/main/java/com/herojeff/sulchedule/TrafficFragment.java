@@ -74,7 +74,7 @@ public class TrafficFragment extends Fragment implements TrafficIndicatorUpdateL
         initTrafficLight();
     }
 
-    public void initTrafficLight(){
+    public void initTrafficLight() {
         final float alpha = 0.25f;
 
         double k = SharedResources.getRecordMonth().getTrafficSignal();

@@ -99,7 +99,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
     }
 
     private void barInit(final TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i, boolean enabled) {
-        if(enabled) {
+        if (enabled) {
             trafficGoalRecyclerViewHolder.itemView.post(new Runnable() {
                 @Override
                 public void run() {
@@ -115,8 +115,7 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
             } else {
                 trafficGoalRecyclerViewHolder.graph_overlay.setImageTintList(ColorStateList.valueOf(CustomColor.color_traffic_green));
             }
-        }
-        else{
+        } else {
             trafficGoalRecyclerViewHolder.itemView.post(new Runnable() {
                 @Override
                 public void run() {
@@ -135,61 +134,56 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
             trafficGoalRecyclerViewHolder.text_right_top.setText("목표 설정");
         }
         trafficGoalRecyclerViewHolder.text_left_top.setText(left_top[i]);
-        if(bar_t[i]>=1.0 && enabled[i]){
+        if (bar_t[i] >= 1.0 && enabled[i]) {
             trafficGoalRecyclerViewHolder.text_left_top.setTextColor(CustomColor.color_traffic_red);
-        }
-        else{
+        } else {
             trafficGoalRecyclerViewHolder.text_left_top.setTextColor(CustomColor.color_white);
         }
         trafficGoalRecyclerViewHolder.text_left_bottom.setText(left_bottom[i]);
         trafficGoalRecyclerViewHolder.text_right_bottom.setText("한도");
     }
 
-    void createDialog(ArrayAdapter<String> adapter, View view, final TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i){
+    void createDialog(ArrayAdapter<String> adapter, View view, final TrafficGoalRecyclerViewHolder trafficGoalRecyclerViewHolder, final int i) {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(view.getContext(), R.style.TodaySettingDialog));
         builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 //                        trafficGoalRecyclerViewHolder.text_right_top.setText(adapter.getItem(i));
-                switch (trafficGoalRecyclerViewHolder.getAdapterPosition()){
+                switch (trafficGoalRecyclerViewHolder.getAdapterPosition()) {
                     case 0:
-                        if(i==0){
+                        if (i == 0) {
                             SharedResources.getRecordMonth().setEnable_daysOfMonth(false);
-                        }
-                        else{
+                        } else {
                             SharedResources.getRecordMonth().setEnable_daysOfMonth(true);
                             String k = spinnerValues.get(0).get(i);
-                            SharedResources.getRecordMonth().setGoal_daysOfMonth(Integer.parseInt(k.substring(0, k.length()-1)));
+                            SharedResources.getRecordMonth().setGoal_daysOfMonth(Integer.parseInt(k.substring(0, k.length() - 1)));
                         }
                         break;
                     case 1:
-                        if(i==0){
+                        if (i == 0) {
                             SharedResources.getRecordMonth().setEnable_streakOfMonth(false);
-                        }
-                        else{
+                        } else {
                             SharedResources.getRecordMonth().setEnable_streakOfMonth(true);
                             String k = spinnerValues.get(1).get(i);
-                            SharedResources.getRecordMonth().setGoal_streakOfMonth(Integer.parseInt(k.substring(0, k.length()-1)));
+                            SharedResources.getRecordMonth().setGoal_streakOfMonth(Integer.parseInt(k.substring(0, k.length() - 1)));
                         }
                         break;
                     case 2:
-                        if(i==0){
+                        if (i == 0) {
                             SharedResources.getRecordMonth().setEnable_totalExpense(false);
-                        }
-                        else{
+                        } else {
                             SharedResources.getRecordMonth().setEnable_totalExpense(true);
                             String k = spinnerValues.get(2).get(i);
-                            SharedResources.getRecordMonth().setGoal_totalExpense(Integer.parseInt(k.substring(0, k.length()-1)));
+                            SharedResources.getRecordMonth().setGoal_totalExpense(Integer.parseInt(k.substring(0, k.length() - 1)));
                         }
                         break;
                     case 3:
-                        if(i==0){
+                        if (i == 0) {
                             SharedResources.getRecordMonth().setEnable_caloriesOfMonth(false);
-                        }
-                        else{
+                        } else {
                             SharedResources.getRecordMonth().setEnable_caloriesOfMonth(true);
                             String k = spinnerValues.get(3).get(i);
-                            SharedResources.getRecordMonth().setGoal_caloriesOfMonth(Integer.parseInt(k.substring(0, k.length()-4)));
+                            SharedResources.getRecordMonth().setGoal_caloriesOfMonth(Integer.parseInt(k.substring(0, k.length() - 4)));
                         }
                         break;
 
@@ -204,8 +198,8 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
         builder.setTitle(left_bottom[i] + " 설정");
 
         Dialog dialog = builder.create();
-        int width = (int)(view.getResources().getDisplayMetrics().widthPixels*0.90);
-        int height = (int)(view.getResources().getDisplayMetrics().heightPixels*0.60);
+        int width = (int) (view.getResources().getDisplayMetrics().widthPixels * 0.90);
+        int height = (int) (view.getResources().getDisplayMetrics().heightPixels * 0.60);
 
         dialog.show();
         dialog.getWindow().setLayout(width, height);

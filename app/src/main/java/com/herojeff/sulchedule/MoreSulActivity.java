@@ -3,7 +3,6 @@ package com.herojeff.sulchedule;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -12,6 +11,8 @@ import android.widget.ListView;
 import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MoreSulActivity extends AppCompatActivity implements View.OnClickListener {
 

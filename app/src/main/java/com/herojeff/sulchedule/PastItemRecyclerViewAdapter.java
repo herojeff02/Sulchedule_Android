@@ -1,7 +1,5 @@
 package com.herojeff.sulchedule;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,9 @@ import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class PastItemRecyclerViewAdapter extends RecyclerView.Adapter<PastItemRecyclerViewAdapter.PastItemRecyclerViewHolder> {
 

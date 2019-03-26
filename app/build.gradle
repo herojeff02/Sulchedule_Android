@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
 
     compile 'me.grantland:autofittextview:0.2.+'
+    implementation 'gun0912.ted:tedpermission:2.2.2'
 }
 repositories {
     mavenCentral()

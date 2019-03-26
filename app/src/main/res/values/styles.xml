@@ -17,7 +17,7 @@
     </style>
 
     <style name="TodaySettingDialog" parent="Base.Theme.AppCompat.Dialog">
-        <item name="android:titleTextColor">@color/textTransparent</item>
+        <item name="android:colorAccent">@color/textTransparent</item>
         <item name="android:backgroundTint">@color/colorPrimary</item>
     </style>
 

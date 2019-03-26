@@ -18,11 +18,11 @@ public final class SharedResources {
     static int randomIndex = new Random().nextInt(helloList.length);
     private static ArrayList<Sul> suls = new ArrayList<>();
 
-    public static ArrayList<Sul> getSulsRAW(){
+    public static ArrayList<Sul> getSulsRAW() {
         return suls;
     }
 
-    public static void setSulsRAW(Object fetched_sul){
+    public static void setSulsRAW(Object fetched_sul) {
         suls = (ArrayList<Sul>) fetched_sul;
     }
 
@@ -268,8 +268,8 @@ public final class SharedResources {
         return false;
     }
 
-    public static void cleanup(){
-        for(RecordMonth recordMonth : recordMonths){
+    public static void cleanup() {
+        for (RecordMonth recordMonth : recordMonths) {
             recordMonth.cleanup();
         }
     }
@@ -320,12 +320,12 @@ public final class SharedResources {
         return returnString;
     }
 
-    public static void setRecordMonthsRAW(Object list) {
-        recordMonths = (ArrayList<RecordMonth>) list;
-    }
-
     public static ArrayList<RecordMonth> getRecordMonthsRAW() {
         return recordMonths;
+    }
+
+    public static void setRecordMonthsRAW(Object list) {
+        recordMonths = (ArrayList<RecordMonth>) list;
     }
 
     enum Mode {

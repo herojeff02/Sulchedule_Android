@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public final class SaveManager {
     static SharedPreferences mPrefs;
 
-    public static void setPrefs(SharedPreferences prefs){//must be run at onCreate
+    public static void setPrefs(SharedPreferences prefs) {//must be run at onCreate
         mPrefs = prefs;
     }
 
@@ -21,14 +21,16 @@ public final class SaveManager {
         prefsEditor.putString("suls", json);
         prefsEditor.commit();
     }
-    public static void saveRecordArrayList(){
+
+    public static void saveRecordArrayList() {
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(SharedResources.getRecordMonthsRAW());
         prefsEditor.putString("recordMonths", json);
         prefsEditor.commit();
     }
-    public static void saveUserSettings(){
+
+    public static void saveUserSettings() {
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
         //smart tip on?
@@ -48,7 +50,7 @@ public final class SaveManager {
         prefsEditor.commit();
     }
 
-    public static void save(){
+    public static void save() {
         saveSulArrayList();
         saveRecordArrayList();
         saveUserSettings();
@@ -58,10 +60,12 @@ public final class SaveManager {
         Gson gson = new Gson();
 
         String json = mPrefs.getString("suls", "");
-        SharedResources.setSulsRAW(gson.fromJson(json, new TypeToken<ArrayList<Sul>>(){}.getType()));
+        SharedResources.setSulsRAW(gson.fromJson(json, new TypeToken<ArrayList<Sul>>() {
+        }.getType()));
 
         json = mPrefs.getString("recordMonths", "");
-        SharedResources.setRecordMonthsRAW(gson.fromJson(json, new TypeToken<ArrayList<RecordMonth>>(){}.getType()));
+        SharedResources.setRecordMonthsRAW(gson.fromJson(json, new TypeToken<ArrayList<RecordMonth>>() {
+        }.getType()));
 
         json = mPrefs.getString("smartTipEnabled", "");
         SharedResources.enable_smart_tip_string = gson.fromJson(json, Boolean.class);
@@ -76,7 +80,7 @@ public final class SaveManager {
         String json = mPrefs.getString("firstLaunchEver", "");
         try {
             SharedResources.first_launch_ever = gson.fromJson(json, Boolean.class);
-        } catch (Exception e){
+        } catch (Exception e) {
             SharedResources.first_launch_ever = true;
             return true;
         }

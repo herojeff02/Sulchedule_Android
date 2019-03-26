@@ -9,7 +9,7 @@ public class CustomDayManager {
     private static int day;
     int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    public static void initCustomDay(){
+    public static void initCustomDay() {
         year = getTodayYear();
         month = getTodayMonth();
         day = getTodayDay();
@@ -43,11 +43,11 @@ public class CustomDayManager {
     }
 
     public static String getWeekDayKorean(int year, int month, int day) {
-        Date today = new Date(year, month-1, day-1);
+        Date today = new Date(year, month - 1, day - 1);
         Calendar cal = Calendar.getInstance();
         cal.setTime(today);
 
-        switch (cal.get(Calendar.DAY_OF_WEEK)){
+        switch (cal.get(Calendar.DAY_OF_WEEK)) {
             case 1:
                 return "월";
             case 2:
@@ -68,6 +68,11 @@ public class CustomDayManager {
 
 //        String[] weekDayKorean = {월", "화", "수", "목", "금", "토", "일"};
 //        return weekDayKorean[today.getDay()];
+    }
+
+    public static int getLastDayOfMonth(int month) {
+        int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        return lastDayOfMonth[month - 1];
     }
 
     public void setNextDay() {
@@ -104,10 +109,5 @@ public class CustomDayManager {
         } else {
             month--;
         }
-    }
-
-    public static int getLastDayOfMonth(int month){
-        int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        return lastDayOfMonth[month-1];
     }
 }

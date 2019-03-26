@@ -8,6 +8,23 @@ import java.util.HashMap;
 
 public class RecordMonth {
     private int year;
+    private int month;
+    private boolean enable_daysOfMonth = false;
+    private boolean enable_streakOfMonth = false;
+    private boolean enable_caloriesOfMonth = false;
+    private boolean enable_totalExpense = false;
+    private int goal_daysOfMonth = 0;
+    private int goal_streakOfMonth = 0;
+    private int goal_caloriesOfMonth = 0;
+    private int goal_totalExpense = 0;
+    private boolean first_launch_of_month = true;
+    private ArrayList<RecordDay> recordDays = new ArrayList<>();
+    public RecordMonth(int year, int month) {
+        this.year = year;
+        this.month = month;
+
+        previousMonthGoalMigration(year, month);
+    }
 
     public int getYear() {
         return year;
@@ -25,41 +42,17 @@ public class RecordMonth {
         this.month = month;
     }
 
-    public void setFirst_launch_of_month(boolean first_launch_of_month) {
-        this.first_launch_of_month = first_launch_of_month;
-    }
-
-    private int month;
-    private boolean enable_daysOfMonth = false;
-    private boolean enable_streakOfMonth = false;
-    private boolean enable_caloriesOfMonth = false;
-    private boolean enable_totalExpense = false;
-    private int goal_daysOfMonth = 0;
-    private int goal_streakOfMonth = 0;
-    private int goal_caloriesOfMonth = 0;
-    private int goal_totalExpense = 0;
-    private boolean first_launch_of_month = true;
-    private ArrayList<RecordDay> recordDays = new ArrayList<>();
-
-    public RecordMonth(int year, int month) {
-        this.year = year;
-        this.month = month;
-
-        previousMonthGoalMigration(year, month);
-    }
-
-    void previousMonthGoalMigration(int source_year, int source_month){
+    void previousMonthGoalMigration(int source_year, int source_month) {
         //set source year, month
-        if(source_month <= 1){
+        if (source_month <= 1) {
             source_year--;
             source_month = 12;
-        }
-        else{
+        } else {
             source_month--;
         }
 
         //migration process
-        if(SharedResources.recordMonth_exists(source_year, source_month)){
+        if (SharedResources.recordMonth_exists(source_year, source_month)) {
             RecordMonth source_recordMonth = SharedResources.getRecordMonth(source_year, source_month);
 
             enable_daysOfMonth = source_recordMonth.isEnable_daysOfMonth();
@@ -71,8 +64,7 @@ public class RecordMonth {
             goal_caloriesOfMonth = source_recordMonth.getGoal_caloriesOfMonth();
             goal_streakOfMonth = source_recordMonth.getGoal_streakOfMonth();
             goal_totalExpense = source_recordMonth.getGoal_totalExpense();
-        }
-        else{
+        } else {
             //leave everything as it is
         }
     }
@@ -87,7 +79,7 @@ public class RecordMonth {
             //consolidation
             if (recordDay.getSul_list().size() != 0) {
                 for (int i : recordDay.getSul_list().keySet()) {
-                    if(SharedResources.getSul(i).isSul_enabled()) {
+                    if (SharedResources.getSul(i).isSul_enabled()) {
                         int a;
                         try {
                             a = monthlyBestDrink.get(i);
@@ -253,6 +245,10 @@ public class RecordMonth {
 
     public boolean isFirst_launch_of_month() {
         return first_launch_of_month;
+    }
+
+    public void setFirst_launch_of_month(boolean first_launch_of_month) {
+        this.first_launch_of_month = first_launch_of_month;
     }
 
     public void disableFirst_launch_of_month() {

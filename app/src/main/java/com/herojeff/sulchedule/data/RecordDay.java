@@ -39,7 +39,7 @@ public class RecordDay {
         return friend_list;
     }
 
-    public boolean containsDeletedSul(){
+    public boolean containsDeletedSul() {
         for (int k : sul_list.keySet()) {
             if (sul_list.get(k) != 0 && !SharedResources.getSul(k).isSul_enabled()) {
                 return true;

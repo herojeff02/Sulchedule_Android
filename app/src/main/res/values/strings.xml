@@ -18,4 +18,14 @@
     <string name="back_all_sul">주류 관리</string>
     <string name="title_activity_settings">SettingsActivity</string>
 
+    <string name="settings">설정</string>
+    <string name="eula">오픈소스 라이센스</string>
+    <string name="github_repository">Github repository</string>
+    <string name="dataprocess">개인정보처리방침</string>
+    <string name="suggestion2">기능 건의</string>
+    <string name="suggestion1">버그 신고</string>
+    <string name="show_ad">광고 표시</string>
+    <string name="notification_setting">알림 설정</string>
+    <string name="smart_tip">스마트 팁</string>
+
 </resources>

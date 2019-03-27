@@ -1,0 +1,21 @@
+v1.1
+설정 창 똑바로 만들기(스마트 팁(구글 픽셀 설정처럼 Activity 또 띄우고 체크박스), EULA 보기, repo로 연결, 버그 제보, 기능 건의, 광고, 광고 표시 여부, 광고 제거를 위한 전 달 기록 확인, 광고 강제로 끄는 이스터 에그)
+
+v1.2
+//개발 후 되살릴 영역 : 누구와/어디서/얼마 -> Spinner로 변환
+날짜 클릭하면 다른 날짜 선택
+
+v1.3
+지난 달 요약
+
+v1.4
+ListView -> Recycler (MoreSulEdit)
+목표 설정 Dialog -> Custom, 활성화 스위치 아래에 날짜 ListAdapter
+
+v1.5
+TextView -> Button
+PastFragment 왕관 영역 크기 수정
+주기적 앱 접근 알림
+
+v1.6
+어차피 json이니 백업과 복구? 아니면 파이어베이스 DB?

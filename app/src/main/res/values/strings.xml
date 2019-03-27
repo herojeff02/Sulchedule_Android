@@ -16,5 +16,6 @@
 
     <string name="back_home">모든 주류</string>
     <string name="back_all_sul">주류 관리</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 </resources>

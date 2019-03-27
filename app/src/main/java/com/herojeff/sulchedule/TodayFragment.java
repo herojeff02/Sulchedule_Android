@@ -155,7 +155,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         Intent intent;
         switch (v.getId()) {
             case R.id.setting_button:
-                settingDialog();
+//                settingDialog();
+                settingActivity();
                 break;
             case R.id.pill_more_sul:
                 intent = new Intent(getContext(), MoreSulActivity.class);
@@ -168,6 +169,12 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
 //                break;
         }
 
+    }
+
+    private void settingActivity() {
+        Intent intent = new Intent(getContext(), SettingsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
     }
 
     void settingDialog() {

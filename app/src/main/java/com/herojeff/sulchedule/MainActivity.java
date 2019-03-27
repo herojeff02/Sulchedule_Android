@@ -10,6 +10,10 @@ import android.view.ContextThemeWrapper;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment todayFragment;
     Fragment pastFragment;
     Fragment trafficFragment;
+    AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
         TedPermission.with(this).setPermissionListener(permissionlistener).setPermissions(Manifest.permission.READ_CONTACTS).check();
 
         testField();
+
+        if(SharedResources.enable_ad) {
+            initAd();
+        }
     }
 
     void welcomeDialog() {
@@ -173,12 +182,31 @@ public class MainActivity extends AppCompatActivity {
             Cursor c = getApplication().getContentResolver().query(ContactsContract.Profile.CONTENT_URI, null, null, null, null);
             if (c != null) {
                 c.moveToFirst();
-                return c.getString(c.getColumnIndex("display_name"));
+                String name = c.getString(c.getColumnIndex("display_name"));
+                c.close();
+                return name;
             } else {
+                c.close();
                 return null;
             }
         } catch (Exception e) {
             return null;
         }
+    }
+
+    void initAd(){
+        MobileAds.initialize(this, "ca-app-pub-4587910042719801~9624838610");
+
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        adView.setAdListener(new AdListener(){
+
+        });
+    }
+
+    void removeAd(){
+        adView.removeAllViews();
     }
 }

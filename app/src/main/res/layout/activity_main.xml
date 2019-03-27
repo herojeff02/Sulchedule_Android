@@ -15,8 +15,20 @@
         android:layout_height="0dp"
         android:background="@color/colorPrimaryDark"
         android:backgroundTint="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@id/adView"
+        app:layout_constraintTop_toTopOf="@id/container"/>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-4587910042719801/9464346076"
         app:layout_constraintBottom_toTopOf="@id/navigation"
-        app:layout_constraintTop_toTopOf="@id/container"></FrameLayout>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
@@ -24,6 +36,7 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         android:backgroundTint="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
         android:paddingLeft="40dp"
         android:paddingTop="4dp"
         android:paddingRight="40dp"
@@ -35,5 +48,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

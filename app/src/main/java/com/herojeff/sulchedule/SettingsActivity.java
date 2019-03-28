@@ -82,8 +82,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
                 intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"herojeff02@gmail.com"});
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Bug Report " + CustomDayManager.getTodayYear()+"/" + CustomDayManager.getTodayMonth()+"/" + CustomDayManager.getTodayDay());
-                intent.putExtra(Intent.EXTRA_TEXT   , "[버그 내용은 상황과 현상을 자세하게 설명해주세요.]");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Bug Report " + (CustomDayManager.getTodayYear()+1900)+"/" + CustomDayManager.getTodayMonth()+"/" + CustomDayManager.getTodayDay());
+                intent.putExtra(Intent.EXTRA_TEXT   , "[버그가 발생한 상황과, 버그의 현상을 자세하게 설명해주세요.]");
                 try {
                     startActivity(Intent.createChooser(intent, "메일 전송"));
                 } catch (android.content.ActivityNotFoundException ex) {
@@ -94,7 +94,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
                 intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"herojeff02@gmail.com"});
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Feature Request " + CustomDayManager.getTodayYear()+"/" + CustomDayManager.getTodayMonth()+"/" + CustomDayManager.getTodayDay());
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Feature Request " + (CustomDayManager.getTodayYear()+1900)+"/" + CustomDayManager.getTodayMonth()+"/" + CustomDayManager.getTodayDay());
                 intent.putExtra(Intent.EXTRA_TEXT   , "[원하는 기능을 자세하게 설명해 주세요.]");
                 try {
                     startActivity(Intent.createChooser(intent, "메일 전송"));

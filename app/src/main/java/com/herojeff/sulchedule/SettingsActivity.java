@@ -169,6 +169,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+    
 
     void smartTipConfigDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.TodaySettingDialog));

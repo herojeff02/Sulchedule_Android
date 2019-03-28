@@ -1,9 +1,9 @@
-v
 v1.2
+주기적 앱 접근 알림
 //개발 후 되살릴 영역 : 누구와/어디서/얼마 -> Spinner로 변환
-날짜 클릭하면 다른 날짜 선택
 
 v1.3
+날짜 클릭하면 다른 날짜 선택
 지난 달 요약
 
 v1.4
@@ -13,7 +13,6 @@ ListView -> Recycler (MoreSulEdit)
 v1.5
 TextView -> Button
 PastFragment 왕관 영역 크기 수정
-주기적 앱 접근 알림
 
 v1.6
 어차피 json이니 백업과 복구? 아니면 파이어베이스 DB?

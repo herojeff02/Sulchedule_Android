@@ -82,6 +82,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
                 intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"herojeff02@gmail.com"});
+                intent.setPackage("com.google.android.gm");
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Bug Report " + (CustomDayManager.getTodayYear()+1900)+"/" + CustomDayManager.getTodayMonth()+"/" + CustomDayManager.getTodayDay());
                 intent.putExtra(Intent.EXTRA_TEXT   , "[버그가 발생한 상황과, 버그의 현상을 자세하게 설명해주세요.]");
                 try {
@@ -93,6 +94,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
             case R.id.setting_item5:
                 intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
+                intent.setPackage("com.google.android.gm");
                 intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"herojeff02@gmail.com"});
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Feature Request " + (CustomDayManager.getTodayYear()+1900)+"/" + CustomDayManager.getTodayMonth()+"/" + CustomDayManager.getTodayDay());
                 intent.putExtra(Intent.EXTRA_TEXT   , "[원하는 기능을 자세하게 설명해 주세요.]");
@@ -223,7 +225,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                     }).create();
         }
         else {
-            builder.setMessage("화면 하단에 광고가 표시됩니다.\n건강 신호등 탭의 네 목표를 한번에 달성하셔야 광고를 끌 수 있습니다.");
+            builder.setMessage("화면 하단에 광고가 표시됩니다.\n건강 신호등 탭의 네 가지 목표를 한번에 달성하셔야 광고를 끌 수 있습니다.");
 
             dialog = builder.setPositiveButton("닫기",
                     new DialogInterface.OnClickListener() {

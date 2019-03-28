@@ -31,7 +31,7 @@ public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
             HashMap<String, Integer> friendCompilation = recordMonth.getMonthlyFriendCompilation();
             HashMap<String, Integer> locationCompilation = recordMonth.getMonthlyLocationCompilation();
             for (int i : sulCompilation.keySet()) {
-                if (SharedResources.getSul(i).isSul_enabled()) {
+                if (SharedResources.getSul(i).isSul_enabled() && sulCompilation.get(i) != 0) {
                     arr.add(new StringPair(String.valueOf(sulCompilation.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
                 }
             }

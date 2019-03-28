@@ -6,11 +6,12 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.herojeff.sulchedule"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 3
         versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -42,6 +43,7 @@ dependencies {
     implementation 'me.grantland:autofittextview:0.2.1'
     implementation 'gun0912.ted:tedpermission:2.2.2'
     implementation 'com.google.firebase:firebase-ads:17.2.0'
+    implementation 'com.android.support:multidex:1.0.3'
 
 }
 repositories {

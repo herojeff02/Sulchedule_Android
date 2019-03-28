@@ -8,12 +8,13 @@ import java.util.Random;
 
 
 public final class SharedResources {
-    public static boolean enable_ad = true;
-    public static boolean remove_ad_eligible = false;
+    private static boolean enable_ad = true;
     public static boolean first_launch_ever = true;
 
     public static boolean enable_smart_tip_string = true;
     public static ArrayList<RecordMonth> recordMonths = new ArrayList<>();
+    public static boolean notification_enabled = true;
+    public static boolean ad_force_off = false;
     static String[] helloList = {"안녕하세요!", "무슨 일로 오셨나요?(불안)", "건강한 음주 되세요!", "전 당신을 믿습니다.", "환영합니다!"};
     static int randomIndex = new Random().nextInt(helloList.length);
     private static ArrayList<Sul> suls = new ArrayList<>();
@@ -24,6 +25,17 @@ public final class SharedResources {
 
     public static void setSulsRAW(Object fetched_sul) {
         suls = (ArrayList<Sul>) fetched_sul;
+    }
+
+    public static boolean isEnable_ad() {
+        if(ad_force_off){
+            return false;
+        }
+        return enable_ad;
+    }
+
+    public static void setEnable_ad(boolean enable_ad) {
+        SharedResources.enable_ad = enable_ad;
     }
 
     //sul
@@ -326,6 +338,23 @@ public final class SharedResources {
 
     public static void setRecordMonthsRAW(Object list) {
         recordMonths = (ArrayList<RecordMonth>) list;
+    }
+
+    public static boolean checkEligibleRemoveAdEligible() {
+        if(SharedResources.ad_force_off){
+            return true;
+        }
+        int year = CustomDayManager.getTodayYear();
+        int month = CustomDayManager.getTodayMonth();
+        if(month<=1){
+            month=12;
+            year--;
+        }
+        else{
+            month--;
+        }
+        return getRecordMonth(year, month).checkEligibleRemoveAdEligible();
+//        return true;
     }
 
     enum Mode {

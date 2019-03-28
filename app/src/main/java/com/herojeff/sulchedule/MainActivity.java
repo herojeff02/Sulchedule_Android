@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         testField();
 
-        if(SharedResources.enable_ad) {
+        if(SharedResources.isEnable_ad() && SharedResources.checkEligibleRemoveAdEligible()) {
 
             new Thread(new Runnable() {
                 @Override

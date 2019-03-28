@@ -19,6 +19,7 @@ public class RecordMonth {
     private int goal_totalExpense = 0;
     private boolean first_launch_of_month = true;
     private ArrayList<RecordDay> recordDays = new ArrayList<>();
+
     public RecordMonth(int year, int month) {
         this.year = year;
         this.month = month;
@@ -460,6 +461,25 @@ public class RecordMonth {
         }
 
         return returnMap;
+    }
+
+    public boolean checkEligibleRemoveAdEligible() {
+        if (!enable_daysOfMonth && !enable_streakOfMonth && !enable_caloriesOfMonth && !enable_totalExpense) {
+            return false;
+        }
+        if (enable_totalExpense && goalStat_totalExpense() >= 1) {
+            return false;
+        }
+        if (enable_streakOfMonth && goalStat_streakOfMonth() >= 1) {
+            return false;
+        }
+        if (enable_caloriesOfMonth && goalStat_caloriesOfMonth() >= 1) {
+            return false;
+        }
+        if (enable_daysOfMonth && goalStat_daysOfMonth() >= 1) {
+            return false;
+        }
+        return true;
     }
 
     public class MonthlyBest {

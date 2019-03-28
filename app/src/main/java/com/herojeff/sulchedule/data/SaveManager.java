@@ -40,11 +40,14 @@ public final class SaveManager {
         json = gson.toJson(SharedResources.first_launch_ever);
         prefsEditor.putString("firstLaunchEver", json);
         //ad on?
-        json = gson.toJson(SharedResources.enable_ad);
+        json = gson.toJson(SharedResources.isEnable_ad());
         prefsEditor.putString("adEnabled", json);
-        //eligible for ad off?
-        json = gson.toJson(SharedResources.remove_ad_eligible);
-        prefsEditor.putString("eligibleForAdDisable", json);
+        //notification on?
+        json = gson.toJson(SharedResources.notification_enabled);
+        prefsEditor.putString("notificationEnabled", json);
+        //ad force off
+        json = gson.toJson(SharedResources.ad_force_off);
+        prefsEditor.putString("adForceOffFlag", json);
 
         //commit
         prefsEditor.commit();
@@ -70,9 +73,17 @@ public final class SaveManager {
         json = mPrefs.getString("smartTipEnabled", "");
         SharedResources.enable_smart_tip_string = gson.fromJson(json, Boolean.class);
         json = mPrefs.getString("adEnabled", "");
-        SharedResources.enable_ad = gson.fromJson(json, Boolean.class);
-        json = mPrefs.getString("eligibleForAdDisable", "");
-        SharedResources.remove_ad_eligible = gson.fromJson(json, Boolean.class);
+        SharedResources.setEnable_ad(gson.fromJson(json, Boolean.class));
+        json = mPrefs.getString("notificationEnabled", "");
+        SharedResources.notification_enabled = true;
+        if(gson.fromJson(json, Boolean.class) != null) {
+            SharedResources.notification_enabled = gson.fromJson(json, Boolean.class);
+        }
+        json = mPrefs.getString("adForceOffFlag", "");
+        SharedResources.ad_force_off = false;
+        if(gson.fromJson(json, Boolean.class) != null) {
+            SharedResources.ad_force_off = gson.fromJson(json, Boolean.class);
+        }
     }
 
     public static boolean getFirstLaunch() {

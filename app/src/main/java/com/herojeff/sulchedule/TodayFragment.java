@@ -1,11 +1,7 @@
 package com.herojeff.sulchedule;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
-import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
-import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
@@ -155,7 +149,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         Intent intent;
         switch (v.getId()) {
             case R.id.setting_button:
-//                settingDialog();
+//                smartTipConfigDialog();
                 settingActivity();
                 break;
             case R.id.pill_more_sul:
@@ -177,34 +171,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         startActivity(intent);
     }
 
-    void settingDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this.getContext(), R.style.TodaySettingDialog));
-        builder.setTitle("스마트 팁");
-        builder.setMessage(Html.fromHtml("<style opacity='.56'>스마트 팁은 열량, 지출액에 따라 유동적으로 메시지를 화면 상단에 표시합니다.</style><br>끄면 지출액과 열량만이 표시됩니다."));
-
-        AlertDialog dialog;
-
-        builder.setPositiveButton("켜기",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        SharedResources.enable_smart_tip_string = true;
-                        updateTipString(false);
-                        SaveManager.saveUserSettings();
-                    }
-                }).create();
-        dialog = builder.setNegativeButton("끄기",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        SharedResources.enable_smart_tip_string = false;
-                        updateTipString(false);
-                        SaveManager.saveUserSettings();
-                    }
-                }).create();
-
-        dialog.show();
-        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(CustomColor.color_accent);
-        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(CustomColor.color_accent);
-    }
 
     @Override
     public void callUpdateTipString(boolean refresh_default) {

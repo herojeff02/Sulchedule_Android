@@ -10,7 +10,6 @@ import android.view.ContextThemeWrapper;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -116,7 +115,13 @@ public class MainActivity extends AppCompatActivity {
         testField();
 
         if(SharedResources.enable_ad) {
-            initAd();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    initAd();
+                }
+            });
         }
     }
 
@@ -200,10 +205,6 @@ public class MainActivity extends AppCompatActivity {
         adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
-
-        adView.setAdListener(new AdListener(){
-
-        });
     }
 
     void removeAd(){

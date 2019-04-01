@@ -41,21 +41,37 @@
             </RelativeLayout>
         </RelativeLayout>
 
-        <EditText
-            android:id="@+id/edittext_more_info"
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="8dp"
-            android:layout_marginBottom="3dp"
             android:layout_toRightOf="@id/pill_selector"
-            android:hint="입력하세요"
-            android:imeOptions="actionNext"
-            android:inputType="text"
             android:paddingLeft="4dp"
-            android:singleLine="true"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/textGray"
-            android:textSize="@dimen/h5" />
+            android:layout_marginBottom="3dp">
+            <EditText
+                android:id="@+id/edittext_more_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="입력하세요"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/textGray"
+                android:textSize="@dimen/h5" />
+            <Button
+                android:id="@+id/edittext_clear_button"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="6dp"
+                android:visibility="gone"
+                android:layout_gravity="right|center_vertical"
+                android:foregroundTint="@color/textWhite"
+                android:alpha="0.56"
+                android:background="@drawable/ic_clear_black_24dp" />
+        </FrameLayout>
+
     </RelativeLayout>
 </RelativeLayout>

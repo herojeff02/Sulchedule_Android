@@ -98,23 +98,21 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         }
 
         //more_info adapter
-        /**개발 후 되살릴 영역**/
-//        listview_more_info = view.findViewById(R.id.listview_more_info);
-//        adapter_more_info = new MoreInfoListViewAdapter();
-//        listview_more_info.setAdapter(adapter_more_info);
-//        listview_more_info.setDividerHeight(0);
+        listview_more_info = view.findViewById(R.id.listview_more_info);
+        adapter_more_info = new MoreInfoListViewAdapter();
+        listview_more_info.setAdapter(adapter_more_info);
+        listview_more_info.setDividerHeight(0);
 
         //set listview height not to clip content
-//        ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
+        ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
 
         setting_button = view.findViewById(R.id.setting_button);
         setting_button.setOnClickListener(this);
         more_sul_pill = view.findViewById(R.id.pill_more_sul);
         more_sul_pill.setOnClickListener(this);
 
-        /**개발 후 되살릴 영역**/
-//        more_blank_pill = view.findViewById(R.id.pill_more_blank);
-//        more_blank_pill.setOnClickListener(this);
+        more_blank_pill = view.findViewById(R.id.pill_more_blank);
+        more_blank_pill.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return view;
@@ -149,7 +147,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         Intent intent;
         switch (v.getId()) {
             case R.id.setting_button:
-//                smartTipConfigDialog();
                 settingActivity();
                 break;
             case R.id.pill_more_sul:
@@ -157,10 +154,9 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent);
                 break;
-            /**개발 후 되살릴 영역**/
-//            case R.id.pill_more_blank:
-//                System.out.println("pill_more_blank");
-//                break;
+            case R.id.pill_more_blank:
+                System.out.println("pill_more_blank");
+                break;
         }
 
     }

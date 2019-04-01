@@ -1,12 +1,10 @@
 package com.herojeff.sulchedule;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class MoreInfoListViewAdapter extends BaseAdapter {
 
@@ -31,16 +29,12 @@ public class MoreInfoListViewAdapter extends BaseAdapter {
         final Context context = parent.getContext();
 
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.listview_more_info_item, parent, false);
+            convertView = new PillSelector(parent.getContext(), pos);
         }
 
         EditText editText = convertView.findViewById(R.id.edittext_more_info);
-        editText.setText("");
 
-        TextView pill_selector_string = convertView.findViewById(R.id.pill_selector_string);
-        PillSelector pill = new PillSelector(pos + 1);
-        pill_selector_string.setText(pill.getModeString());
+        PillSelector pill = new PillSelector(parent.getContext(), pos);
 
         return convertView;
     }

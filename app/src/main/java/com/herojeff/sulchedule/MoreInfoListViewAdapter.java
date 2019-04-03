@@ -1,10 +1,8 @@
 package com.herojeff.sulchedule;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 
 public class MoreInfoListViewAdapter extends BaseAdapter {
 
@@ -24,17 +22,14 @@ public class MoreInfoListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position;
-        final Context context = parent.getContext();
-
+    public View getView(int pos, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = new PillSelector(parent.getContext(), pos);
+            if (pos <= 2) {
+                convertView = new PillSelector(parent.getContext(), pos, true);
+            } else {
+                convertView = new PillSelector(parent.getContext(), 0, false);
+            }
         }
-
-        EditText editText = convertView.findViewById(R.id.edittext_more_info);
-
-        PillSelector pill = new PillSelector(parent.getContext(), pos);
 
         return convertView;
     }

@@ -4,6 +4,7 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
+        android:id="@+id/pill_click"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -43,16 +44,16 @@
 
         <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="12dp"
             android:layout_toRightOf="@id/pill_selector"
-            android:paddingLeft="4dp"
-            android:layout_marginBottom="3dp">
+            >
+
             <EditText
                 android:id="@+id/edittext_more_info"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:hint="입력하세요"
                 android:imeOptions="actionNext"
                 android:inputType="text"

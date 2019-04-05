@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -87,7 +88,8 @@ public class PillSelector extends RelativeLayout {
             }
         });
 
-        pill_selector_string.setText(getModeString(mode));
+        setPillString(mode);
+        setEditTextMode(mode);
     }
 
     public int getMode() {
@@ -96,6 +98,7 @@ public class PillSelector extends RelativeLayout {
 
     public void setMode(int mode) {
         this.mode = mode;
+        setEditTextMode(mode);
         setPillString(mode);
     }
 
@@ -124,6 +127,7 @@ public class PillSelector extends RelativeLayout {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 mode = i;
+                setEditTextMode(mode);
                 setPillString(mode);
             }
         });
@@ -134,5 +138,14 @@ public class PillSelector extends RelativeLayout {
 
     private void setPillString(int mode) {
         pill_selector_string.setText(getModeString(mode));
+    }
+
+    private void setEditTextMode(int mode){
+        if(mode==2) {
+            edittext_more_info.setInputType(InputType.TYPE_CLASS_NUMBER);
+        }
+        else{
+            edittext_more_info.setInputType(InputType.TYPE_CLASS_TEXT);
+        }
     }
 }

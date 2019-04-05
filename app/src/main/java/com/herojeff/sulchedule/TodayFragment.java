@@ -16,11 +16,17 @@ import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.fragment.app.Fragment;
 
 
 public class TodayFragment extends Fragment implements View.OnClickListener, SulListViewAdapter.EventListener {
+
+    class ModeStringPair{
+        String type;
+        String dataString;
+    }
 
     ImageButton setting_button;
     LinearLayout more_sul_pill;
@@ -97,15 +103,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
             pervert_area.setVisibility(View.VISIBLE);
         }
 
-        //more_info adapter
-        listview_more_info = view.findViewById(R.id.listview_more_info);
-        adapter_more_info = new MoreInfoListViewAdapter();
-        listview_more_info.setAdapter(adapter_more_info);
-        listview_more_info.setDividerHeight(0);
-
-        //set listview height not to clip content
-        ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
-
         setting_button = view.findViewById(R.id.setting_button);
         setting_button.setOnClickListener(this);
         more_sul_pill = view.findViewById(R.id.pill_more_sul);
@@ -135,6 +132,19 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
             pervert_area.setVisibility(View.VISIBLE);
         }
         first = false;
+
+        //more_info_data_prep
+        ArrayList<ModeStringPair> adapterDataArray = new ArrayList<>();
+
+        //more_info adapter
+        listview_more_info = Objects.requireNonNull(getView()).findViewById(R.id.listview_more_info);
+        adapter_more_info = new MoreInfoListViewAdapter();
+        listview_more_info.setAdapter(adapter_more_info);
+        listview_more_info.setDividerHeight(0);
+
+        //set listview height not to clip content
+        ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
+
     }
 
     @Override

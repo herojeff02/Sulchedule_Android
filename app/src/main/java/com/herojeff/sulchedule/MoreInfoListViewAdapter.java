@@ -4,7 +4,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import java.util.ArrayList;
+
 public class MoreInfoListViewAdapter extends BaseAdapter {
+    ArrayList<TodayFragment.ModeStringPair> array;
+    public MoreInfoListViewAdapter(ArrayList<TodayFragment.ModeStringPair> initMoreData) {
+        array = initMoreData;
+    }
 
     @Override
     public int getCount() {

@@ -133,18 +133,22 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         }
         first = false;
 
-        //more_info_data_prep
-        ArrayList<ModeStringPair> adapterDataArray = new ArrayList<>();
-
         //more_info adapter
         listview_more_info = Objects.requireNonNull(getView()).findViewById(R.id.listview_more_info);
-        adapter_more_info = new MoreInfoListViewAdapter();
+        adapter_more_info = new MoreInfoListViewAdapter(initMoreData());
         listview_more_info.setAdapter(adapter_more_info);
         listview_more_info.setDividerHeight(0);
 
         //set listview height not to clip content
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
 
+    }
+
+    private ArrayList<ModeStringPair> initMoreData() {
+        ArrayList<ModeStringPair> returnArray = new ArrayList<>();
+        SharedResources.getRecordDay();
+
+        return returnArray;
     }
 
     @Override

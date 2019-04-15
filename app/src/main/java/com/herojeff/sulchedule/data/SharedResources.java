@@ -357,6 +357,10 @@ public final class SharedResources {
 //        return true;
     }
 
+    public static RecordDay getRecordDay() {
+        return getRecordDay(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay());
+    }
+
     enum Mode {
         DayEXPENSE, DayCALORIE, DaySULKIND, DayFRIENDCOUNT, DayLOCATIONLIST, MonthSTREAK, MonthCOUNT, MonthEXPENSE, MonthCALORIE
     }

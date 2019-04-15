@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -36,6 +37,9 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     View pervert_area;
 
     ArrayList<Sul> showArray;
+
+    Button button_emergency_shuffle;
+    boolean button_emergency_yesterday_flag = false;
 
     boolean first = true;
 
@@ -111,6 +115,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         setting_button.setOnClickListener(this);
         more_sul_pill = view.findViewById(R.id.pill_more_sul);
         more_sul_pill.setOnClickListener(this);
+        button_emergency_shuffle = view.findViewById(R.id.button_emergency_shuffle);
+        button_emergency_shuffle.setOnClickListener(this);
 
         /**개발 후 되살릴 영역**/
 //        more_blank_pill = view.findViewById(R.id.pill_more_blank);
@@ -161,6 +167,19 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
 //            case R.id.pill_more_blank:
 //                System.out.println("pill_more_blank");
 //                break;
+            case R.id.button_emergency_shuffle:
+                if(!button_emergency_yesterday_flag) {
+                    CustomDayManager.setPrevDay();
+                }
+                else{
+                    CustomDayManager.setNextDay();
+                }
+                onResume();
+                String temp = CustomDayManager.getMonth() + "월 " + CustomDayManager.getDay() + "일 (" + CustomDayManager.getWeekDayKorean(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay()) + ")";
+                text_today.setText(temp);
+
+                button_emergency_yesterday_flag = !button_emergency_yesterday_flag;
+                break;
         }
 
     }

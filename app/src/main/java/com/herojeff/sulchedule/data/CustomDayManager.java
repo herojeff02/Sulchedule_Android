@@ -7,7 +7,7 @@ public class CustomDayManager {
     private static int year;
     private static int month;
     private static int day;
-    int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    private static int[] lastDayOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     public static void initCustomDay() {
         year = getTodayYear();
@@ -75,7 +75,7 @@ public class CustomDayManager {
         return lastDayOfMonth[month - 1];
     }
 
-    public void setNextDay() {
+    public static void setNextDay() {
         if (lastDayOfMonth[month - 1] < day + 1) {
             day = 1;
             setNextMonth();
@@ -84,7 +84,7 @@ public class CustomDayManager {
         }
     }
 
-    public void setNextMonth() {
+    public static void setNextMonth() {
         if (month + 1 > 12) {
             year++;
             month = 1;
@@ -93,7 +93,7 @@ public class CustomDayManager {
         }
     }
 
-    public void setPrevDay() {
+    public static void setPrevDay() {
         if (1 > day - 1) {
             setPrevMonth();
             day = lastDayOfMonth[month - 1];
@@ -102,7 +102,7 @@ public class CustomDayManager {
         }
     }
 
-    public void setPrevMonth() {
+    public static void setPrevMonth() {
         if (month - 1 < 1) {
             year--;
             month = 12;

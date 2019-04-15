@@ -68,6 +68,15 @@
                     android:padding="29dp"
                     android:src="@drawable/ic_settings"
                     android:tint="@color/textWhite" />
+
+                <Button
+                    android:id="@+id/button_emergency_shuffle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="shift"
+                    android:background="#1AFFFFFF"
+                    android:textColor="@color/colorAccent"
+                    android:layout_toLeftOf="@id/setting_button" />
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView

@@ -8,8 +8,8 @@ android {
         applicationId "com.herojeff.sulchedule"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.1"
+        versionCode 5
+        versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }

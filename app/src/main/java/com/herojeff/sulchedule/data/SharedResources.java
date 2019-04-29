@@ -357,8 +357,12 @@ public final class SharedResources {
 //        return true;
     }
 
-    public static RecordDay getRecordDay() {
+    public static RecordDay getRecordTodayDay() {
         return getRecordDay(CustomDayManager.getTodayYear(), CustomDayManager.getTodayMonth(), CustomDayManager.getTodayDay());
+    }
+
+    public static RecordDay getRecordDay() {
+        return getRecordDay(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay());
     }
 
     enum Mode {

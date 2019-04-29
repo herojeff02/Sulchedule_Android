@@ -4,17 +4,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.herojeff.sulchedule.data.ModeValuePair;
+
 import java.util.ArrayList;
 
 public class MoreInfoListViewAdapter extends BaseAdapter {
-    ArrayList<TodayFragment.ModeStringPair> array;
-    public MoreInfoListViewAdapter(ArrayList<TodayFragment.ModeStringPair> initMoreData) {
+    ArrayList<ModeValuePair> array;
+    public MoreInfoListViewAdapter(ArrayList<ModeValuePair> initMoreData) {
         array = initMoreData;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return array.size();
     }
 
     @Override

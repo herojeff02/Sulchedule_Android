@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.herojeff.sulchedule.data.CustomDayManager;
+import com.herojeff.sulchedule.data.ModeValuePair;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
@@ -22,11 +23,6 @@ import androidx.fragment.app.Fragment;
 
 
 public class TodayFragment extends Fragment implements View.OnClickListener, SulListViewAdapter.EventListener {
-
-    class ModeStringPair{
-        String type;
-        String dataString;
-    }
 
     ImageButton setting_button;
     LinearLayout more_sul_pill;
@@ -144,9 +140,13 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
 
     }
 
-    private ArrayList<ModeStringPair> initMoreData() {
-        ArrayList<ModeStringPair> returnArray = new ArrayList<>();
-        SharedResources.getRecordDay();
+    private ArrayList<ModeValuePair> initMoreData() {
+        ArrayList<ModeValuePair> returnArray = new ArrayList<>();
+        if(SharedResources.getRecordDay().getMoreInfo_list() == null){
+            returnArray.add(new ModeValuePair(0,""));
+            returnArray.add(new ModeValuePair(1,""));
+            returnArray.add(new ModeValuePair(2,""));
+        }
 
         return returnArray;
     }

@@ -6,11 +6,9 @@ import java.util.HashMap;
 public class RecordDay {
 
     private int day;
-    private ArrayList<String> location_list = new ArrayList<>();
-    private ArrayList<String> friend_list = new ArrayList<>();
+
+    private ArrayList<ModeValuePair> moreInfo_list = new ArrayList<>();
     private HashMap<Integer, Integer> sul_list = new HashMap<>(); /*<sul_index, sul_count>*/
-    private boolean custom_expense_enabled = false;
-    private int custom_expense = 0;
     private boolean custom_calorie_enabled = false;
     private int custom_calorie = 0;
     private boolean first_launch_of_day = true;
@@ -21,7 +19,7 @@ public class RecordDay {
 
     ////
     public boolean isTodayEmpty() {
-        if (custom_expense_enabled || custom_calorie_enabled || location_list.size() > 0 || friend_list.size() > 0) {
+        if (custom_calorie_enabled || moreInfo_list.size() > 0) {
             return false;
         }
         if (sul_list.size() == 0) {
@@ -35,10 +33,6 @@ public class RecordDay {
         return true;
     }
 
-    public ArrayList<String> getFriend_list() {
-        return friend_list;
-    }
-
     public boolean containsDeletedSul() {
         for (int k : sul_list.keySet()) {
             if (sul_list.get(k) != 0 && !SharedResources.getSul(k).isSul_enabled()) {
@@ -48,20 +42,20 @@ public class RecordDay {
         return false;
     }
 
-    public ArrayList<String> getLocation_list() {
-        return location_list;
+    public ArrayList<ModeValuePair> getMoreInfo_list() {
+        return moreInfo_list;
+    }
+
+    public void addMoreInfo_list(ModeValuePair info) {
+        this.moreInfo_list.add(info);
+    }
+
+    public void addMoreInfo_list(int mode, String value) {
+        this.moreInfo_list.add(new ModeValuePair(mode, value));
     }
 
     public HashMap<Integer, Integer> getSul_list() {
         return sul_list;
-    }
-
-    public void addFriend_list(String value) {
-        friend_list.add(value);
-    }
-
-    public void addLocation_list(String value) {
-        location_list.add(value);
     }
 
     public void setCertain_sul_count(int sul_index, int count) {
@@ -71,6 +65,15 @@ public class RecordDay {
         } else {
             sul_list.put(sul_index, count);
         }
+    }
+
+    public boolean hasCustomExpense() {
+        for (ModeValuePair e : moreInfo_list) {
+            if (e.getMode() == 2) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setCertain_sul_count(String sul_name, int count) {
@@ -113,16 +116,8 @@ public class RecordDay {
         return return_sul;
     }
 
-    public boolean isCustom_dexpense_enabled() {
-        return custom_expense_enabled;
-    }
-
     public boolean isCustom_calorie_enabled() {
         return custom_calorie_enabled;
-    }
-
-    public void enableCustom_expense() {
-        this.custom_expense_enabled = true;
     }
 
     public void disableCustom_expense() {
@@ -135,11 +130,6 @@ public class RecordDay {
 
     public void disableCustom_calorie_enabled() {
         this.custom_calorie_enabled = false;
-    }
-
-    public void setCustom_expense(int custom_expense) {
-        custom_expense_enabled = true;
-        this.custom_expense = custom_expense;
     }
 
     public void setCustom_calorie(int custom_calorie) {
@@ -172,8 +162,8 @@ public class RecordDay {
     }
 
     public int getExpense() {
-        if (custom_expense_enabled) {
-            return custom_expense;
+        if (hasCustomExpense()) {
+            return getCustomExpense();
         } else {
             int sum = 0;
             for (Integer key : sul_list.keySet()) {
@@ -181,5 +171,42 @@ public class RecordDay {
             }
             return sum;
         }
+    }
+
+    private int getCustomExpense() {
+        int sum = 0;
+        for (ModeValuePair pair : moreInfo_list) {
+            if (pair.getMode() == 2) {
+                try {
+                    sum += pair.getValue_asInteger();
+                } catch (Exception ignored) {
+                }
+            }
+        }
+        return sum;
+    }
+
+    public ArrayList<String> getFriend_list() {
+        ArrayList<String> returnArray = new ArrayList<>();
+        for (ModeValuePair e : moreInfo_list) {
+            if (e.getMode() == 0) {
+                if (!returnArray.contains(e.getValue())) {
+                    returnArray.add(e.getValue());
+                }
+            }
+        }
+        return returnArray;
+    }
+
+    public ArrayList<String> getLocation_list() {
+        ArrayList<String> returnArray = new ArrayList<>();
+        for (ModeValuePair e : moreInfo_list) {
+            if (e.getMode() == 0) {
+                if (!returnArray.contains(e.getValue())) {
+                    returnArray.add(e.getValue());
+                }
+            }
+        }
+        return returnArray;
     }
 }

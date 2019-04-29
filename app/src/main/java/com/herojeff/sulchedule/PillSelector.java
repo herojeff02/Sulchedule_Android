@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.herojeff.sulchedule.data.SharedResources;
+
 public class PillSelector extends RelativeLayout {
     public static final int whom = 0;
     public static final int where = 1;
@@ -83,7 +85,7 @@ public class PillSelector extends RelativeLayout {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    //수정 끝나고 저장하는 코드
+                    SharedResources.getRecordDay().addMoreInfo_list(mode, String.valueOf(edittext_more_info.getText()));
                 }
             }
         });
@@ -140,11 +142,10 @@ public class PillSelector extends RelativeLayout {
         pill_selector_string.setText(getModeString(mode));
     }
 
-    private void setEditTextMode(int mode){
-        if(mode==2) {
+    private void setEditTextMode(int mode) {
+        if (mode == 2) {
             edittext_more_info.setInputType(InputType.TYPE_CLASS_NUMBER);
-        }
-        else{
+        } else {
             edittext_more_info.setInputType(InputType.TYPE_CLASS_TEXT);
         }
     }

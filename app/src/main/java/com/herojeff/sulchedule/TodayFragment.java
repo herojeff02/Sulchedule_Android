@@ -10,16 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.herojeff.sulchedule.data.CustomDayManager;
-import com.herojeff.sulchedule.data.ModeValuePair;
+import com.herojeff.sulchedule.data.RecordDay;
 import com.herojeff.sulchedule.data.SharedResources;
 import com.herojeff.sulchedule.data.Sul;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
 
 import java.util.ArrayList;
-import java.util.Objects;
-
-import androidx.fragment.app.Fragment;
 
 
 public class TodayFragment extends Fragment implements View.OnClickListener, SulListViewAdapter.EventListener {
@@ -35,7 +34,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     ListView listview_more_info;
     SulListViewAdapter adapter_sul;
     MoreInfoListViewAdapter adapter_more_info;
-    View pervert_area;
+    View pervert_area; //a small yellow square... that fills a gap.
 
     ArrayList<Sul> showArray;
 
@@ -90,14 +89,26 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         String temp = CustomDayManager.getMonth() + "월 " + CustomDayManager.getDay() + "일 (" + CustomDayManager.getWeekDayKorean(CustomDayManager.getYear(), CustomDayManager.getMonth(), CustomDayManager.getDay()) + ")";
         text_today.setText(temp);
 
+        //more_info adapter
+        listview_more_info = view.findViewById(R.id.listview_more_info);
+        RecordDay recordDay = SharedResources.getRecordDay();
+        adapter_more_info = new MoreInfoListViewAdapter(SharedResources.getRecordDay().recordDayMoreInfoManager);
+        listview_more_info.setAdapter(adapter_more_info);
+        listview_more_info.setDividerHeight(0);
+
         //set listview height not to clip content
         ListViewResizeUtility.setListViewHeightBasedOnItems(listview_sul);
+
+        //set listview height not to clip content
+        ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
 
         if (SharedResources.getFavouriteSuls().size() == 0) {
             pervert_area.setVisibility(View.INVISIBLE);
         } else {
             pervert_area.setVisibility(View.VISIBLE);
         }
+
+
 
         setting_button = view.findViewById(R.id.setting_button);
         setting_button.setOnClickListener(this);
@@ -129,27 +140,9 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         }
         first = false;
 
-        //more_info adapter
-        listview_more_info = Objects.requireNonNull(getView()).findViewById(R.id.listview_more_info);
-        adapter_more_info = new MoreInfoListViewAdapter(initMoreData());
-        listview_more_info.setAdapter(adapter_more_info);
-        listview_more_info.setDividerHeight(0);
-
-        //set listview height not to clip content
-        ListViewResizeUtility.setListViewHeightBasedOnItems(listview_more_info);
-
     }
 
-    private ArrayList<ModeValuePair> initMoreData() {
-        ArrayList<ModeValuePair> returnArray = new ArrayList<>();
-        if(SharedResources.getRecordDay().getMoreInfo_list() == null){
-            returnArray.add(new ModeValuePair(0,""));
-            returnArray.add(new ModeValuePair(1,""));
-            returnArray.add(new ModeValuePair(2,""));
-        }
 
-        return returnArray;
-    }
 
     @Override
     public void onDetach() {
@@ -169,7 +162,9 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
                 startActivity(intent);
                 break;
             case R.id.pill_more_blank:
-                System.out.println("pill_more_blank");
+                //new memo
+                //update when window closed
+                adapter_more_info.notifyDataSetInvalidated();
                 break;
         }
 

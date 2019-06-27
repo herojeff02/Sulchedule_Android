@@ -90,7 +90,7 @@ public class SulListViewAdapter extends BaseAdapter {
         final int month = CustomDayManager.getMonth();
         final int day = CustomDayManager.getDay();
         int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(favourites.get(pos).getSul_name());
-        textView.setText(String.valueOf(favourites.get(pos).getSul_name()) + " " + count + favourites.get(pos).getSul_unit());
+        textView.setText(favourites.get(pos).getSul_name() + " " + count + favourites.get(pos).getSul_unit());
         stepper_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +134,7 @@ public class SulListViewAdapter extends BaseAdapter {
     }
 
     public void setTextView(TextView tv, int pos, int count) {
-        String k = String.valueOf(favourites.get(pos).getSul_name()) + " " + count + favourites.get(pos).getSul_unit();
+        String k = favourites.get(pos).getSul_name() + " " + count + favourites.get(pos).getSul_unit();
         tv.setText(k);
     }
 

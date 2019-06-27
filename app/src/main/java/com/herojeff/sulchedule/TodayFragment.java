@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -109,7 +110,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         }
 
 
-
         setting_button = view.findViewById(R.id.setting_button);
         setting_button.setOnClickListener(this);
         more_sul_pill = view.findViewById(R.id.pill_more_sul);
@@ -143,7 +143,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
     }
 
 
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -163,6 +162,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
                 break;
             case R.id.pill_more_blank:
                 //new memo
+                Toast.makeText(v.getContext(), "asdf", Toast.LENGTH_SHORT).show();
                 //update when window closed
                 adapter_more_info.notifyDataSetInvalidated();
                 break;

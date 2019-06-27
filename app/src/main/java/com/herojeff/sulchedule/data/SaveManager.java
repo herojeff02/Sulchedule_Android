@@ -76,12 +76,12 @@ public final class SaveManager {
         SharedResources.setEnable_ad(gson.fromJson(json, Boolean.class));
         json = mPrefs.getString("notificationEnabled", "");
         SharedResources.notification_enabled = true;
-        if(gson.fromJson(json, Boolean.class) != null) {
+        if (gson.fromJson(json, Boolean.class) != null) {
             SharedResources.notification_enabled = gson.fromJson(json, Boolean.class);
         }
         json = mPrefs.getString("adForceOffFlag", "");
         SharedResources.ad_force_off = false;
-        if(gson.fromJson(json, Boolean.class) != null) {
+        if (gson.fromJson(json, Boolean.class) != null) {
             SharedResources.ad_force_off = gson.fromJson(json, Boolean.class);
         }
     }

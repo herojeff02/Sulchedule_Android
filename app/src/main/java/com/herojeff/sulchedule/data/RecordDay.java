@@ -5,14 +5,12 @@ import java.util.HashMap;
 
 public class RecordDay {
 
+    public RecordDayMoreInfoManager recordDayMoreInfoManager;
     private int day;
-
     private HashMap<Integer, Integer> sul_list = new HashMap<>(); /*<sul_index, sul_count>*/
     private boolean custom_calorie_enabled = false;
     private int custom_calorie = 0;
     private boolean first_launch_of_day = true;
-
-    public RecordDayMoreInfoManager recordDayMoreInfoManager;
 
 
     public RecordDay(int day) {

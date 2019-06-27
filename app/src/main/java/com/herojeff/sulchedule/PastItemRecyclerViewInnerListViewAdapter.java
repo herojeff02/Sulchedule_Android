@@ -24,32 +24,32 @@ public class PastItemRecyclerViewInnerListViewAdapter extends BaseAdapter {
 
     public PastItemRecyclerViewInnerListViewAdapter(@Nullable RecordDay recordDay, @Nullable RecordMonth recordMonth, boolean shouldLoadAsHeader) {
         if (shouldLoadAsHeader) {
-            arr.add(new StringPair(String.valueOf(recordMonth.getTotalExpense()) + "원", "총 지출액"));
-            arr.add(new StringPair(String.valueOf(recordMonth.getTotalCalorie()) + "kcal", "총 열량"));
+            arr.add(new StringPair(recordMonth.getTotalExpense() + "원", "총 지출액"));
+            arr.add(new StringPair(recordMonth.getTotalCalorie() + "kcal", "총 열량"));
 
             HashMap<Integer, Integer> sulCompilation = recordMonth.getMonthlySulCompilation();
             HashMap<String, Integer> friendCompilation = recordMonth.getMonthlyFriendCompilation();
             HashMap<String, Integer> locationCompilation = recordMonth.getMonthlyLocationCompilation();
             for (int i : sulCompilation.keySet()) {
                 if (SharedResources.getSul(i).isSul_enabled() && sulCompilation.get(i) != 0) {
-                    arr.add(new StringPair(String.valueOf(sulCompilation.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
+                    arr.add(new StringPair(sulCompilation.get(i) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
                 }
             }
             for (String i : friendCompilation.keySet()) {
-                arr.add(new StringPair(String.valueOf(friendCompilation.get(i)) + "회 함께함", i));
+                arr.add(new StringPair(friendCompilation.get(i) + "회 함께함", i));
             }
             for (String i : locationCompilation.keySet()) {
-                arr.add(new StringPair(String.valueOf(locationCompilation.get(i)) + "회 방문", i));
+                arr.add(new StringPair(locationCompilation.get(i) + "회 방문", i));
             }
 
         } else {
-            arr.add(new StringPair(String.valueOf(recordDay.getExpense()) + "원", "총 지출액"));
-            arr.add(new StringPair(String.valueOf(recordDay.getCalorie()) + "kcal", "총 열량"));
+            arr.add(new StringPair(recordDay.getExpense() + "원", "총 지출액"));
+            arr.add(new StringPair(recordDay.getCalorie() + "kcal", "총 열량"));
             HashMap<Integer, Integer> sul_list = recordDay.getSul_list();
             for (int i : sul_list.keySet()) {
                 if (sul_list.get(i) != 0) {
                     if (SharedResources.getSul(i).isSul_enabled() && recordDay.getCertain_sul_count(i) != 0) {
-                        arr.add(new StringPair(String.valueOf(sul_list.get(i)) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
+                        arr.add(new StringPair(sul_list.get(i) + SharedResources.getSul(i).getSul_unit(), SharedResources.getSul(i).getSul_name()));
                     }
                 }
             }

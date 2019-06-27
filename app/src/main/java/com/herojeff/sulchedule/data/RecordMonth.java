@@ -476,10 +476,7 @@ public class RecordMonth {
         if (enable_caloriesOfMonth && goalStat_caloriesOfMonth() >= 1) {
             return false;
         }
-        if (enable_daysOfMonth && goalStat_daysOfMonth() >= 1) {
-            return false;
-        }
-        return true;
+        return !enable_daysOfMonth || !(goalStat_daysOfMonth() >= 1);
     }
 
     public class MonthlyBest {

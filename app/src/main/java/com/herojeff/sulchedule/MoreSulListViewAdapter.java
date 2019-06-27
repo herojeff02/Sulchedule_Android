@@ -71,7 +71,7 @@ public class MoreSulListViewAdapter extends BaseAdapter {
         final int month = CustomDayManager.getMonth();
         final int day = CustomDayManager.getDay();
         int count = SharedResources.getRecordDay(year, month, day).getCertain_sul_count(array.get(pos).getSul_name());
-        textView.setText(String.valueOf(array.get(pos).getSul_name()) + " " + count + array.get(pos).getSul_unit());
+        textView.setText(array.get(pos).getSul_name() + " " + count + array.get(pos).getSul_unit());
         stepper_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +124,7 @@ public class MoreSulListViewAdapter extends BaseAdapter {
     }
 
     public void setTextView(TextView tv, int pos, int count) {
-        String k = String.valueOf(array.get(pos).getSul_name()) + " " + count + array.get(pos).getSul_unit();
+        String k = array.get(pos).getSul_name() + " " + count + array.get(pos).getSul_unit();
         tv.setText(k);
     }
 

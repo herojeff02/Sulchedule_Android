@@ -75,8 +75,8 @@ public class MoreSulEditListViewAdapter extends BaseAdapter {
 
         text_title.setText(suls.get(pos).sul_name);
         text_left_top.setText(suls.get(pos).getSul_unit());
-        text_right_top.setText(String.valueOf(suls.get(pos).getSul_calorie()) + "kcal");
-        text_left_bottom.setText(String.valueOf(suls.get(pos).getSul_price()) + "원");
+        text_right_top.setText(suls.get(pos).getSul_calorie() + "kcal");
+        text_left_bottom.setText(suls.get(pos).getSul_price() + "원");
 
 
         edit_button.setOnClickListener(new View.OnClickListener() {

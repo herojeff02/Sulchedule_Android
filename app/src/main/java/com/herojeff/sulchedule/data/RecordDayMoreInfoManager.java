@@ -9,7 +9,7 @@ public class RecordDayMoreInfoManager {
         recordDayMoreInfoItems = new ArrayList<>();
     }
 
-    public RecordDayMoreInfoItem get(int pos){
+    public RecordDayMoreInfoItem get(int pos) {
         return recordDayMoreInfoItems.get(pos);
     }
 

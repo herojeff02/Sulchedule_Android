@@ -52,14 +52,14 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
+            android:layout_marginRight="30dp"
             android:layout_toLeftOf="@id/setting_button"
             android:layout_toRightOf="@id/traffic_container"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeTextType="uniform"
+            android:maxLines="1"
             android:text="잘하고 있어요!!"
             android:textColor="@color/textWhite"
-            android:layout_marginRight="30dp"
-            android:maxLines="1"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="10dp"
             android:textSize="@dimen/h5" />
 
     </RelativeLayout>

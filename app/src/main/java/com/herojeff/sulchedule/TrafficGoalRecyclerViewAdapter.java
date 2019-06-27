@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.RecordMonth;
@@ -21,9 +24,6 @@ import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<TrafficGoalRecyclerViewAdapter.TrafficGoalRecyclerViewHolder> {
 
@@ -242,35 +242,35 @@ public class TrafficGoalRecyclerViewAdapter extends RecyclerView.Adapter<Traffic
 
         //0
         for (int i = 0; i <= CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth()); i++) {
-            spinnerValues.get(0).add(String.valueOf(i) + "일");
+            spinnerValues.get(0).add(i + "일");
         }
 
         //1
         for (int i = 0; i <= CustomDayManager.getLastDayOfMonth(CustomDayManager.getMonth()); i++) {
-            spinnerValues.get(1).add(String.valueOf(i) + "일");
+            spinnerValues.get(1).add(i + "일");
         }
 
         //2
         for (int i = 0; i <= 19; i++) {
-            spinnerValues.get(2).add(String.valueOf(i * 5000) + "원");
+            spinnerValues.get(2).add(i * 5000 + "원");
         }
         for (int i = 2; i <= 10; i++) {
-            spinnerValues.get(2).add(String.valueOf(i * 50000) + "원");
+            spinnerValues.get(2).add(i * 50000 + "원");
         }
         //5000씩, 100000까지, 50000씩, 500000까지
 
         //3
         for (int i = 0; i <= 19; i++) {
-            spinnerValues.get(3).add(String.valueOf(i * 50) + "kcal");
+            spinnerValues.get(3).add(i * 50 + "kcal");
         }
         for (int i = 10; i <= 49; i++) {
-            spinnerValues.get(3).add(String.valueOf(i * 100) + "kcal");
+            spinnerValues.get(3).add(i * 100 + "kcal");
         }
         for (int i = 10; i <= 19; i++) {
-            spinnerValues.get(3).add(String.valueOf(i * 500) + "kcal");
+            spinnerValues.get(3).add(i * 500 + "kcal");
         }
         for (int i = 2; i <= 20; i++) {
-            spinnerValues.get(3).add(String.valueOf(i * 5000) + "kcal");
+            spinnerValues.get(3).add(i * 5000 + "kcal");
         }
         //50씩, 1000까지, 100씩, 5000까지, 500씩, 10000까지, 5000씩 100000까지
     }

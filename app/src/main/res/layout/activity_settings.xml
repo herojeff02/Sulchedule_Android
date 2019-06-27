@@ -79,13 +79,14 @@
                     android:textSize="@dimen/h4"
                     android:textStyle="bold" />
             </LinearLayout>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:paddingTop="6dp">
 
                 <LinearLayout
@@ -102,38 +103,41 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left">
+
                         <TextView
                             android:id="@+id/setting_item1_text"
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
+                            android:gravity="center|left"
+                            android:maxLines="2"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="6dp"
                             android:text="@string/smart_tip"
                             android:textColor="@color/textWhite"
-                            android:textSize="@dimen/h4"
-                            android:maxLines="2"
-                            android:gravity="center|left"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="6dp" />
+                            android:textSize="@dimen/h4" />
+
                         <ImageView
                             android:id="@+id/setting_item1_help"
-                            android:layout_toRightOf="@id/setting_item1_text"
-                            android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
-                            android:padding="4dp"
-                            android:src="@drawable/ic_help_outline_black_24dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"/>
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@id/setting_item1_text"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_help_outline_black_24dp" />
+
                         <Switch
                             android:id="@+id/setting_item1_switch"
-                            android:foregroundTint="@color/colorAccent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="8dp"
-                            android:paddingRight="10dp"
+                            android:foregroundTint="@color/colorAccent"
                             android:paddingLeft="10dp"
                             android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -141,76 +145,83 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left">
+
                         <TextView
                             android:id="@+id/setting_item2_text"
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
+                            android:gravity="center|left"
+                            android:maxLines="2"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="6dp"
                             android:text="@string/notification_setting"
                             android:textColor="@color/textWhite"
-                            android:textSize="@dimen/h4"
-                            android:maxLines="2"
-                            android:gravity="center|left"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="6dp" />
+                            android:textSize="@dimen/h4" />
+
                         <ImageView
                             android:id="@+id/setting_item2_help"
-                            android:layout_toRightOf="@id/setting_item2_text"
-                            android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
-                            android:padding="4dp"
-                            android:src="@drawable/ic_help_outline_black_24dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"/>
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@id/setting_item2_text"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_help_outline_black_24dp" />
+
                         <Switch
                             android:id="@+id/setting_item2_switch"
-                            android:foregroundTint="@color/colorAccent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="8dp"
-                            android:paddingRight="10dp"
+                            android:foregroundTint="@color/colorAccent"
                             android:paddingLeft="10dp"
                             android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp" />
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:id="@+id/setting_item3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left">
+
                         <TextView
                             android:id="@+id/setting_item3_text"
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
+                            android:gravity="center|left"
+                            android:maxLines="2"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="6dp"
                             android:text="@string/show_ad"
                             android:textColor="@color/textWhite"
-                            android:textSize="@dimen/h4"
-                            android:maxLines="2"
-                            android:gravity="center|left"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="6dp" />
+                            android:textSize="@dimen/h4" />
+
                         <ImageView
                             android:id="@+id/setting_item3_help"
-                            android:layout_toRightOf="@id/setting_item3_text"
-                            android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
-                            android:padding="4dp"
-                            android:src="@drawable/ic_help_outline_black_24dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"/>
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@id/setting_item3_text"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_help_outline_black_24dp" />
+
                         <Switch
                             android:id="@+id/setting_item3_switch"
-                            android:foregroundTint="@color/colorAccent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginRight="8dp"
-                            android:paddingRight="10dp"
+                            android:foregroundTint="@color/colorAccent"
                             android:paddingLeft="10dp"
                             android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:layout_centerVertical="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp" />
                     </RelativeLayout>
 
                     <Space
@@ -218,13 +229,14 @@
                         android:layout_height="5dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:paddingTop="6dp">
 
                 <LinearLayout
@@ -240,37 +252,39 @@
                         android:id="@+id/setting_item4"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:gravity="center|left"
+                        android:maxLines="2"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
                         android:text="@string/suggestion1"
                         android:textColor="@color/textWhite"
-                        android:textSize="@dimen/h4"
-                        android:maxLines="2"
-                        android:gravity="center|left"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp" />
+                        android:textSize="@dimen/h4" />
+
                     <TextView
                         android:id="@+id/setting_item5"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:gravity="center|left"
+                        android:maxLines="2"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
                         android:text="@string/suggestion2"
                         android:textColor="@color/textWhite"
-                        android:textSize="@dimen/h4"
-                        android:maxLines="2"
-                        android:gravity="center|left"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp" />
+                        android:textSize="@dimen/h4" />
 
                     <Space
                         android:layout_width="wrap_content"
                         android:layout_height="5dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:backgroundTint="@color/colorPrimary"
                 android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:paddingTop="6dp">
 
                 <LinearLayout
@@ -286,35 +300,37 @@
                         android:id="@+id/setting_item6"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:gravity="center|left"
+                        android:maxLines="2"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
                         android:text="@string/eula"
                         android:textColor="@color/textWhite"
-                        android:textSize="@dimen/h4"
-                        android:maxLines="2"
-                        android:gravity="center|left"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp" />
+                        android:textSize="@dimen/h4" />
+
                     <TextView
                         android:id="@+id/setting_item7"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:gravity="center|left"
+                        android:maxLines="2"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
                         android:text="@string/github_repository"
                         android:textColor="@color/textWhite"
-                        android:textSize="@dimen/h4"
-                        android:maxLines="2"
-                        android:gravity="center|left"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp" />
+                        android:textSize="@dimen/h4" />
+
                     <TextView
                         android:id="@+id/setting_item8"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:gravity="center|left"
+                        android:maxLines="2"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
                         android:text="@string/dataprocess"
                         android:textColor="@color/textWhite"
-                        android:textSize="@dimen/h4"
-                        android:maxLines="2"
-                        android:gravity="center|left"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp" />
+                        android:textSize="@dimen/h4" />
 
                     <Space
                         android:layout_width="wrap_content"

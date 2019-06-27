@@ -6,10 +6,10 @@
     android:background="@color/colorPrimary">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="61dp">
+        android:layout_height="61dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textview_location"
@@ -22,6 +22,7 @@
             android:textColor="@color/textWhite"
             android:textSize="@dimen/h4"
             app:autoSizeTextType="uniform" />
+
         <TextView
             android:id="@+id/textview_rest"
             android:layout_width="wrap_content"

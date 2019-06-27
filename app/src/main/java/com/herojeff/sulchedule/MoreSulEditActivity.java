@@ -8,10 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.helper.ListViewResizeUtility;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class MoreSulEditActivity extends AppCompatActivity {
 

@@ -42,10 +42,9 @@ public class MoreInfoListViewAdapter extends BaseAdapter {
         TextView location = convertView.findViewById(R.id.textview_location);
         TextView rest = convertView.findViewById(R.id.textview_rest);
 
-        if(manager.get(pos).getLocation().length() == 0){
+        if (manager.get(pos).getLocation().length() == 0) {
             location.setVisibility(View.GONE);
-        }
-        else{
+        } else {
             location.setText(manager.get(pos).getLocation());
         }
         rest.setText(buildSummaryString(pos));
@@ -69,7 +68,6 @@ public class MoreInfoListViewAdapter extends BaseAdapter {
                 returnString.append("과(와) ").append(manager.get(pos).getCustomExpense()).append("원");
             }
         }
-
 
 
         return returnString.toString();

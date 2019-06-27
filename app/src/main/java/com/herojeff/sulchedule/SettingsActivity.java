@@ -14,12 +14,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.herojeff.sulchedule.data.CustomColor;
 import com.herojeff.sulchedule.data.CustomDayManager;
 import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -64,27 +64,25 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 item2_switch.setChecked(SharedResources.notification_enabled);
                 break;
             case R.id.setting_item3:
-                if(SharedResources.checkEligibleRemoveAdEligible()) {
-                    if(SharedResources.isEnable_ad()) {
+                if (SharedResources.checkEligibleRemoveAdEligible()) {
+                    if (SharedResources.isEnable_ad()) {
                         adConfigDialog();
-                    }
-                    else {
+                    } else {
                         SharedResources.setEnable_ad(!SharedResources.isEnable_ad());
                         SaveManager.saveUserSettings();
                         item3_switch.setChecked(SharedResources.isEnable_ad());
                     }
-                }
-                else{
+                } else {
                     adConfigDialog();
                 }
                 break;
             case R.id.setting_item4:
                 intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"herojeff02@gmail.com"});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"herojeff02@gmail.com"});
                 intent.setPackage("com.google.android.gm");
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Bug Report " + (CustomDayManager.getTodayYear()+1900)+"/" + CustomDayManager.getTodayMonth()+"/" + CustomDayManager.getTodayDay());
-                intent.putExtra(Intent.EXTRA_TEXT   , "[버그가 발생한 상황과, 버그의 현상을 자세하게 설명해주세요.]");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Bug Report " + (CustomDayManager.getTodayYear() + 1900) + "/" + CustomDayManager.getTodayMonth() + "/" + CustomDayManager.getTodayDay());
+                intent.putExtra(Intent.EXTRA_TEXT, "[버그가 발생한 상황과, 버그의 현상을 자세하게 설명해주세요.]");
                 try {
                     startActivity(Intent.createChooser(intent, "메일 전송"));
                 } catch (android.content.ActivityNotFoundException ex) {
@@ -95,9 +93,9 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("message/rfc822");
                 intent.setPackage("com.google.android.gm");
-                intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"herojeff02@gmail.com"});
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Feature Request " + (CustomDayManager.getTodayYear()+1900)+"/" + CustomDayManager.getTodayMonth()+"/" + CustomDayManager.getTodayDay());
-                intent.putExtra(Intent.EXTRA_TEXT   , "[원하는 기능을 자세하게 설명해 주세요.]");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"herojeff02@gmail.com"});
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Sulchedule Android Feature Request " + (CustomDayManager.getTodayYear() + 1900) + "/" + CustomDayManager.getTodayMonth() + "/" + CustomDayManager.getTodayDay());
+                intent.putExtra(Intent.EXTRA_TEXT, "[원하는 기능을 자세하게 설명해 주세요.]");
                 try {
                     startActivity(Intent.createChooser(intent, "메일 전송"));
                 } catch (android.content.ActivityNotFoundException ex) {
@@ -105,17 +103,17 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.setting_item6:
-                url ="https://github.com/CLUG-kr/Sulchedule_Android/blob/master/OpenSourceLicense";
+                url = "https://github.com/CLUG-kr/Sulchedule_Android/blob/master/OpenSourceLicense";
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
                 break;
             case R.id.setting_item7:
-                url ="https://github.com/CLUG-kr/Sulchedule_Android";
+                url = "https://github.com/CLUG-kr/Sulchedule_Android";
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
                 break;
             case R.id.setting_item8:
-                url ="https://github.com/CLUG-kr/Sulchedule_Android/blob/master/%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EB%B0%A9%EC%B9%A8.md";
+                url = "https://github.com/CLUG-kr/Sulchedule_Android/blob/master/%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EB%B0%A9%EC%B9%A8.md";
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
                 break;
@@ -151,25 +149,23 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                 item2_switch.setChecked(SharedResources.notification_enabled);
                 break;
             case R.id.setting_item3_switch:
-                if(SharedResources.checkEligibleRemoveAdEligible()) {
-                    if(SharedResources.isEnable_ad()) {
+                if (SharedResources.checkEligibleRemoveAdEligible()) {
+                    if (SharedResources.isEnable_ad()) {
                         item3_switch.setChecked(true);
                         adConfigDialog();
-                    }
-                    else {
+                    } else {
                         SharedResources.setEnable_ad(!SharedResources.isEnable_ad());
                         SaveManager.saveUserSettings();
                         item3_switch.setChecked(SharedResources.isEnable_ad());
                     }
-                }
-                else{
+                } else {
                     item3_switch.setChecked(true);
                     adConfigDialog();
                 }
                 break;
         }
     }
-    
+
 
     void smartTipConfigDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.TodaySettingDialog));
@@ -205,7 +201,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         builder.setTitle("광고 설정");
         AlertDialog dialog;
 
-        if(SharedResources.checkEligibleRemoveAdEligible()) {
+        if (SharedResources.checkEligibleRemoveAdEligible()) {
             builder.setMessage("축하합니다! 이제 광고를 보지 않으셔도 됩니다.\n하지만 광고를 켜 두시면 통학러 개발자의 차비를 지원하실 수 있습니다.");
 
             builder.setPositiveButton("켜기",
@@ -224,8 +220,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                             SaveManager.saveUserSettings();
                         }
                     }).create();
-        }
-        else {
+        } else {
             builder.setMessage("화면 하단에 광고가 표시됩니다.\n건강 신호등 탭의 네 가지 목표를 한번에 달성하셔야 광고를 끌 수 있습니다.");
 
             dialog = builder.setPositiveButton("닫기",
@@ -297,7 +292,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(CustomColor.color_accent);
     }
 
-    void initButtons(){
+    void initButtons() {
         back_text_button = findViewById(R.id.back_text_button);
         item1 = findViewById(R.id.setting_item1);
         item2 = findViewById(R.id.setting_item2);

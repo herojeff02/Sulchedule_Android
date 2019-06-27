@@ -10,6 +10,10 @@ import android.view.ContextThemeWrapper;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -22,10 +26,6 @@ import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         testField();
 
-        if(SharedResources.isEnable_ad() && SharedResources.checkEligibleRemoveAdEligible()) {
+        if (SharedResources.isEnable_ad() && SharedResources.checkEligibleRemoveAdEligible()) {
 
             new Thread(new Runnable() {
                 @Override
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void initAd(){
+    void initAd() {
         MobileAds.initialize(this, "ca-app-pub-4587910042719801~9624838610");
 
         adView = findViewById(R.id.adView);
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         adView.loadAd(adRequest);
     }
 
-    void removeAd(){
+    void removeAd() {
         adView.removeAllViews();
     }
 }

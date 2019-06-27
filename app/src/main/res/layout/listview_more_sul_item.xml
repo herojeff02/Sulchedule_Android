@@ -31,12 +31,12 @@
                 android:id="@+id/textview_sul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="술 이름 _ 병"
-                android:textColor="@color/textWhite"
-                android:textSize="@dimen/h3"
-                android:textAlignment="viewStart"
                 android:maxLines="2"
                 android:paddingRight="14dp"
+                android:text="술 이름 _ 병"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textWhite"
+                android:textSize="@dimen/h3"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 

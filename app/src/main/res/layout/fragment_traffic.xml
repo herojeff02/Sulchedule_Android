@@ -52,15 +52,15 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="14dp"
             android:layout_toRightOf="@id/traffic_container"
+            android:autoSizeMaxTextSize="@dimen/h5"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center|left"
+            android:lines="1"
             android:text="팁"
             android:textColor="@color/textWhite"
-            android:layout_marginEnd="14dp"
-            android:lines="1"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="10dp"
-            android:gravity="center|left"
-            android:autoSizeMaxTextSize="@dimen/h5"
             android:textSize="@dimen/h5" />
 
     </RelativeLayout>

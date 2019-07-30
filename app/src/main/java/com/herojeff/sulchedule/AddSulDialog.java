@@ -13,15 +13,18 @@ import android.widget.Toast;
 import com.herojeff.sulchedule.data.SaveManager;
 import com.herojeff.sulchedule.data.SharedResources;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class AddSulDialog extends Dialog {
 
-    EditText text_name;
-    EditText text_unit;
-    EditText text_kcal;
-    EditText text_price;
-    TextView button_dismiss;
-    TextView button_save;
-    TextView title_text;
+    @BindView(R.id.text_name) EditText text_name;
+    @BindView(R.id.text_unit) EditText text_unit;
+    @BindView(R.id.text_kcal) EditText text_kcal;
+    @BindView(R.id.text_price) EditText text_price;
+    @BindView(R.id.button_dismiss) TextView button_dismiss;
+    @BindView(R.id.button_save) TextView button_save;
+    @BindView(R.id.title_text) TextView title_text;
 
     boolean did_add = false;
     boolean is_edit_mode = false;
@@ -43,13 +46,7 @@ public class AddSulDialog extends Dialog {
         setContentView(R.layout.dialog_addsul);
         this.setCanceledOnTouchOutside(false);
 
-        text_kcal = findViewById(R.id.text_kcal);
-        text_name = findViewById(R.id.text_name);
-        text_unit = findViewById(R.id.text_unit);
-        text_price = findViewById(R.id.text_price);
-        button_dismiss = findViewById(R.id.button_dismiss);
-        button_save = findViewById(R.id.button_save);
-        title_text = findViewById(R.id.title_text);
+        ButterKnife.bind(this);
 
 
         if (is_edit_mode) {

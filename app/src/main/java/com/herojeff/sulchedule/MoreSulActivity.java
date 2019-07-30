@@ -67,8 +67,6 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.add_button:
-                showAddSul();
-                break;
             case R.id.pill_more_sul_add:
                 showAddSul();
                 break;

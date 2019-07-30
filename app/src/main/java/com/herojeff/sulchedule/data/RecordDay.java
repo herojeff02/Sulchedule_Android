@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class RecordDay {
 
-    public RecordDayMoreInfoManager recordDayMoreInfoManager;
+    public RecordDayMemoManager recordDayMemoManager;
     private int day;
     private HashMap<Integer, Integer> sul_list = new HashMap<>(); /*<sul_index, sul_count>*/
     private boolean custom_calorie_enabled = false;
@@ -15,12 +15,12 @@ public class RecordDay {
 
     public RecordDay(int day) {
         this.day = day;
-        recordDayMoreInfoManager = new RecordDayMoreInfoManager();
+        recordDayMemoManager = new RecordDayMemoManager();
     }
 
     ////
     public boolean isTodayEmpty() {
-        if (custom_calorie_enabled || !recordDayMoreInfoManager.isEmpty()) {
+        if (custom_calorie_enabled || !recordDayMemoManager.isEmpty()) {
             return false;
         }
         if (sul_list.size() == 0) {
@@ -57,7 +57,7 @@ public class RecordDay {
     }
 
     public boolean hasCustomExpense() {
-        return recordDayMoreInfoManager.isCustomExpenseEnabled();
+        return recordDayMemoManager.isCustomExpenseEnabled();
     }
 
     public void setCertain_sul_count(String sul_name, int count) {
@@ -158,15 +158,15 @@ public class RecordDay {
     }
 
     private int getCustomExpense() {
-        return recordDayMoreInfoManager.getCustomExpense();
+        return recordDayMemoManager.getCustomExpense();
     }
 
 
     public ArrayList<String> getFriend_list() {
-        return recordDayMoreInfoManager.getFriendList();
+        return recordDayMemoManager.getFriendList();
     }
 
     public ArrayList<String> getLocation_list() {
-        return recordDayMoreInfoManager.getLocationList();
+        return recordDayMemoManager.getLocationList();
     }
 }

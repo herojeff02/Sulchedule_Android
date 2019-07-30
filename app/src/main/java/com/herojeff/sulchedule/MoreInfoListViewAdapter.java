@@ -7,13 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.herojeff.sulchedule.data.RecordDayMoreInfoManager;
+import com.herojeff.sulchedule.data.RecordDayMemoManager;
 
 public class MoreInfoListViewAdapter extends BaseAdapter {
 
-    private final RecordDayMoreInfoManager manager;
+    private final RecordDayMemoManager manager;
 
-    public MoreInfoListViewAdapter(RecordDayMoreInfoManager manager) {
+    public MoreInfoListViewAdapter(RecordDayMemoManager manager) {
         this.manager = manager;
     }
 
@@ -42,10 +42,10 @@ public class MoreInfoListViewAdapter extends BaseAdapter {
         TextView location = convertView.findViewById(R.id.textview_location);
         TextView rest = convertView.findViewById(R.id.textview_rest);
 
-        if (manager.get(pos).getLocation().length() == 0) {
+        if (manager.get(pos).getLocationArrayList().size() == 0) {
             location.setVisibility(View.GONE);
         } else {
-            location.setText(manager.get(pos).getLocation());
+//            location.setText(manager.get(pos).getLocationArrayList());
         }
         rest.setText(buildSummaryString(pos));
 
@@ -56,7 +56,7 @@ public class MoreInfoListViewAdapter extends BaseAdapter {
         int count = 0;
         StringBuilder returnString = new StringBuilder();
 
-        if (manager.get(pos).getLocation().length() == 0) {
+        if (manager.get(pos).getLocationArrayList().size() == 0) {
             //add friends
             for (String item : manager.getFriendList()) {
                 count++;

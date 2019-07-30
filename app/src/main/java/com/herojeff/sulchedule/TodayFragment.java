@@ -1,5 +1,6 @@
 package com.herojeff.sulchedule;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +10,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -93,7 +93,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
         //more_info adapter
         listview_more_info = view.findViewById(R.id.listview_more_info);
         RecordDay recordDay = SharedResources.getRecordDay();
-        adapter_more_info = new MoreInfoListViewAdapter(SharedResources.getRecordDay().recordDayMoreInfoManager);
+        adapter_more_info = new MoreInfoListViewAdapter(SharedResources.getRecordDay().recordDayMemoManager);
         listview_more_info.setAdapter(adapter_more_info);
         listview_more_info.setDividerHeight(0);
 
@@ -161,10 +161,15 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
                 startActivity(intent);
                 break;
             case R.id.pill_more_blank:
-                //new memo
-                Toast.makeText(v.getContext(), "asdf", Toast.LENGTH_SHORT).show();
-                //update when window closed
-                adapter_more_info.notifyDataSetInvalidated();
+                final MemoDialog memoDialog = new MemoDialog(this.getContext(), false);
+                memoDialog.show();
+                memoDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        //update when window closed
+                        adapter_more_info.notifyDataSetInvalidated();
+                    }
+                });
                 break;
         }
 

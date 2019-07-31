@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="주류 추가"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/textWhite"
             android:textSize="@dimen/h3"
             android:textStyle="bold" />
 
@@ -97,7 +97,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:padding="16dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingRight="10dp"
                 android:text="저장"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/h6" />

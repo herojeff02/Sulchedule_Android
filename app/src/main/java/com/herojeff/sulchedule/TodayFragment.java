@@ -163,6 +163,8 @@ public class TodayFragment extends Fragment implements View.OnClickListener, Sul
             case R.id.pill_more_blank:
                 final MemoDialog memoDialog = new MemoDialog(this.getContext(), false);
                 memoDialog.show();
+                int width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
+                memoDialog.getWindow().setLayout(width, memoDialog.getWindow().getAttributes().height);
                 memoDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {

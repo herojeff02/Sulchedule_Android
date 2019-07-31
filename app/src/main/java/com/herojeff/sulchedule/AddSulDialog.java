@@ -26,6 +26,7 @@ public class AddSulDialog extends Dialog {
     @BindView(R.id.button_save) TextView button_save;
     @BindView(R.id.title_text) TextView title_text;
 
+
     boolean did_add = false;
     boolean is_edit_mode = false;
     String sul_name;
@@ -43,7 +44,7 @@ public class AddSulDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_addsul);
+        this.setContentView(R.layout.dialog_addsul);
         this.setCanceledOnTouchOutside(false);
 
         ButterKnife.bind(this);

@@ -74,9 +74,11 @@ public class MoreSulActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     void showAddSul() {
-        final AddSulDialog addCateDialog = new AddSulDialog(this, false, "");
-        addCateDialog.show();
-        addCateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        final AddSulDialog addSulDialog = new AddSulDialog(this, false, "");
+        addSulDialog.show();
+        int width = (int)(getResources().getDisplayMetrics().widthPixels*0.90);
+        addSulDialog.getWindow().setLayout(width, addSulDialog.getWindow().getAttributes().height);
+        addSulDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
                 adapter_more_sul = new MoreSulListViewAdapter(SharedResources.getSuls());

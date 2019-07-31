@@ -23,6 +23,8 @@ buildscript {
 
         // Add dependency
         classpath 'io.fabric.tools:gradle:1.26.1'
+
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
